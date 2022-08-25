@@ -11,7 +11,13 @@ export default function RangeSlider() {
 
   return (
     <>
-      <Slider min={0} max={100} value={value} onChange={handleChange} />
+      <Slider
+        min={0}
+        max={100}
+        value={value}
+        valueLabelDisplay="auto"
+        onChange={handleChange}
+      />
     </>
   );
 }

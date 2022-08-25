@@ -2,6 +2,7 @@ import { Tonal } from '@tonaljs/tonal';
 import React, { useEffect, useState } from 'react';
 import * as Tone from 'tone';
 import RangeSlider from './gen-range-slider';
+import { Slider } from '@mui/material';
 
 export default function Generator() {
   const [selectedRangeOfNotes, setSelectedRangeOfNotes] = useState();
@@ -72,16 +73,22 @@ export default function Generator() {
   }
 
   function BpmSlider() {
+    const [bpm, setBpm] = useState(80);
+
+    const handleChange = (event, newValue) => {
+      setBpm(newValue);
+    };
+
     return (
       <div className="self-center">
-        <p className="text-center">BPM</p>{' '}
-        <input
-          onChange={(e) => setSpeed(e.target.value)}
-          className="self-center"
-          type="range"
-          min="20"
-          max="240"
-        ></input>
+        <p className="text-center">BPM</p>
+        <Slider
+          valueLabelDisplay="auto"
+          min={10}
+          max={280}
+          onChange={handleChange}
+          value={bpm}
+        />
       </div>
     );
   }
