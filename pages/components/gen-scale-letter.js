@@ -1,26 +1,27 @@
 export default function ScaleLetter(props) {
-  const scaleLetter = props.scaleLetter;
-
   function handleChange(e) {
-    newVal = e.target.value;
-    props.setScaleLetter(newVal);
-    console.log(newVal);
+    props.setScaleLetter(e.target.value);
+    console.log(props.scaleLetter);
   }
   return (
     <div className="self-center">
       <span>Key</span>
-      <select className="self-center" onChange={(e) => handleChange}>
-        <option>Ab</option>
-        <option>A</option>
-        <option>Bb</option>
-        <option>B</option>
-        <option>C</option>
-        <option>Db</option>
-        <option>D</option>
-        <option>Eb</option>
-        <option>F</option>
-        <option>Gb</option>
-        <option>G</option>
+      <select
+        defaultValue={props.scaleLetter}
+        className="self-center"
+        onChange={handleChange}
+      >
+        <option value="Ab">Ab</option>
+        <option value="A">A</option>
+        <option value="Bb">Bb</option>
+        <option value="B">B</option>
+        <option value="C">C</option>
+        <option value="Db">Db</option>
+        <option value="D">D</option>
+        <option value="Eb">Eb</option>
+        <option value="F">F</option>
+        <option value="Gb">Gb</option>
+        <option value="G">G</option>
       </select>
     </div>
   );

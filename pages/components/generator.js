@@ -33,12 +33,10 @@ export default function Generator() {
         <ScaleLetter
           scaleLetter={scaleLetter}
           setScaleLetter={setScaleLetter}
-          defaultValue={scaleLetter}
         />
         <ScaleTonality
           scaleTonality={scaleTonality}
           setScaleTonality={setScaleTonality}
-          defaultValue={scaleTonality}
         />
       </div>
       <div className="flex flex-col gap-5">
@@ -47,9 +45,8 @@ export default function Generator() {
           <NumOFNotesSel
             numOFNotes={numOFNotes}
             setNumOfNotes={setNumOfNotes}
-            defaultValue={numOFNotes}
           />
-          <BpmSlider defaultValue={bpm} bpm={bpm} setBpm={setBpm} />
+          <BpmSlider bpm={bpm} setBpm={setBpm} />
         </div>
       </div>
     </>
