@@ -1,118 +1,19 @@
 import { Tonal } from '@tonaljs/tonal';
 import React, { useEffect, useState } from 'react';
 import * as Tone from 'tone';
-import RangeSlider from './gen-range-slider';
-import { Slider } from '@mui/material';
+import GenerateButton from './gen-button';
+import NumOFNotesSel from './gen-num-of-notes';
+import BpmSlider from './gen-bpm-slider';
+import ScaleTonality from './gen-scale-tonality';
+import NoteSelector from './gen-note-selector';
+import ScaleLetter from './gen-scale-letter';
 
 export default function Generator() {
   const [selectedRangeOfNotes, setSelectedRangeOfNotes] = useState();
-  const [speed, setSpeed] = useState(80);
-
-  function Generate() {
-    function startTransport() {
-      Tone.Transport.bpm.value = speed;
-      Tone.Transport.start();
-    }
-
-    function run() {
-      console.log('Start');
-      Tone.start();
-      startTransport();
-      oneShot();
-    }
-
-    return (
-      <button className="self-center px-4 py-2 text-green-500 shadow-md rounded-md bg-slate-500">
-        Generate
-      </button>
-    );
-  }
-
-  function ScaleLetter() {
-    return (
-      <div className="self-center">
-        <span>Key</span>
-        <select className="self-center">
-          <option>Ab</option>
-          <option>A</option>
-          <option>Bb</option>
-          <option selected>B</option>
-          <option>C</option>
-          <option>Db</option>
-          <option>D</option>
-          <option>Eb</option>
-          <option>F</option>
-          <option>Gb</option>
-          <option>G</option>
-        </select>
-      </div>
-    );
-  }
-
-  function ScaleTonality() {
-    return (
-      <div className="self-center">
-        <span>Scale Type</span>{' '}
-        <select className="self-center">
-          <option value="major">Major</option>
-          <option value="minor">Minor</option>
-          <option value="blues" selected>
-            Blues
-          </option>
-        </select>
-      </div>
-    );
-  }
-
-  function NoteSelector() {
-    return (
-      <>
-        <RangeSlider />
-      </>
-    );
-  }
-
-  function BpmSlider() {
-    const [bpm, setBpm] = useState(80);
-
-    const handleChange = (event, newValue) => {
-      setBpm(newValue);
-    };
-
-    return (
-      <div className="self-center">
-        <p className="text-center">BPM</p>
-        <Slider
-          valueLabelDisplay="auto"
-          min={10}
-          max={280}
-          onChange={handleChange}
-          value={bpm}
-        />
-      </div>
-    );
-  }
-
-  function NumOFNotesSel() {
-    const [numOfNotes, setNumOfNotes] = useState(3);
-    return (
-      <div className="self-center">
-        <span>Number of Notes</span>
-        <select className="self-center">
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-          <option selected>4</option>
-          <option>5</option>
-          <option>6</option>
-          <option>7</option>
-          <option>8</option>
-          <option>9</option>
-          <option>10</option>
-        </select>
-      </div>
-    );
-  }
+  const [bpm, setBpm] = useState(80);
+  const [scaleLetter, setScaleLetter] = useState('B');
+  const [numOFNotes, setNumOfNotes] = useState(4);
+  const [scaleTonality, setScaleTonality] = useState('Blues');
 
   function OneShot() {
     for (let i = 0; i < numOFNotes; i++) {
@@ -124,19 +25,31 @@ export default function Generator() {
       synthA.triggerAttackRelease(randy, '16n', Tone.now() + incr);
     }
   }
-
+  // TODO: add the event handlers to all components
   return (
     <>
       <div className="flex flex-col gap-5">
-        <Generate />
-        <ScaleLetter />
-        <ScaleTonality />
+        <GenerateButton bpm={bpm} />
+        <ScaleLetter
+          scaleLetter={scaleLetter}
+          setScaleLetter={setScaleLetter}
+          defaultValue={scaleLetter}
+        />
+        <ScaleTonality
+          scaleTonality={scaleTonality}
+          setScaleTonality={setScaleTonality}
+          defaultValue={scaleTonality}
+        />
       </div>
       <div className="flex flex-col gap-5">
         <div className="self-center">
           <NoteSelector />
-          <NumOFNotesSel />
-          <BpmSlider />
+          <NumOFNotesSel
+            numOFNotes={numOFNotes}
+            setNumOfNotes={setNumOfNotes}
+            defaultValue={numOFNotes}
+          />
+          <BpmSlider defaultValue={bpm} bpm={bpm} setBpm={setBpm} />
         </div>
       </div>
     </>

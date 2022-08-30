@@ -1,34 +1,9 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+An app for inspiring, training, and recording musical phrases to expand your vocabulary.
 
-## Getting Started
+This is my current project to learn full stack development. I'll be working on improving my skills with React and Tailwind, while learning Prisma, and Remix.
 
-First, run the development server:
+The basic idea of the app is that it will have 3 sections: A generator, working area, and vocabulary.
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+The generator will generate random musical phrases. When you hear one you like, you can move it to the working area, where you can chain them together. This helps you work on a single phrase or connecting multiple phrases, so you can improve your ability to solo and improvise.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
-
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Further along, I will create a backend for the vocabulary section. You will be able to save phrases that you like for recall later. Then you can mix and match your personal vocabulary with new phrases from the generator.
