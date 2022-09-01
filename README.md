@@ -1,6 +1,6 @@
 An app for inspiring, training, and recording musical phrases to expand your vocabulary.
 
-This is my current project to learn full stack development. I'll be working on improving my skills with React and Tailwind, while learning Prisma, and Remix.
+This is my current project to learn full stack development. I'll be working on improving my skills with React and Tailwind, while learning Next and Remix.
 
 The basic idea of the app is that it will have 3 sections: A generator, working area, and vocabulary.
 
