@@ -15,15 +15,13 @@ export default function Generator() {
   const [scaleLetter, setScaleLetter] = useState('B');
   const [numOFNotes, setNumOfNotes] = useState(4);
   const [scaleTonality, setScaleTonality] = useState('Blues');
+  const [filteredScale, setFilteredScale] = useState([]);
 
   function getScale() {
-    let lowerCaseTonality = scaleTonality.toLowerCase;
+    let lowerCaseTonality = scaleTonality.toLowerCase();
     let scaleGenerator = Scale.rangeOf(`${scaleLetter} ${lowerCaseTonality}`);
-    let generatedScale = scaleGenerator('A2', 'G5');
-    setSelectedRangeOfNotes(generatedScale); // beyond this range sounds bad
-    console.log(scaleGenerator);
-    console.log('gen scale', generatedScale);
-    console.log('selected range', selectedRangeOfNotes);
+    let generatedScale = scaleGenerator('A2', 'G5'); // beyond this range sounds bad
+    setSelectedRangeOfNotes((prev) => [...generatedScale]);
   }
 
   useEffect(() => getScale, [scaleLetter, scaleTonality]);

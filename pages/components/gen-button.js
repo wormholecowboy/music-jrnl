@@ -19,7 +19,7 @@ export default function GenerateButton() {
   return (
     <button
       onChange={() => handleChange}
-      className="self-center px-4 py-2 text-green-500 shadow-md rounded-md bg-slate-500"
+      className="self-center px-4 py-2 text-green-500 shadow-md rounded-md bg-slate-700"
     >
       Generate
     </button>
