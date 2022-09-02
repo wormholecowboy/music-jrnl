@@ -16,7 +16,11 @@ export default function Generator() {
   const [numOFNotes, setNumOfNotes] = useState(4);
   const [scaleTonality, setScaleTonality] = useState('Blues');
   const [filteredScale, setFilteredScale] = useState([]);
-
+  const [filteredScaleLength, setFilteredScaleLength] = useState(0);
+  const [filteredScaleIndicies, setFilteredScaleIndices] = useState({
+    min: 0,
+    max: filteredScaleLength,
+  });
   function getScale() {
     let lowerCaseTonality = scaleTonality.toLowerCase();
     let scaleGenerator = Scale.rangeOf(`${scaleLetter} ${lowerCaseTonality}`);
@@ -25,6 +29,14 @@ export default function Generator() {
   }
 
   useEffect(() => getScale, [scaleLetter, scaleTonality]);
+
+  useEffect(() => {
+    setFilteredScale((prev) => [...selectedRangeOfNotes]);
+    setFilteredScaleLength((prev) => filteredScale.length - 1);
+    console.log('filtered: ', filteredScale);
+    console.log('length: ', filteredScaleLength);
+  }, [selectedRangeOfNotes]);
+
   return (
     <>
       <div className="flex flex-col gap-5">
@@ -40,7 +52,11 @@ export default function Generator() {
       </div>
       <div className="flex flex-col gap-5">
         <div className="self-center">
-          <NoteSelector />
+          <NoteSelector
+            filteredScaleLength={filteredScaleLength}
+            filteredScaleIndicies={filteredScaleIndicies}
+            selectedRangeOfNotes={selectedRangeOfNotes}
+          />
           <NumOFNotesSel
             numOFNotes={numOFNotes}
             setNumOfNotes={setNumOfNotes}

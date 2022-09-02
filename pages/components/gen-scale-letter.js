@@ -1,8 +1,8 @@
 export default function ScaleLetter(props) {
   function handleChange(e) {
-    props.setScaleLetter(e.target.value);
-    console.log(props.scaleLetter);
+    props.setScaleLetter((prev) => e.target.value);
   }
+
   return (
     <div className="self-center">
       <span>Key</span>
