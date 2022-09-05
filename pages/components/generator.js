@@ -21,21 +21,23 @@ export default function Generator() {
     min: 0,
     max: filteredScaleLength,
   });
+  // TODO: refactor these useStates into objects.
   function getScale() {
     let lowerCaseTonality = scaleTonality.toLowerCase();
     let scaleGenerator = Scale.rangeOf(`${scaleLetter} ${lowerCaseTonality}`);
     let generatedScale = scaleGenerator('A2', 'G5'); // beyond this range sounds bad
     setSelectedRangeOfNotes((prev) => [...generatedScale]);
+    console.log('sel range of notes: ', selectedRangeOfNotes);
   }
 
   useEffect(() => getScale, [scaleLetter, scaleTonality]);
 
-  useEffect(() => {
-    setFilteredScale((prev) => [...selectedRangeOfNotes]);
-    setFilteredScaleLength((prev) => filteredScale.length - 1);
-    console.log('filtered: ', filteredScale);
-    console.log('length: ', filteredScaleLength);
-  }, [selectedRangeOfNotes]);
+  // useEffect(() => {
+  //   setFilteredScale((prev) => [...selectedRangeOfNotes]);
+  //   setFilteredScaleLength(filteredScale.length - 1);
+  //   console.log('filtered: ', filteredScale);
+  //   console.log('length: ', filteredScaleLength);
+  // }, [selectedRangeOfNotes]);
 
   return (
     <>

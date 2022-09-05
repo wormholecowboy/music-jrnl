@@ -1,15 +1,11 @@
 export default function ScaleLetter(props) {
-  function handleChange(e) {
-    props.setScaleLetter((prev) => e.target.value);
-  }
-
   return (
     <div className="self-center">
       <span>Key</span>
       <select
         defaultValue={props.scaleLetter}
         className="self-center"
-        onChange={handleChange}
+        onChange={(e) => props.setScaleLetter(e.target.value)}
       >
         <option value="Ab">Ab</option>
         <option value="A">A</option>
