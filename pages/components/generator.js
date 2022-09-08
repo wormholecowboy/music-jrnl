@@ -33,7 +33,7 @@ export default function Generator() {
   useEffect(() => getScale, [scaleLetter, scaleTonality]);
 
   // useEffect(() => {
-  //   setFilteredScale((prev) => [...selectedRangeOfNotes]);
+  //   setFilteredScale((prev) => [...selectedRangeOfNotes])  ;
   //   setFilteredScaleLength(filteredScale.length - 1);
   //   console.log('filtered: ', filteredScale);
   //   console.log('length: ', filteredScaleLength);
