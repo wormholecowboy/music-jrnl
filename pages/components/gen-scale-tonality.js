@@ -3,7 +3,7 @@ export default function ScaleTonality(props) {
     <div className="self-center">
       <span>Scale Type</span>
       <select
-        value={props.scaleTonality}
+        defaultValue={props.scaleTonality}
         onChange={(e) => props.setScaleTonality(e.target.value)}
         className="self-center"
       >

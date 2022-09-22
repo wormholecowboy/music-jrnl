@@ -15,29 +15,24 @@ export default function Generator() {
   const [scaleLetter, setScaleLetter] = useState('B');
   const [numOFNotes, setNumOfNotes] = useState(4);
   const [scaleTonality, setScaleTonality] = useState('Blues');
-  const [filteredScale, setFilteredScale] = useState([]);
-  const [filteredScaleLength, setFilteredScaleLength] = useState(0);
-  const [filteredScaleIndicies, setFilteredScaleIndices] = useState({
-    min: 0,
-    max: filteredScaleLength,
-  });
-  // TODO: refactor these useStates into objects.
-  function getScale() {
-    let lowerCaseTonality = scaleTonality.toLowerCase();
+  // const [filteredScale, setFilteredScale] = useState([]);
+  // const [filteredScaleLength, setFilteredScaleLength] = useState(0);
+  // const [filteredScaleIndicies, setFilteredScaleIndices] = useState({
+  //   min: 0,
+  //   max: filteredScaleLength,
+  // });
+
+  // get scale
+  useEffect((scaleTonality, scaleLetter) => {
+    let lowerCaseTonality = scaleTonality;
+    lowerCaseTonality = lowerCaseTonality.toLowerCase();
     let scaleGenerator = Scale.rangeOf(`${scaleLetter} ${lowerCaseTonality}`);
     let generatedScale = scaleGenerator('A2', 'G5'); // beyond this range sounds bad
-    setSelectedRangeOfNotes((prev) => [...generatedScale]);
+    setSelectedRangeOfNotes(() => [...generatedScale]);
     console.log('sel range of notes: ', selectedRangeOfNotes);
   }
+    , [scaleLetter, scaleTonality]);
 
-  useEffect(() => getScale, [scaleLetter, scaleTonality]);
-
-  // useEffect(() => {
-  //   setFilteredScale((prev) => [...selectedRangeOfNotes])  ;
-  //   setFilteredScaleLength(filteredScale.length - 1);
-  //   console.log('filtered: ', filteredScale);
-  //   console.log('length: ', filteredScaleLength);
-  // }, [selectedRangeOfNotes]);
 
   return (
     <>
@@ -55,8 +50,8 @@ export default function Generator() {
       <div className="flex flex-col gap-5">
         <div className="self-center">
           <NoteSelector
-            filteredScaleLength={filteredScaleLength}
-            filteredScaleIndicies={filteredScaleIndicies}
+            // filteredScaleLength={filteredScaleLength}
+            // filteredScaleIndicies={filteredScaleIndicies}
             selectedRangeOfNotes={selectedRangeOfNotes}
           />
           <NumOFNotesSel
