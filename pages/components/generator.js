@@ -9,30 +9,30 @@ import ScaleTonality from './gen-scale-tonality';
 import NoteSelector from './gen-note-selector';
 import ScaleLetter from './gen-scale-letter';
 
+// TODO: create a useEffect to set hi and low state to -1 and 0, watches the selectedRangeOfNotes,
 export default function Generator() {
   const [selectedRangeOfNotes, setSelectedRangeOfNotes] = useState([]);
   const [bpm, setBpm] = useState(80);
   const [scaleLetter, setScaleLetter] = useState('B');
   const [numOFNotes, setNumOfNotes] = useState(4);
   const [scaleTonality, setScaleTonality] = useState('Blues');
-  // const [filteredScale, setFilteredScale] = useState([]);
-  // const [filteredScaleLength, setFilteredScaleLength] = useState(0);
-  // const [filteredScaleIndicies, setFilteredScaleIndices] = useState({
-  //   min: 0,
-  //   max: filteredScaleLength,
-  // });
+  const [hiState, setHiState] = useState(null);
+  const [lowState, setLowState] = useState(null);
 
   // get scale
-  useEffect((scaleTonality, scaleLetter) => {
+  useEffect(() => {
     let lowerCaseTonality = scaleTonality;
     lowerCaseTonality = lowerCaseTonality.toLowerCase();
     let scaleGenerator = Scale.rangeOf(`${scaleLetter} ${lowerCaseTonality}`);
+    console.log('scalegenerator', scaleGenerator);
     let generatedScale = scaleGenerator('A2', 'G5'); // beyond this range sounds bad
-    setSelectedRangeOfNotes(() => [...generatedScale]);
-    console.log('sel range of notes: ', selectedRangeOfNotes);
-  }
-    , [scaleLetter, scaleTonality]);
+    console.log('gen scale', generatedScale);
+    setSelectedRangeOfNotes(generatedScale);
+  }, [scaleLetter, scaleTonality]);
 
+  useEffect(() => {
+    console.log('sel range of notes: ', selectedRangeOfNotes);
+  }, [selectedRangeOfNotes]);
 
   return (
     <>
@@ -53,6 +53,10 @@ export default function Generator() {
             // filteredScaleLength={filteredScaleLength}
             // filteredScaleIndicies={filteredScaleIndicies}
             selectedRangeOfNotes={selectedRangeOfNotes}
+            hiState={hiState}
+            setHiState={setHiState}
+            lowState={lowState}
+            setLowState={setLowState}
           />
           <NumOFNotesSel
             numOFNotes={numOFNotes}

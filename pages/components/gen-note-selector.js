@@ -2,7 +2,26 @@ import { useEffect, useState } from 'react';
 import { uuid as note } from 'uuidv4';
 
 export default function NoteSelector(props) {
-  const [propsState, setPropsState] = useState(props);
+  const getSelectedNotes = (isLow) => {
+    const selectedNote = isLow ? props.lowState : props.hiState;
+    let selectedRangeOfNotes;
+    const lowerBound = props.lowState || 0;
+    if (props.hiState) {
+      selectedRangeOfNotes = props.selectedRangeOfNotes.slice(
+        lowerBound,
+        props.hiState
+      );
+    } else {
+      selectedRangeOfNotes = props.selectedRangeOfNotes.slice(lowerBound);
+    }
+    return selectedRangeOfNotes.map((note, index) => {
+      return (
+        <option key={index} value={index}>
+          {note}
+        </option>
+      );
+    });
+  };
 
   return (
     <>
@@ -11,24 +30,23 @@ export default function NoteSelector(props) {
         <select
           id="note-selector-low"
           className="px-3 mx-3"
-          defaultValue={props.selectedRangeOfNotes[0]}
+          value={props.lowState}
+          onChange={(e) => {
+            props.setLowState(e.target.value);
+          }}
         >
-          {props.selectedRangeOfNotes.map((note, index) => {
-            <option key={note} value={note}>
-              {note}
-            </option>;
-          })}
+          {getSelectedNotes(true)}
         </select>
         <span>High</span>
-        <select id="note-selector-high"
+        <select
+          id="note-selector-high"
           className="px-3 mx-3"
-          defaultValue={props.selectedRangeOfNotes[-1]}
+          value={props.hiState}
+          onChange={(e) => {
+            props.setHiState(e.target.value);
+          }}
         >
-          {props.selectedRangeOfNotes.map((note, index) => {
-            <option key={note} value={note}>
-              {note}
-            </option>;
-          })}
+          {getSelectedNotes(false)}
         </select>
       </div>
     </>
