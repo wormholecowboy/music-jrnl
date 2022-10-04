@@ -1,4 +1,4 @@
-import Generator from '../components/generator';
+import Generator from '../../components/generator';
 
 export default function playIndex() {
   return (
