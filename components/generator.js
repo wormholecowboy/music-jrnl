@@ -1,6 +1,6 @@
 import { Scale } from '@tonaljs/tonal';
 import React, { useEffect, useState } from 'react';
-import * as Tone from 'tone';
+// import * as Tone from 'tone';
 
 import GenerateButton from './gen-button';
 import NumOFNotesSel from './gen-num-of-notes';
@@ -16,8 +16,11 @@ export default function Generator() {
   const [scaleLetter, setScaleLetter] = useState('B');
   const [numOFNotes, setNumOfNotes] = useState(4);
   const [scaleTonality, setScaleTonality] = useState('Blues');
-  const [hiState, setHiState] = useState(-1);
-  const [lowState, setLowState] = useState(0);
+  const [hiState, setHiState] = useState(
+    selectedRangeOfNotes[selectedRangeOfNotes.length - 1]
+  );
+  const [lowState, setLowState] = useState(selectedRangeOfNotes[0]);
+
 
   // get scale
   useEffect(() => {
@@ -27,9 +30,16 @@ export default function Generator() {
     setSelectedRangeOfNotes(generatedScale);
   }, [scaleLetter, scaleTonality]);
 
-  // useEffect(() => {
-  //   console.log('sel range of notes: ', selectedRangeOfNotes);
-  // }, [selectedRangeOfNotes]);
+  useEffect(() => {
+    // setHiState(
+    //   selectedRangeOfNotes[selectedRangeOfNotes.length - 1],
+    //   console.log('histate set from gen', hiState)
+    // );
+    console.log(
+      'histate from gen',
+      selectedRangeOfNotes[selectedRangeOfNotes.length - 1]
+    );
+  }, []);
 
   return (
     <>

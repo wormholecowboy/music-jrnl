@@ -1,3 +1,5 @@
+import { useEffect } from 'react';
+
 export default function NoteSelector({
   selectedRangeOfNotes,
   lowState,
@@ -24,14 +26,16 @@ export default function NoteSelector({
   // };
 
   const displayNotes = () => {
-    return selectedRangeOfNotes.map((note, index) => {
-      return (
-        <option key={note} value={index}>
-          {note}
-        </option>
-      );
-    });
+    return selectedRangeOfNotes.map((note, index) => (
+      <option key={note} value={index}>
+        {note}
+      </option>
+    ));
   };
+
+  useEffect(() =>
+    console.log('histate from note selector', selectedRangeOfNotes[hiState])
+  );
 
   return (
     <>
@@ -42,7 +46,7 @@ export default function NoteSelector({
           className="px-3 mx-3"
           value={selectedRangeOfNotes[lowState]}
         >
-          {displayNotes}
+          {displayNotes()}
         </select>
         <span>High</span>
         <select
@@ -50,7 +54,7 @@ export default function NoteSelector({
           className="px-3 mx-3"
           value={selectedRangeOfNotes[hiState]}
         >
-          {displayNotes}
+          {displayNotes()}
         </select>
       </div>
     </>
