@@ -21,24 +21,24 @@ export default function Generator() {
   );
   const [lowState, setLowState] = useState(selectedRangeOfNotes[0]);
 
-
   // get scale
-  useEffect(() => {
+  function getScale() {
     let lowerCaseTonality = scaleTonality.toLowerCase();
     let scaleGenerator = Scale.rangeOf(`${scaleLetter} ${lowerCaseTonality}`);
     let generatedScale = scaleGenerator('A2', 'G5'); // beyond this range sounds bad
-    setSelectedRangeOfNotes(generatedScale);
-  }, [scaleLetter, scaleTonality]);
+    setSelectedRangeOfNotes(
+      generatedScale,
+      console.log(
+        'getscale finished',
+        scaleLetter,
+        scaleTonality,
+        selectedRangeOfNotes
+      )
+    );
+  }
 
   useEffect(() => {
-    // setHiState(
-    //   selectedRangeOfNotes[selectedRangeOfNotes.length - 1],
-    //   console.log('histate set from gen', hiState)
-    // );
-    console.log(
-      'histate from gen',
-      selectedRangeOfNotes[selectedRangeOfNotes.length - 1]
-    );
+    getScale();
   }, []);
 
   return (
@@ -48,15 +48,18 @@ export default function Generator() {
         <ScaleLetter
           scaleLetter={scaleLetter}
           setScaleLetter={setScaleLetter}
+          getScale={getScale}
         />
         <ScaleTonality
           scaleTonality={scaleTonality}
           setScaleTonality={setScaleTonality}
+          getScale={getScale}
         />
       </div>
       <div className="flex flex-col gap-5">
         <div className="self-center">
           <NoteSelector
+            getScale={getScale}
             selectedRangeOfNotes={selectedRangeOfNotes}
             hiState={hiState}
             setHiState={setHiState}

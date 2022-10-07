@@ -1,10 +1,17 @@
-export default function ScaleTonality(props) {
+export default function ScaleTonality({
+  scaleTonality,
+  setScaleTonality,
+  getScale,
+}) {
+  const handleClick = (e) => {
+    setScaleTonality(e.target.value, getScale());
+  };
   return (
     <div className="self-center">
       <span>Scale Type</span>
       <select
-        defaultValue={props.scaleTonality}
-        onChange={(e) => props.setScaleTonality(e.target.value)}
+        value={scaleTonality}
+        onChange={(e) => handleClick(e)}
         className="self-center"
       >
         <option value="Major">Major</option>

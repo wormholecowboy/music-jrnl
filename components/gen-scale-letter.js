@@ -1,11 +1,14 @@
-export default function ScaleLetter(props) {
+export default function ScaleLetter({ scaleLetter, setScaleLetter, getScale }) {
+  const handleClick = (e) => {
+    setScaleLetter(e.target.value, console.log('setscaleletter', scaleLetter));
+  };
   return (
     <div className="self-center">
       <span>Key</span>
       <select
-        defaultValue={props.scaleLetter}
+        value={scaleLetter}
         className="self-center"
-        onChange={(e) => props.setScaleLetter(e.target.value)}
+        onChange={(e) => handleClick(e)}
       >
         <option value="Ab">Ab</option>
         <option value="A">A</option>
