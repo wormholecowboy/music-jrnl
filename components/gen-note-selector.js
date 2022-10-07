@@ -7,24 +7,6 @@ export default function NoteSelector({
   setLowState,
   setHiState,
 }) {
-  // const getSelectedNotes = (isLow) => {
-  //   const selectedNote = isLow ? lowState : hiState;
-  //   let tempRange;
-  //   const lowerBound = lowState || 0;
-  //   if (hiState) {
-  //     tempRange = selectedRangeOfNotes.slice(lowerBound, hiState);
-  //   } else {
-  //     tempRange = selectedRangeOfNotes.slice(lowerBound);
-  //   }
-  //   return tempRange.map((note, index) => {
-  //     return (
-  //       <option key={index} value={index}>
-  //         {note}
-  //       </option>
-  //     );
-  //   });
-  // };
-
   const displayNotes = () => {
     return selectedRangeOfNotes.map((note, index) => (
       <option key={note} value={index}>
