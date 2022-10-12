@@ -1,6 +1,6 @@
-export default function ScaleLetter({ scaleLetter, setScaleLetter, getScale }) {
+export default function ScaleLetter({ scaleLetter, setScaleLetter }) {
   const handleClick = (e) => {
-    setScaleLetter(e.target.value, console.log('setscaleletter', scaleLetter));
+    setScaleLetter(e.target.value);
   };
   return (
     <div className="self-center">

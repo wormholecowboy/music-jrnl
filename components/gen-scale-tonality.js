@@ -4,7 +4,7 @@ export default function ScaleTonality({
   getScale,
 }) {
   const handleClick = (e) => {
-    setScaleTonality(e.target.value, getScale());
+    setScaleTonality(e.target.value);
   };
   return (
     <div className="self-center">
