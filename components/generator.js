@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-// import * as Tone from 'tone';
 
 import GenerateButton from './gen-button';
 import NumOFNotesSel from './gen-num-of-notes';
@@ -15,11 +14,19 @@ export default function Generator() {
   const [scaleLetter, setScaleLetter] = useState('B');
   const [numOFNotes, setNumOfNotes] = useState(4);
   const [scaleTonality, setScaleTonality] = useState('Blues');
+  const [lowState, setLowState] = useState(0);
+  const [hiState, setHiState] = useState(0);
 
   return (
     <>
       <div className="flex flex-col gap-5">
-        <GenerateButton bpm={bpm} />
+        <GenerateButton
+          bpm={bpm}
+          numOFNotes={numOFNotes}
+          selectedRangeOfNotes={selectedRangeOfNotes}
+          hiState={hiState}
+          lowState={lowState}
+        />
         <ScaleLetter
           scaleLetter={scaleLetter}
           setScaleLetter={setScaleLetter}
@@ -36,6 +43,10 @@ export default function Generator() {
             setSelectedRangeOfNotes={setSelectedRangeOfNotes}
             scaleTonality={scaleTonality}
             scaleLetter={scaleLetter}
+            hiState={hiState}
+            lowState={lowState}
+            setHiState={setHiState}
+            setLowState={setLowState}
           />
           <NumOFNotesSel
             numOFNotes={numOFNotes}

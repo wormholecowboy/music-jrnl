@@ -6,28 +6,21 @@ export default function NoteSelector({
   scaleLetter,
   scaleTonality,
   setSelectedRangeOfNotes,
+  lowState,
+  hiState,
+  setHiState,
+  setLowState,
 }) {
-  const [hiState, setHiState] = useState(
-    selectedRangeOfNotes[selectedRangeOfNotes.length - 1]
-  );
-  const [lowState, setLowState] = useState(selectedRangeOfNotes[0]);
+  function getScale() {
+    // This is causing an infinite loop. generatedScale will always look different to diffing algo
+    let lowerCaseTonality = scaleTonality.toLowerCase();
+    let scaleGenerator = Scale.rangeOf(`${scaleLetter} ${lowerCaseTonality}`);
+    let generatedScale = scaleGenerator('A2', 'G5'); // beyond this range sounds bad
+    setSelectedRangeOfNotes(generatedScale);
+  }
 
   useEffect(() => {
-    function getScale() {
-      // This is causing an infinite loop. generatedScale will always look different to diffing algo
-      let lowerCaseTonality = scaleTonality.toLowerCase();
-      let scaleGenerator = Scale.rangeOf(`${scaleLetter} ${lowerCaseTonality}`);
-      let generatedScale = scaleGenerator('A2', 'G5'); // beyond this range sounds bad
-      setSelectedRangeOfNotes(
-        generatedScale,
-        console.log(
-          'getscale finished',
-          scaleLetter,
-          scaleTonality,
-          selectedRangeOfNotes
-        )
-      );
-    }
+    getScale();
   }, [scaleLetter, scaleTonality]);
 
   const displayNotes = () => {
@@ -39,7 +32,12 @@ export default function NoteSelector({
   };
 
   useEffect(() =>
-    console.log('histate from note selector', selectedRangeOfNotes[hiState])
+    console.log(
+      'histate from note selector',
+      lowState,
+      hiState,
+      selectedRangeOfNotes
+    )
   );
 
   return (
@@ -49,7 +47,8 @@ export default function NoteSelector({
         <select
           id="note-selector-low"
           className="px-3 mx-3"
-          value={selectedRangeOfNotes[lowState]}
+          value={lowState}
+          onChange={(e) => setLowState(e.target.value)}
         >
           {displayNotes()}
         </select>
@@ -57,7 +56,8 @@ export default function NoteSelector({
         <select
           id="note-selector-high"
           className="px-3 mx-3"
-          value={selectedRangeOfNotes[hiState]}
+          value={hiState}
+          onChange={(e) => setHiState(e.target.value)}
         >
           {displayNotes()}
         </select>
