@@ -7,7 +7,8 @@ import ScaleTonality from './gen-scale-tonality';
 import NoteSelector from './gen-note-selector';
 import ScaleLetter from './gen-scale-letter';
 
-// TODO: create a useEffect to set hi and low state to -1 and 0, watches the selectedRangeOfNotes,
+// TODO: add the 'repeat phrase' button
+
 export default function Generator() {
   const [selectedRangeOfNotes, setSelectedRangeOfNotes] = useState([]);
   const [bpm, setBpm] = useState(80);

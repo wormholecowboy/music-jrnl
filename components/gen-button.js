@@ -1,4 +1,5 @@
 import * as Tone from 'tone';
+// this can be minimized to 'scale'
 
 export default function GenerateButton({
   selectedRangeOfNotes,
@@ -7,32 +8,24 @@ export default function GenerateButton({
   bpm,
   numOFNotes,
 }) {
-  const oneShot = () => {
-    for (let i = 0; i < numOFNotes; i++) {
-      let rng = selectedRangeOfNotes.length;
-      let randy = selectedRangeOfNotes[randomNotes(0, rng)];
-      console.log('vars: ', rng, randy);
-      let incr = Tone.Time({ '8n': i });
-      console.log(incr.valueOf());
-      synthA.triggerAttackRelease(randy, '16n', Tone.now() + incr);
-    }
-    // synthA.triggerAttackRelease('C4', '32n');
-  };
-
-  const synthA = new Tone.Synth().toDestination();
+  const slicedScale = selectedRangeOfNotes.slice(lowState, hiState);
   let currentNote = 0;
   let previousNote = 0;
+  const synthA = new Tone.Synth().toDestination();
 
-  let slicedScale = selectedRangeOfNotes.slice(lowState, hiState);
-  // TODO: add the sliced scale to the generator
+  const oneShot = () => {
+    for (let i = 0; i < numOFNotes; i++) {
+      let arrayLength = slicedScale.length;
+      let randomNote = slicedScale[randomIndex(0, arrayLength)];
+      let incr = Tone.Time({ '8n': i });
+      synthA.triggerAttackRelease(randomNote, '16n', Tone.now() + incr);
+    }
+  };
 
-  // Grab random notes
-  function randomNotes(min, max) {
+  function randomIndex(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
-
     previousNote = currentNote;
-
     while (currentNote == previousNote) {
       currentNote = Math.floor(Math.random() * (max - min) + min);
     }
@@ -41,7 +34,7 @@ export default function GenerateButton({
 
   function trigSynthA(time) {
     synthA.triggerAttackRelease(
-      selectedRangeOfNotes[randomNotes(0, selectedRangeOfNotes.length)],
+      selectedRangeOfNotes[randomIndex(0, selectedRangeOfNotes.length)],
       '16n',
       time
     );
