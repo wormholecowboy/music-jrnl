@@ -12,13 +12,29 @@ export default function GenerateButton({
   let currentNote = 0;
   let previousNote = 0;
   const synthA = new Tone.Synth().toDestination();
+  const rhythmArray = [
+    '4n',
+    '8n',
+    '16n',
+    '32n',
+    '4t',
+    '8t',
+    '16t',
+    '4n.',
+    '8n.',
+    '16n.',
+    '32n.',
+  ];
 
   const oneShot = () => {
+    let cumlativeRhythm = '';
     for (let i = 0; i < numOFNotes; i++) {
       let arrayLength = slicedScale.length;
       let randomNote = slicedScale[randomIndex(0, arrayLength)];
       let incr = Tone.Time({ '8n': i });
-      synthA.triggerAttackRelease(randomNote, '16n', Tone.now() + incr);
+      let rhythm = rhythmArray[randomRhythm(0, 10)];
+      cumlativeRhythm.concat(`+${rhythm}`);
+      synthA.triggerAttackRelease(randomNote, rhythm, Tone.now() + incr);
     }
   };
 
@@ -30,6 +46,13 @@ export default function GenerateButton({
       currentNote = Math.floor(Math.random() * (max - min) + min);
     }
     return currentNote;
+  }
+
+  function randomRhythm(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    let rhythm = Math.floor(Math.random() * (max - min) + min);
+    return rhythm;
   }
 
   function trigSynthA(time) {
