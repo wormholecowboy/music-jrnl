@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import * as Tone from 'tone';
 // this can be minimized to 'scale'
 
@@ -9,9 +10,9 @@ export default function GenerateButton({
   numOFNotes,
 }) {
   const slicedScale = selectedRangeOfNotes.slice(lowState, hiState);
+  const [synthA, setSynthA] = useState({});
   let currentNote = 0;
   let previousNote = 0;
-  const synthA = new Tone.Synth().toDestination();
   const rhythmArray = [
     '4n',
     '8n',
@@ -27,13 +28,11 @@ export default function GenerateButton({
   ];
 
   const oneShot = () => {
-    let cumlativeRhythm = '';
     for (let i = 0; i < numOFNotes; i++) {
       let arrayLength = slicedScale.length;
       let randomNote = slicedScale[randomIndex(0, arrayLength)];
       let incr = Tone.Time({ '8n': i });
       let rhythm = rhythmArray[randomRhythm(0, 10)];
-      cumlativeRhythm.concat(`+${rhythm}`);
       synthA.triggerAttackRelease(randomNote, rhythm, Tone.now() + incr);
     }
   };
@@ -63,6 +62,10 @@ export default function GenerateButton({
     );
   }
 
+  function repeat() {
+    console.log('need to set up history array');
+  }
+
   function run() {
     console.log('Start');
     Tone.start();
@@ -72,12 +75,25 @@ export default function GenerateButton({
     oneShot();
   }
 
+  useEffect(() => {
+    let synth = new Tone.Synth().toDestination();
+    setSynthA(synth);
+  }, []);
+
   return (
-    <button
-      onClick={run}
-      className="self-center px-4 py-2 text-green-500 shadow-md rounded-md bg-slate-700"
-    >
-      Generate
-    </button>
+    <>
+      <button
+        onClick={run}
+        className="self-center px-4 py-2 text-green-500 shadow-md rounded-md bg-slate-700"
+      >
+        Generate
+      </button>
+      <button
+        onClick={repeat}
+        className="self-center px-4 py-2 text-green-500 shadow-md rounded-md bg-slate-700"
+      >
+        Repeat
+      </button>
+    </>
   );
 }
