@@ -31,15 +31,6 @@ export default function NoteSelector({
     ));
   };
 
-  useEffect(() =>
-    console.log(
-      'histate from note selector',
-      lowState,
-      hiState,
-      selectedRangeOfNotes
-    )
-  );
-
   return (
     <>
       <div className="flex flex-row">
