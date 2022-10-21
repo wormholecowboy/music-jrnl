@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import * as Tone from 'tone';
 // this can be minimized to 'scale'
 
@@ -9,23 +9,18 @@ export default function GenerateButton({
   bpm,
   numOFNotes,
 }) {
-  const temp = parseInt(hiState) + 1;
-  console.log('temp', temp);
-  const slicedScale = selectedRangeOfNotes.slice(lowState, temp);
+  //
+  const slicedScale = selectedRangeOfNotes.slice(
+    lowState,
+    parseInt(hiState) + 1
+  );
   console.log('sliced scale', slicedScale);
   const [synthA, setSynthA] = useState({});
   let currentNote = 0;
   let previousNote = 0;
-  const rhythmArray = [
-    '4n',
-    '8n',
-    '4t',
-    '8t',
-    '4n.',
-    '8n.',
-    // { '4n': 3, '8t': -1 },
-  ];
+  const rhythmArray = ['4n', '8n', '4t', '8t'];
   // Object, ({"4n" : 3, "8t" : -1}). The resulting time is equal to the sum of all of the keys multiplied by the values in the object.
+  const phraseHistory = useRef([]);
 
   // const oneShot = () => {
   //   for (let i = 0; i < numOFNotes; i++) {
@@ -36,6 +31,11 @@ export default function GenerateButton({
   //     synthA.triggerAttackRelease(randomNote, rhythm, Tone.now() + incr);
   //   }
   // };
+
+  function updateHistory(phrase) {
+    phraseHistory.current.push(phrase);
+    console.log('history', phraseHistory.current);
+  }
 
   function playPhrase(arrayToPlay) {
     let delay = Tone.now();
@@ -57,6 +57,7 @@ export default function GenerateButton({
       let rhythm = rhythmArray[randomIndex(0, rhythmArray.length)];
       phrase = [...phrase, { note: randomNote, time: rhythm }];
     }
+    updateHistory(phrase);
     return phrase;
   };
 
@@ -66,7 +67,7 @@ export default function GenerateButton({
     let index = Math.floor(Math.random() * (max - min) + min);
     return index;
   }
-
+  // TODO: refactor these into one function
   function randomIndexNoRepeat(min, max) {
     min = Math.ceil(min);
     max = Math.floor(max);
@@ -87,6 +88,13 @@ export default function GenerateButton({
     playPhrase(createPhrase());
   }
 
+  function repeat() {
+    Tone.start();
+    Tone.Transport.bpm.value = bpm;
+    Tone.Transport.start();
+    playPhrase(phraseHistory.current[phraseHistory.current.length - 1]);
+  }
+
   // this is here to avoid instantiating in node, needs the browser
   useEffect(() => {
     let synth = new Tone.Synth().toDestination();
@@ -95,18 +103,20 @@ export default function GenerateButton({
 
   return (
     <>
-      <button
-        onClick={run}
-        className="self-center px-4 py-2 text-green-500 shadow-md rounded-md bg-slate-700"
-      >
-        Generate
-      </button>
-      {/* <button */}
-      {/*   onClick={repeat} */}
-      {/*   className="self-center px-4 py-2 text-green-500 shadow-md rounded-md bg-slate-700" */}
-      {/* > */}
-      {/*   Repeat */}
-      {/* </button> */}
+      <div className="self-center flex flex-row gap-2">
+        <button
+          onClick={run}
+          className="self-center px-4 py-2 text-green-500 shadow-md rounded-md bg-slate-700"
+        >
+          Generate
+        </button>
+        <button
+          onClick={repeat}
+          className="self-center px-4 py-2 text-green-500 shadow-md rounded-md bg-slate-700"
+        >
+          Repeat
+        </button>
+      </div>
     </>
   );
 }

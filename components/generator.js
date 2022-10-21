@@ -28,14 +28,16 @@ export default function Generator() {
           hiState={hiState}
           lowState={lowState}
         />
-        <ScaleLetter
-          scaleLetter={scaleLetter}
-          setScaleLetter={setScaleLetter}
-        />
-        <ScaleTonality
-          scaleTonality={scaleTonality}
-          setScaleTonality={setScaleTonality}
-        />
+        <div className="self-center flex flex-row gap-2 my-3">
+          <ScaleLetter
+            scaleLetter={scaleLetter}
+            setScaleLetter={setScaleLetter}
+          />
+          <ScaleTonality
+            scaleTonality={scaleTonality}
+            setScaleTonality={setScaleTonality}
+          />
+        </div>
       </div>
       <div className="flex flex-col gap-5">
         <div className="self-center">
