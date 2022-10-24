@@ -18,6 +18,7 @@ export default function ScaleLetter({ scaleLetter, setScaleLetter }) {
         <option value="Db">Db</option>
         <option value="D">D</option>
         <option value="Eb">Eb</option>
+        <option value="E">D</option>
         <option value="F">F</option>
         <option value="Gb">Gb</option>
         <option value="G">G</option>
