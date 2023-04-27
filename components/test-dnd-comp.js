@@ -35,14 +35,15 @@ const List2 = () => {
         <>
           <div
             key={item.id}
-            className={`h-12 w-32 min-h-12 rounded-md cursor-move self-center ${item.color}`}
+            className={`h-12 w-32 min-h-12 m-10 p-3 rounded-md text-white cursor-move self-center ${item.color}`}
             // style={{ left: `${item.left}px` }}
             draggable="true"
             onDragStart={(event) => handleDragStart(event, item)}
             onDragOver={handleDragOver}
             onDrop={(event) => handleDrop(event, index)}
-          />
-          <p className="text-white text-center">{item.text}</p>
+          >
+            {item.text}
+          </div>
         </>
       ))}
     </div>
