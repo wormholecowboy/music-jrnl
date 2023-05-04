@@ -1,8 +1,10 @@
 import Generator from '../../components/generator';
 import Nav from '../../components/nav';
 import WorkingArea from '../../components/working';
+import React, { useState } from 'react';
 
 export default function playIndex() {
+  const [poolPhrases, setPoolPhrases] = useState([]);
   return (
     <>
       <Nav />

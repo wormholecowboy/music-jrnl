@@ -1,5 +1,5 @@
 // import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-import DragAndDropList from './test-dnd-comp';
+import DragAndDropList from './dnd-phrases-area.js';
 
 export default function WorkingArea() {
   let phrases = [
@@ -9,8 +9,8 @@ export default function WorkingArea() {
     { pname: 'red', id: 'red' },
   ];
   return (
-    <div className="flex flex-row gap-5 items-center">
-      <DragAndDropList className="self-center" />
+    <div className="flex flex-row gap-5 bg-slate-100 ">
+      <DragAndDropList />
       {/*   <DragDropContext> */}
       {/*     <Droppable droppableId="phrases"> */}
       {/*       {(provided) => ( */}

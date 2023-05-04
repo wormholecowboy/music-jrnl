@@ -30,12 +30,12 @@ const List2 = () => {
   };
 
   return (
-    <div className="relative w-full h-16 flex items-center">
+    <div className="relative w-3/4 h-16 flex justify-between content-center">
       {items.map((item, index) => (
         <>
           <div
             key={item.id}
-            className={`h-12 w-32 min-h-12 m-10 p-3 rounded-md text-white cursor-move self-center ${item.color}`}
+            className={`h-12 w-32 min-h-12 m-10 p-3 rounded-md text-white cursor-move ${item.color}`}
             // style={{ left: `${item.left}px` }}
             draggable="true"
             onDragStart={(event) => handleDragStart(event, item)}
