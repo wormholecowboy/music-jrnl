@@ -6,6 +6,7 @@ import BpmSlider from './gen-bpm-slider';
 import ScaleTonality from './gen-scale-tonality';
 import NoteSelector from './gen-note-selector';
 import ScaleLetter from './gen-scale-letter';
+import SendToPoolButton from './gen-send2pool-button';
 
 // TODO: add the 'repeat phrase' button
 
@@ -28,6 +29,7 @@ export default function Generator() {
           hiState={hiState}
           lowState={lowState}
         />
+        <SendToPoolButton />
         <div className="self-center flex flex-row gap-2 my-3">
           <ScaleLetter
             scaleLetter={scaleLetter}
