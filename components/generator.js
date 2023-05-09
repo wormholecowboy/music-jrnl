@@ -29,7 +29,10 @@ export default function Generator() {
           hiState={hiState}
           lowState={lowState}
         />
-        <SendToPoolButton />
+        <SendToPoolButton
+          scaleLetter={scaleLetter}
+          scaleTonality={scaleTonality}
+        />
         <div className="self-center flex flex-row gap-2 my-3">
           <ScaleLetter
             scaleLetter={scaleLetter}
