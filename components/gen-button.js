@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
-import * as Tone from 'tone';
-// this can be minimized to 'scale'
+import * as Tone from 'tone'; //this can be reduced to 'scale'
+import { usePoolPhrasesContext } from './use-poolphrases-context';
 
 export default function GenerateButton({
   selectedRangeOfNotes,
@@ -115,6 +115,12 @@ export default function GenerateButton({
           className="self-center px-4 py-2 text-green-500 shadow-md rounded-md bg-slate-700"
         >
           Repeat
+        </button>
+        <button
+          onClick={updatePoolPhrases}
+          className="self-center px-4 py-2 text-green-500 shadow-md rounded-md bg-slate-700"
+        >
+          Sent to Pool
         </button>
       </div>
     </>
