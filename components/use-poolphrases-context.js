@@ -16,6 +16,7 @@ export function PoolPhrasesProvider({ children }) {
 
   const updatePoolPhrases = (newPhrase) => {
     setPoolPhrases((prev) => ({ ...prev, newPhrase }));
+    console.log(poolPhrases);
   };
 
   return (

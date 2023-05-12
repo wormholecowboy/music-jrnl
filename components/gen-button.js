@@ -101,6 +101,8 @@ export default function GenerateButton({
     setSynthA(synth);
   }, []);
 
+  const { poolPhrases, updatePoolPhrases } = usePoolPhrasesContext();
+
   return (
     <>
       <div className="self-center flex flex-row gap-2">
