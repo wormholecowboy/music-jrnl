@@ -14,7 +14,7 @@ export default function PlayIndex() {
           className="h-screen grid grid-cols-2 grid-rows-4 gap-5 mx-20"
         >
           <div id="working" className="col-span-full row-start-1 row-end-2">
-            <WorkingArea />
+            {/* <WorkingArea /> */}
           </div>
           <div id="generator" className="row-start-2 row-end-4 bg-blue-400">
             Generator
