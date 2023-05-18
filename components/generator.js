@@ -18,6 +18,7 @@ export default function Generator() {
   const [scaleTonality, setScaleTonality] = useState('Blues');
   const [lowState, setLowState] = useState(0);
   const [hiState, setHiState] = useState(0);
+  const [currentPhrase, setCurrentPhrase] = useState([]);
 
   return (
     <>
@@ -28,6 +29,8 @@ export default function Generator() {
           selectedRangeOfNotes={selectedRangeOfNotes}
           hiState={hiState}
           lowState={lowState}
+          currentPhrase={currentPhrase}
+          setCurrentPhrase={setCurrentPhrase}
         />
         <SendToPoolButton
           scaleLetter={scaleLetter}

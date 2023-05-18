@@ -8,6 +8,8 @@ export default function GenerateButton({
   hiState,
   bpm,
   numOFNotes,
+  setCurrentPhrase,
+  currentPhrase,
 }) {
   //
   const slicedScale = selectedRangeOfNotes.slice(
@@ -58,7 +60,8 @@ export default function GenerateButton({
       phrase = [...phrase, { note: randomNote, time: rhythm }];
     }
     updateHistory(phrase);
-    return phrase;
+    // return phrase;
+    setCurrentPhrase(phrase);
   };
 
   function randomIndex(min, max) {
@@ -85,7 +88,7 @@ export default function GenerateButton({
     Tone.Transport.start();
     // startTransport();
     // oneShot();
-    playPhrase(createPhrase());
+    createPhrase();
   }
 
   function repeat() {
@@ -100,6 +103,11 @@ export default function GenerateButton({
     let synth = new Tone.Synth().toDestination();
     setSynthA(synth);
   }, []);
+
+  useEffect(() => {
+    playPhrase(currentPhrase);
+    console.log(currentPhrase);
+  }, [currentPhrase]);
 
   const { poolPhrases, updatePoolPhrases } = usePoolPhrasesContext();
 
