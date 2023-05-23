@@ -98,6 +98,8 @@ export default function GenerateButton({
     playPhrase(phraseHistory.current[phraseHistory.current.length - 1]);
   }
 
+  const [poolPhrases, setPoolPhrases] = usePoolPhrasesContext();
+
   // this is here to avoid instantiating in node, needs the browser
   useEffect(() => {
     let synth = new Tone.Synth().toDestination();
@@ -108,8 +110,6 @@ export default function GenerateButton({
     playPhrase(currentPhrase);
     console.log(currentPhrase);
   }, [currentPhrase]);
-
-  const { poolPhrases, updatePoolPhrases } = usePoolPhrasesContext();
 
   return (
     <>
@@ -127,10 +127,14 @@ export default function GenerateButton({
           Repeat
         </button>
         <button
-          onClick={updatePoolPhrases}
+          onClick={() => {
+            setPoolPhrases((prev) => [...prev, currentPhrase]);
+            console.log('currentPhrase', currentPhrase);
+            console.log('poolphrases', poolPhrases);
+          }}
           className="self-center px-4 py-2 text-green-500 shadow-md rounded-md bg-slate-700"
         >
-          Sent to Pool
+          Send to Pool
         </button>
       </div>
     </>
