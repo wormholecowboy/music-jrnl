@@ -17,7 +17,9 @@ export default function PlayIndex() {
           <div id="working" className="row-start-1 row-end-2 bg-purple-300">
             {/* <WorkingArea /> */}
           </div>
-          <div className="row-start-1 row-end-2 bg-yellow-300">{Pool}</div>
+          <div className="row-start-1 row-end-2 bg-yellow-300">
+            <Pool />
+          </div>
           <div id="generator" className="row-start-2 row-end-4 bg-blue-400">
             Generator
             <Generator />
