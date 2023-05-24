@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import * as Tone from 'tone'; //this can be reduced to 'scale'
 import { usePoolPhrasesContext } from './use-poolphrases-context';
+import { v1 as uuidv1 } from 'uuid';
 
 export default function GenerateButton({
   selectedRangeOfNotes,
