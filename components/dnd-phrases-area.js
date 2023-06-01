@@ -1,3 +1,4 @@
+import { DataGrid } from '@mui/x-data-grid';
 // import { List } from '@mui/material';
 import React, { useState } from 'react';
 
@@ -31,21 +32,7 @@ const List2 = () => {
 
   return (
     <div className="relative w-3/4 h-16 flex justify-between content-center">
-      {items.map((item, index) => (
-        <>
-          <div
-            key={item.id}
-            className={`h-12 w-32 min-h-12 m-10 p-3 rounded-md text-white cursor-move ${item.color}`}
-            // style={{ left: `${item.left}px` }}
-            draggable="true"
-            onDragStart={(event) => handleDragStart(event, item)}
-            onDragOver={handleDragOver}
-            onDrop={(event) => handleDrop(event, index)}
-          >
-            {item.text}
-          </div>
-        </>
-      ))}
+      <DataGrid />
     </div>
   );
 };
