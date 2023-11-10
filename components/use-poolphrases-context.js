@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState } from "react";
 
 const PoolPhrasesContext = React.createContext();
 
@@ -11,8 +11,8 @@ export function PoolPhrasesProvider({ children }) {
 
   const updatePoolPhrases = (newPhrase) => {
     setPoolPhrases((prev) => [...prev, newPhrase]);
-    console.log('newphrase', newPhrase);
-    console.log(poolPhrases);
+    console.log("newphrase: ", newPhrase);
+    console.log("poolPhrases: ", poolPhrases);
   };
 
   return (
