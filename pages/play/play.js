@@ -17,15 +17,14 @@ export default function PlayIndex() {
                     <div id="working" className="row-start-1 row-end-2 bg-purple-300">
                         <WorkingArea />
                     </div>
-                    <div className="row-start-1 row-end-2 bg-yellow-300">
+                    <div id="pool" className="row-start-1 row-end-3 bg-yellow-300">
                         <Pool />
                     </div>
                     <div id="generator" className="row-start-2 row-end-4 bg-blue-400">
-                        Generator
                         <Generator />
                     </div>
 
-                    <div id="my-vocab" className="row-start-2 row-end-4 bg-green-400">
+                    <div id="my-vocab" className="row-start-3 row-end-4 bg-green-400">
                         myVocab
                     </div>
                 </div>

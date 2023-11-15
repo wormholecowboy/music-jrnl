@@ -6,66 +6,61 @@ import BpmSlider from './gen-bpm-slider';
 import ScaleTonality from './gen-scale-tonality';
 import NoteSelector from './gen-note-selector';
 import ScaleLetter from './gen-scale-letter';
-import SendToPoolButton from './gen-send2pool-button';
 
 // TODO: add the 'repeat phrase' button
 
 export default function Generator() {
-  const [selectedRangeOfNotes, setSelectedRangeOfNotes] = useState([]);
-  const [bpm, setBpm] = useState(80);
-  const [scaleLetter, setScaleLetter] = useState('B');
-  const [numOFNotes, setNumOfNotes] = useState(4);
-  const [scaleTonality, setScaleTonality] = useState('Blues');
-  const [lowState, setLowState] = useState(0);
-  const [hiState, setHiState] = useState(0);
-  const [currentPhrase, setCurrentPhrase] = useState([]);
+    const [selectedRangeOfNotes, setSelectedRangeOfNotes] = useState([]);
+    const [bpm, setBpm] = useState(280);
+    const [scaleLetter, setScaleLetter] = useState('B');
+    const [numOFNotes, setNumOfNotes] = useState(4);
+    const [scaleTonality, setScaleTonality] = useState('Blues');
+    const [lowState, setLowState] = useState(6);
+    const [hiState, setHiState] = useState(13);
+    const [currentPhrase, setCurrentPhrase] = useState([]);
 
-  return (
-    <>
-      <div className="flex flex-col gap-5">
-        <GenerateButton
-          bpm={bpm}
-          numOFNotes={numOFNotes}
-          selectedRangeOfNotes={selectedRangeOfNotes}
-          hiState={hiState}
-          lowState={lowState}
-          currentPhrase={currentPhrase}
-          setCurrentPhrase={setCurrentPhrase}
-        />
-        <SendToPoolButton
-          scaleLetter={scaleLetter}
-          scaleTonality={scaleTonality}
-        />
-        <div className="self-center flex flex-row gap-2 my-3">
-          <ScaleLetter
-            scaleLetter={scaleLetter}
-            setScaleLetter={setScaleLetter}
-          />
-          <ScaleTonality
-            scaleTonality={scaleTonality}
-            setScaleTonality={setScaleTonality}
-          />
-        </div>
-      </div>
-      <div className="flex flex-col gap-5">
-        <div className="self-center">
-          <NoteSelector
-            selectedRangeOfNotes={selectedRangeOfNotes}
-            setSelectedRangeOfNotes={setSelectedRangeOfNotes}
-            scaleTonality={scaleTonality}
-            scaleLetter={scaleLetter}
-            hiState={hiState}
-            lowState={lowState}
-            setHiState={setHiState}
-            setLowState={setLowState}
-          />
-          <NumOFNotesSel
-            numOFNotes={numOFNotes}
-            setNumOfNotes={setNumOfNotes}
-          />
-          <BpmSlider bpm={bpm} setBpm={setBpm} />
-        </div>
-      </div>
-    </>
-  );
+    return (
+        <>
+            <div className="flex flex-col gap-5 mt-5">
+                <GenerateButton
+                    bpm={bpm}
+                    numOFNotes={numOFNotes}
+                    selectedRangeOfNotes={selectedRangeOfNotes}
+                    hiState={hiState}
+                    lowState={lowState}
+                    currentPhrase={currentPhrase}
+                    setCurrentPhrase={setCurrentPhrase}
+                />
+                <div className="self-center flex flex-row gap-2 my-3">
+                    <ScaleLetter
+                        scaleLetter={scaleLetter}
+                        setScaleLetter={setScaleLetter}
+                    />
+                    <ScaleTonality
+                        scaleTonality={scaleTonality}
+                        setScaleTonality={setScaleTonality}
+                    />
+                </div>
+            </div>
+            <div className="flex flex-row gap-5 justify-around">
+                <NoteSelector
+                    selectedRangeOfNotes={selectedRangeOfNotes}
+                    setSelectedRangeOfNotes={setSelectedRangeOfNotes}
+                    scaleTonality={scaleTonality}
+                    scaleLetter={scaleLetter}
+                    hiState={hiState}
+                    lowState={lowState}
+                    setHiState={setHiState}
+                    setLowState={setLowState}
+                />
+                <NumOFNotesSel
+                    numOFNotes={numOFNotes}
+                    setNumOfNotes={setNumOfNotes}
+                />
+            </div>
+            <div className='px-20'>
+                <BpmSlider bpm={bpm} setBpm={setBpm} />
+            </div>
+        </>
+    );
 }

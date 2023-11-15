@@ -22,14 +22,17 @@ export default function WorkingArea() {
     }
 
     return (
-        <div className="flex flex-row gap-5 bg-slate-100 ">
-            <h2>Working Area</h2>
-            <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
-                <SortableContext items={phrases} strategy={horizontalListSortingStrategy}>
-                    {phrases.map(phrase => <DraggablePhrase id={phrase} key={phrase} />)}
-                </SortableContext>
+        <div className="flex flex-col justify-center justify-items-center">
+            <h2 className="self-center">Chain your pool phrase together here.</h2>
+            <div className="p-8 flex self-center">
 
-            </DndContext>
+                <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
+                    <SortableContext items={phrases} strategy={horizontalListSortingStrategy}>
+                        {phrases.map(phrase => <DraggablePhrase id={phrase} key={phrase} />)}
+                    </SortableContext>
+
+                </DndContext>
+            </div>
         </div>
     );
 }
