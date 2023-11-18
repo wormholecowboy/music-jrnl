@@ -98,7 +98,7 @@ export default function GenerateButton({
         playPhrase(phraseHistory.current[phraseHistory.current.length - 1]);
     }
 
-    const [poolPhrases, setPoolPhrases] = usePoolPhrasesContext();
+    const { poolPhrases, setPoolPhrases } = usePoolPhrasesContext();
 
     // this is here to avoid instantiating in node, needs the browser
     useEffect(() => {
