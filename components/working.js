@@ -31,7 +31,13 @@ export default function WorkingArea() {
 
                 <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
                     <SortableContext items={workingPhrases} strategy={horizontalListSortingStrategy}>
-                        {workingPhrases.map(phrase => <DraggablePhrase id={phrase} key={phrase} />)}
+                        {workingPhrases.map(phrase => {
+                            <span className="p-2 ">
+                                {phrase.map(noteandtime => noteandtime.note).toString()}
+                            </span>
+
+                        })}
+
                     </SortableContext>
 
                 </DndContext>

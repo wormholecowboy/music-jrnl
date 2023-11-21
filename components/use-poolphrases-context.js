@@ -8,7 +8,7 @@ export function usePoolPhrasesContext() {
 
 export function PoolPhrasesProvider({ children }) {
     const [poolPhrases, setPoolPhrases] = useState([]);
-    const [workingPhrases, setWorkingPhrases] = useState(["something", "another thing"])
+    const [workingPhrases, setWorkingPhrases] = useState([])
 
     return (
         <>
