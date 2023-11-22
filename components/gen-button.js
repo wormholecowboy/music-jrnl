@@ -17,7 +17,6 @@ export default function GenerateButton({
         lowState,
         parseInt(hiState) + 1
     );
-    console.log('sliced scale', slicedScale);
     const [synthA, setSynthA] = useState({});
     let currentNote = 0;
     let previousNote = 0;
@@ -79,12 +78,9 @@ export default function GenerateButton({
     }
 
     function run() {
-        console.log('Start');
         Tone.start();
         Tone.Transport.bpm.value = bpm;
         Tone.Transport.start();
-        // startTransport();
-        // oneShot();
         const phraseObj = createPhrase();
         playPhrase(phraseObj)
     }

@@ -12,12 +12,19 @@ export default function Pool() {
                         className="bg-gray-300 rounded-full m-2 px-4 py-1 w-10px h-10px"
                     >
                         {phraseObj.phrase.map(noteandtime => noteandtime.note).toString()}
-                        <span className="m-2 cursor-pointer"
+                        <span className="ml-4">
+                            <Image
+                                alt="play"
+                                src="/../public/play.png"
+                                width={20}
+                                height={20}
+                            />
+                        </span>
+                        <span className="m-1 cursor-pointer"
                             onClick={() => setWorkingPhrases(prev => [...prev, phraseObj])}>
                             <Image
                                 alt="work"
                                 src="/../public/hammer.png"
-                                className="rounded-full m-2"
                                 width={20}
                                 height={20}
                             />
