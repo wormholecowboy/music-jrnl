@@ -6,10 +6,9 @@ import { usePoolPhrasesContext } from "./use-poolphrases-context";
 
 export default function WorkingArea() {
 
-    const [phrases, setPhrases] = useState(["phrase1", "phrase2", "phrase3", "phrase4"])
     const { workingPhrases, setWorkingPhrases } = usePoolPhrasesContext();
+    console.log("working phrases: ", workingPhrases)
 
-    console.log("working phrases", workingPhrases)
     function handleDragEnd(event) {
         const { active, over } = event;
 
@@ -31,9 +30,9 @@ export default function WorkingArea() {
 
                 <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
                     <SortableContext items={workingPhrases} strategy={horizontalListSortingStrategy}>
-                        {workingPhrases.map(phrase => {
+                        {workingPhrases.map(phraseObj => {
                             <span className="p-2 ">
-                                {phrase.map(noteandtime => noteandtime.note).toString()}
+                                {phraseObj.phrase.map(noteandtime => noteandtime.note).toString()}
                             </span>
 
                         })}

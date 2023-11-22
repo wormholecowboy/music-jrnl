@@ -25,29 +25,19 @@ export default function GenerateButton({
     // Object, ({"4n" : 3, "8t" : -1}). The resulting time is equal to the sum of all of the keys multiplied by the values in the object.
     const phraseHistory = useRef([]);
 
-    // const oneShot = () => {
-    //   for (let i = 0; i < numOFNotes; i++) {
-    //     let arrayLength = slicedScale.length;
-    //     let randomNote = slicedScale[randomIndex(0, arrayLength)];
-    //     let incr = Tone.Time({ '8n': i });
-    //     let rhythm = rhythmArray[randomIndex(0, 10)];
-    //     synthA.triggerAttackRelease(randomNote, rhythm, Tone.now() + incr);
-    //   }
-    // };
-
     function updateHistory(phrase) {
         phraseHistory.current.push(phrase);
-        console.log('history', phraseHistory.current);
     }
 
-    function playPhrase(arrayToPlay) {
+    function playPhrase(phraseObj) {
+        const phrase = phraseObj.phrase
         let delay = Tone.now();
-        for (let i = 0; i < arrayToPlay.length; i++) {
-            let time = arrayToPlay[i].time;
+        for (let i = 0; i < phrase.length; i++) {
+            let time = phrase[i].time;
             delay += Tone.Time(time).toSeconds();
             synthA.triggerAttackRelease(
-                arrayToPlay[i].note,
-                arrayToPlay[i].time,
+                phrase[i].note,
+                phrase[i].time,
                 delay
             );
         }
@@ -61,13 +51,14 @@ export default function GenerateButton({
             let rhythm = rhythmArray[randomIndex(0, rhythmArray.length)];
             phrase = [...phrase, { note: randomNote, time: rhythm }];
         }
-        updateHistory(phrase);
         let phraseObj = {
             phrase: phrase,
             id: id
         }
-        // return phrase;
-        setCurrentPhrase(phrase);
+        updateHistory(phraseObj);
+        setCurrentPhrase(phraseObj);
+
+        return phraseObj;
     };
 
     function randomIndex(min, max) {
@@ -94,7 +85,8 @@ export default function GenerateButton({
         Tone.Transport.start();
         // startTransport();
         // oneShot();
-        createPhrase();
+        const phraseObj = createPhrase();
+        playPhrase(phraseObj)
     }
 
     function repeat() {
@@ -112,30 +104,9 @@ export default function GenerateButton({
         setSynthA(synth);
     }, []);
 
-
-    useEffect(() => {
-        const handleKeyDown = (event) => {
-            if (event.key === ',') {
-                run();
-            }
-            if (event.key === '.') {
-                repeat();
-            }
-            if (event.key === '/') {
-                setPoolPhrases((prev) => [...prev, currentPhrase]);
-
-            }
-        }
-        document.addEventListener('keydown', handleKeyDown);
-        return () => {
-            document.removeEventListener('keydown', handleKeyDown)
-        }
-    }, []);
-
-    useEffect(() => {
+    /* useEffect(() => {
         playPhrase(currentPhrase);
-        console.log(currentPhrase);
-    }, [currentPhrase]);
+    }, [currentPhrase]); */
 
     return (
         <>
@@ -155,8 +126,6 @@ export default function GenerateButton({
                 <button
                     onClick={() => {
                         setPoolPhrases((prev) => [...prev, currentPhrase]);
-                        console.log('currentPhrase', currentPhrase);
-                        console.log('poolphrases', poolPhrases);
                     }}
                     className="self-center px-4 py-2 text-green-500 shadow-md rounded-md bg-slate-700"
                 >
