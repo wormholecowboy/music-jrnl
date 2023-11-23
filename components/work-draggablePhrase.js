@@ -16,7 +16,7 @@ export default function DraggablePhrase(props) {
     }
     return (
         <div ref={setNodeRef} style={style} {...attributes} {...listeners}>
-            <Card body className="m-1" >{props.children}</Card>
+            <Card className="mx-2">{props.children}</Card>
         </div>
     )
 }
