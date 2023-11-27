@@ -2,7 +2,16 @@ import { usePoolPhrasesContext } from "./use-poolphrases-context";
 import Image from "next/image";
 
 export default function Pool() {
-    const { poolPhrases, setWorkingPhrases } = usePoolPhrasesContext();
+
+    const { poolPhrases, setPoolPhrases, setWorkingPhrases } = usePoolPhrasesContext();
+
+    function deletePhrase(id) {
+        setPoolPhrases(prev => {
+            const updatedPhrases = prev.filter(phraseObj => phraseObj.id !== id);
+            return updatedPhrases;
+        });
+    }
+
     return (
         <>
             <div>
@@ -29,13 +38,16 @@ export default function Pool() {
                                 height={20}
                             />
                         </span>
-                        <Image
-                            alt="delete"
-                            src="/../public/trash.png"
-                            className="rounded-full m-2"
-                            width={20}
-                            height={20}
-                        />
+                        <span className="m-1 cursor-pointer"
+                            onClick={() => deletePhrase(phraseObj.id)}>
+                            <Image
+                                alt="delete"
+                                src="/../public/trash.png"
+                                className="rounded-full m-2"
+                                width={20}
+                                height={20}
+                            />
+                        </span>
                         <Image
                             alt="save"
                             src="/../public/save.png"

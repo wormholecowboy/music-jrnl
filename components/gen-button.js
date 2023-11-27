@@ -50,7 +50,7 @@ export default function GenerateButton({
             let rhythm = rhythmArray[randomIndex(0, rhythmArray.length)];
             phrase = [...phrase, { note: randomNote, time: rhythm }];
         }
-        let phraseObj = {
+        const phraseObj = {
             phrase: phrase,
             id: id
         }
@@ -99,10 +99,6 @@ export default function GenerateButton({
         let synth = new Tone.Synth().toDestination();
         setSynthA(synth);
     }, []);
-
-    /* useEffect(() => {
-        playPhrase(currentPhrase);
-    }, [currentPhrase]); */
 
     return (
         <>
