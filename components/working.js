@@ -11,6 +11,14 @@ export default function WorkingArea() {
     const { workingPhrases, setWorkingPhrases } = usePoolPhrasesContext();
     const [synthA, setSynthA] = useState({});
 
+    function deletePhrase(id) {
+        console.log('run del prhase')
+        setWorkingPhrases(prev => {
+            const updatedPhrases = prev.filter(phraseObj => phraseObj.id !== id);
+            return updatedPhrases;
+        });
+    }
+
     function playPhrase(workingPhrases) {
         const phrase = []
         workingPhrases.map(phraseObj => {
@@ -57,13 +65,16 @@ export default function WorkingArea() {
                         {workingPhrases.map(phraseObj => (
                             <DraggablePhrase id={phraseObj.id} key={phraseObj.id}>
                                 {phraseObj.phrase.map(noteandtime => noteandtime.note.toString())}
-                                <Image
-                                    alt="delete"
-                                    src="/../public/trash.png"
-                                    className="rounded-full m-2"
-                                    width={20}
-                                    height={20}
-                                />
+                                <span className='m-1 cursor-pointer'
+                                    onClick={() => deletePhrase(phraseObj.id)}>
+                                    <Image
+                                        alt="delete"
+                                        src="/../public/trash.png"
+                                        className="rounded-full m-2"
+                                        width={20}
+                                        height={20}
+                                    />
+                                </span>
                             </DraggablePhrase>
                         ))
                         }
