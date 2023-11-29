@@ -8,8 +8,9 @@ import { useState, useEffect } from 'react';
 
 export default function WorkingArea() {
 
-    const { workingPhrases, setWorkingPhrases } = usePoolPhrasesContext();
+    const { bpm, workingPhrases, setWorkingPhrases } = usePoolPhrasesContext();
     const [synthA, setSynthA] = useState({});
+    const [rest, setRest] = useState({ note: null, time: '4n' })
 
     function deletePhrase(id) {
         console.log('run del prhase')
@@ -24,6 +25,7 @@ export default function WorkingArea() {
         workingPhrases.map(phraseObj => {
             phraseObj.phrase.map(noteandtime => phrase.push(noteandtime))
         })
+        Tone.Transport.bpm.value = bpm;
         let delay = Tone.now();
         for (let i = 0; i < phrase.length; i++) {
             let time = phrase[i].time;
@@ -82,6 +84,7 @@ export default function WorkingArea() {
                 </DndContext>
             </div>
             <div className="flex flex-row justify-center" >
+                <selector><option>4n</option></selector>
                 <button onClick={() => playPhrase(workingPhrases)} className="self-center px-4 py-2 text-green-500 shadow-md rounded-md bg-slate-700"
                 >Play</button>
             </div>

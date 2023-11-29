@@ -1,9 +1,12 @@
 import { Slider } from '@mui/material';
+import { usePoolPhrasesContext } from './use-poolphrases-context';
 
 export default function BpmSlider(props) {
     const handleChange = (event, newValue) => {
-        props.setBpm(newValue);
+        setBpm(newValue);
     };
+
+    const { bpm, setBpm } = usePoolPhrasesContext()
 
     return (
         <div className="self-center">
@@ -11,10 +14,10 @@ export default function BpmSlider(props) {
             <Slider
                 valueLabelDisplay="auto"
                 min={5}
-                max={280}
+                max={350}
                 size="small"
                 onChange={handleChange}
-                value={props.bpm}
+                value={bpm}
             />
         </div>
     );

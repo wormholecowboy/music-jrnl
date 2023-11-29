@@ -11,7 +11,6 @@ import ScaleLetter from './gen-scale-letter';
 
 export default function Generator() {
     const [selectedRangeOfNotes, setSelectedRangeOfNotes] = useState([]);
-    const [bpm, setBpm] = useState(280);
     const [scaleLetter, setScaleLetter] = useState('B');
     const [numOFNotes, setNumOfNotes] = useState(4);
     const [scaleTonality, setScaleTonality] = useState('Blues');
@@ -23,7 +22,6 @@ export default function Generator() {
         <>
             <div className="flex flex-col gap-5 mt-5">
                 <GenerateButton
-                    bpm={bpm}
                     numOFNotes={numOFNotes}
                     selectedRangeOfNotes={selectedRangeOfNotes}
                     hiState={hiState}
@@ -59,7 +57,7 @@ export default function Generator() {
                 />
             </div>
             <div className='px-20'>
-                <BpmSlider bpm={bpm} setBpm={setBpm} />
+                <BpmSlider />
             </div>
         </>
     );

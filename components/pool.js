@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react';
 
 export default function Pool() {
 
-    const { poolPhrases, setPoolPhrases, setWorkingPhrases } = usePoolPhrasesContext();
+    const { poolPhrases, setPoolPhrases, setWorkingPhrases, bpm } = usePoolPhrasesContext();
     const [synthA, setSynthA] = useState({});
 
     function playPhrase(poolPhrase) {
@@ -13,6 +13,7 @@ export default function Pool() {
         /* poolPhrase.phrase.map(
             noteandtime => phrase.push(noteandtime)
         ) */
+        Tone.Transport.bpm.value = bpm;
         let delay = Tone.now();
         for (let i = 0; i < phrase.length; i++) {
             let time = phrase[i].time;

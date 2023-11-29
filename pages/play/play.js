@@ -12,19 +12,19 @@ export default function PlayIndex() {
                 <Nav />
                 <div
                     id="main-play"
-                    className="h-screen grid grid-cols-2 grid-rows-4 gap-5 mx-20"
+                    className="h-screen grid grid-cols-3 grid-rows-4 gap-5 mx-5"
                 >
-                    <div id="working" className="row-start-1 row-end-2 bg-purple-300">
+                    <div id="working" className="row-start-1 col-span-3 row-end-2 bg-purple-300">
                         <WorkingArea />
-                    </div>
-                    <div id="pool" className="row-start-1 row-end-3 bg-yellow-300">
-                        <Pool />
                     </div>
                     <div id="generator" className="row-start-2 row-end-4 bg-blue-400">
                         <Generator />
                     </div>
+                    <div id="pool" className="row-start-2 row-end-4 bg-yellow-300">
+                        <Pool />
+                    </div>
 
-                    <div id="my-vocab" className="row-start-3 row-end-4 bg-green-400">
+                    <div id="my-vocab" className="row-start-2 row-end-4 bg-emerald-400">
                         myVocab
                     </div>
                 </div>

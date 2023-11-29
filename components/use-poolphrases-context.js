@@ -9,10 +9,11 @@ export function usePoolPhrasesContext() {
 export function PoolPhrasesProvider({ children }) {
     const [poolPhrases, setPoolPhrases] = useState([]);
     const [workingPhrases, setWorkingPhrases] = useState([])
+    const [bpm, setBpm] = useState(280);
 
     return (
         <>
-            <PoolPhrasesContext.Provider value={{ poolPhrases, setPoolPhrases, workingPhrases, setWorkingPhrases }}>
+            <PoolPhrasesContext.Provider value={{ poolPhrases, setPoolPhrases, workingPhrases, setWorkingPhrases, bpm, setBpm }}>
                 {children}
             </PoolPhrasesContext.Provider>
         </>

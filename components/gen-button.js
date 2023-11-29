@@ -7,7 +7,6 @@ export default function GenerateButton({
     selectedRangeOfNotes,
     lowState,
     hiState,
-    bpm,
     numOFNotes,
     setCurrentPhrase,
     currentPhrase,
@@ -92,7 +91,7 @@ export default function GenerateButton({
         playPhrase(phraseHistory.current[phraseHistory.current.length - 1]);
     }
 
-    const { poolPhrases, setPoolPhrases } = usePoolPhrasesContext();
+    const { setPoolPhrases, bpm } = usePoolPhrasesContext();
 
     // this is here to avoid instantiating in node, needs the browser
     useEffect(() => {
