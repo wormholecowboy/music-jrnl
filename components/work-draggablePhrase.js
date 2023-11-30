@@ -18,7 +18,7 @@ export default function DraggablePhrase(props) {
     }
     return (
         <div ref={setNodeRef} style={style} >
-            <Card className="mx-2">{props.children}
+            <Card className={`${props.color} mx-2 p-2`}>{props.children}
                 <span {...attributes} {...listeners}>
                     <Image
                         alt="move"

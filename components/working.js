@@ -65,8 +65,17 @@ export default function WorkingArea() {
                 <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
                     <SortableContext items={workingPhrases} strategy={horizontalListSortingStrategy}>
                         {workingPhrases.map(phraseObj => (
-                            <DraggablePhrase id={phraseObj.id} key={phraseObj.id}>
+                            <DraggablePhrase id={phraseObj.id} key={phraseObj.id} color={`${phraseObj.color}`} >
                                 {phraseObj.phrase.map(noteandtime => noteandtime.note.toString())}
+                                < span className='m-1 cursor-pointer' >
+                                    <Image
+                                        alt="rest"
+                                        src="/../public/rest.png"
+                                        className="rounded-full m-2"
+                                        width={20}
+                                        height={20}
+                                    />
+                                </span>
                                 <span className='m-1 cursor-pointer'
                                     onClick={() => deletePhrase(phraseObj.id)}>
                                     <Image
@@ -82,12 +91,19 @@ export default function WorkingArea() {
                         }
                     </SortableContext>
                 </DndContext>
-            </div>
+            </div >
             <div className="flex flex-row justify-center" >
-                <selector><option>4n</option></selector>
+                <select className='px-2 mx-4'>
+                    <option>4n</option>
+                    <option>8n</option>
+                    <option>16n</option>
+                    <option>4n.</option>
+                    <option>8n.</option>
+                    <option>16n.</option>
+                </select>
                 <button onClick={() => playPhrase(workingPhrases)} className="self-center px-4 py-2 text-green-500 shadow-md rounded-md bg-slate-700"
                 >Play</button>
             </div>
-        </div>
+        </div >
     );
 }

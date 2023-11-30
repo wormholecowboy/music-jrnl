@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import * as Tone from 'tone'; //this can be reduced to 'scale'
 import { usePoolPhrasesContext } from './use-poolphrases-context';
 import { v4 as uuidv4 } from 'uuid';
+import { colors } from '../styles/colors.js';
 
 export default function GenerateButton({
     selectedRangeOfNotes,
@@ -43,7 +44,9 @@ export default function GenerateButton({
 
     const createPhrase = () => {
         let phrase = [];
-        let id = uuidv4();
+        const id = uuidv4();
+        const color = randomColor();
+
         for (let i = 0; i < numOFNotes; i++) {
             let randomNote = slicedScale[randomIndexNoRepeat(0, slicedScale.length)];
             let rhythm = rhythmArray[randomIndex(0, rhythmArray.length)];
@@ -51,13 +54,21 @@ export default function GenerateButton({
         }
         const phraseObj = {
             phrase: phrase,
-            id: id
+            id: id,
+            color: color
         }
         updateHistory(phraseObj);
         setCurrentPhrase(phraseObj);
 
+        console.log("color: ", phraseObj.color)
+
         return phraseObj;
     };
+
+    function randomColor() {
+        const idx = randomIndex(0, colors.length - 1);
+        return colors[idx];
+    }
 
     function randomIndex(min, max) {
         min = Math.ceil(min);

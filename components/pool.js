@@ -44,7 +44,7 @@ export default function Pool() {
                 {poolPhrases.map(phraseObj => (
                     < div
                         key={phraseObj.id}
-                        className="bg-gray-300 rounded-full m-2 px-4 py-1 w-10px h-10px"
+                        className={` rounded-full m-2 px-4 py-1 w-10px h-10px ${phraseObj.color}`}
                     >
                         {phraseObj.phrase.map(noteandtime => noteandtime.note).toString()}
                         <span className="ml-4 cursor-pointer" onClick={() => playPhrase(phraseObj)}>
@@ -65,7 +65,7 @@ export default function Pool() {
                             />
                         </span>
                         <span className="m-1 cursor-pointer"
-                            onClick={() => deletePhrase(phraseObj.id)} gg>
+                            onClick={() => deletePhrase(phraseObj.id)} >
                             <Image
                                 alt="delete"
                                 src="/../public/trash.png"
