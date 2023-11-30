@@ -10,7 +10,21 @@ export default function WorkingArea() {
 
     const { bpm, workingPhrases, setWorkingPhrases } = usePoolPhrasesContext();
     const [synthA, setSynthA] = useState({});
-    const [rest, setRest] = useState({ note: null, time: '4n' })
+    const [rest, setRest] = useState('4n')
+
+    function removeRest(idx) {
+        const newWorkingPhrases = [...workingPhrases]
+        newWorkingPhrases[idx].phrase.pop()
+        setWorkingPhrases(newWorkingPhrases)
+    }
+
+    function addRest(idx, time) {
+        const rest = { note: null, time: time };
+        const newWorkingPhrases = [...workingPhrases]
+        newWorkingPhrases[idx].phrase.push(rest)
+
+        setWorkingPhrases(newWorkingPhrases)
+    }
 
     function deletePhrase(id) {
         console.log('run del prhase')
@@ -64,10 +78,24 @@ export default function WorkingArea() {
 
                 <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
                     <SortableContext items={workingPhrases} strategy={horizontalListSortingStrategy}>
-                        {workingPhrases.map(phraseObj => (
+                        {workingPhrases.map((phraseObj, idx) => (
                             <DraggablePhrase id={phraseObj.id} key={phraseObj.id} color={`${phraseObj.color}`} >
-                                {phraseObj.phrase.map(noteandtime => noteandtime.note.toString())}
-                                < span className='m-1 cursor-pointer' >
+                                {phraseObj.phrase.map((noteandtime) => {
+                                    if (noteandtime.note === null) return `r${noteandtime.time.toString()}`;
+                                    return noteandtime.note.toString();
+                                })}
+                                < span className='m-1 cursor-pointer'
+                                    onClick={() => removeRest(idx)} >
+                                    <Image
+                                        alt="minus"
+                                        src="/../public/minus.png"
+                                        className="rounded-full m-2"
+                                        width={20}
+                                        height={20}
+                                    />
+                                </span>
+                                < span className='m-1 cursor-pointer'
+                                    onClick={() => addRest(idx, rest)} >
                                     <Image
                                         alt="rest"
                                         src="/../public/rest.png"
@@ -93,13 +121,15 @@ export default function WorkingArea() {
                 </DndContext>
             </div >
             <div className="flex flex-row justify-center" >
-                <select className='px-2 mx-4'>
-                    <option>4n</option>
-                    <option>8n</option>
-                    <option>16n</option>
-                    <option>4n.</option>
-                    <option>8n.</option>
-                    <option>16n.</option>
+                <select className='px-2 mx-4' onChange={(e) => setRest(e.target.value)}>
+                    <option value='2n'>2n</option>
+                    <option value='4n'>4n</option>
+                    <option value='8n'>8n</option>
+                    <option value='16n'>16n</option>
+                    <option value='4n.'>4n.</option>
+                    <option value='2n.'>2n.</option>
+                    <option value='8n.'>8n.</option>
+                    <option value='16n.'>16n.</option>
                 </select>
                 <button onClick={() => playPhrase(workingPhrases)} className="self-center px-4 py-2 text-green-500 shadow-md rounded-md bg-slate-700"
                 >Play</button>
