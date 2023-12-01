@@ -8,6 +8,11 @@ export default function Pool() {
     const { poolPhrases, setPoolPhrases, setWorkingPhrases, bpm } = usePoolPhrasesContext();
     const [synthA, setSynthA] = useState({});
 
+    function addToWorkingPhrases(phraseObj) {
+        const deepCopy = JSON.parse(JSON.stringify(phraseObj))
+        setWorkingPhrases(prev => [...prev, deepCopy])
+    }
+
     function playPhrase(poolPhrase) {
         const phrase = poolPhrase.phrase
         /* poolPhrase.phrase.map(
@@ -56,7 +61,7 @@ export default function Pool() {
                             />
                         </span>
                         <span className="m-1 cursor-pointer"
-                            onClick={() => setWorkingPhrases(prev => [...prev, phraseObj])}>
+                            onClick={() => addToWorkingPhrases(phraseObj)}>
                             <Image
                                 alt="work"
                                 src="/../public/hammer.png"
