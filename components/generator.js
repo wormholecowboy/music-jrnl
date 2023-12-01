@@ -12,7 +12,7 @@ import ScaleLetter from './gen-scale-letter';
 export default function Generator() {
     const [selectedRangeOfNotes, setSelectedRangeOfNotes] = useState([]);
     const [scaleLetter, setScaleLetter] = useState('B');
-    const [numOFNotes, setNumOfNotes] = useState(4);
+    const [numOFNotes, setNumOfNotes] = useState(7);
     const [scaleTonality, setScaleTonality] = useState('Blues');
     const [lowState, setLowState] = useState(6);
     const [hiState, setHiState] = useState(13);

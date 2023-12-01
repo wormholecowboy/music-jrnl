@@ -81,7 +81,7 @@ export default function WorkingArea() {
                         {workingPhrases.map((phraseObj, idx) => (
                             <DraggablePhrase id={phraseObj.id} key={phraseObj.id} color={`${phraseObj.color}`} >
                                 {phraseObj.phrase.map((noteandtime) => {
-                                    if (noteandtime.note === null) return `r${noteandtime.time.toString()}`;
+                                    if (noteandtime.note === null) return `_${noteandtime.time.toString()}`;
                                     return noteandtime.note.toString();
                                 })}
                                 < span className='m-1 cursor-pointer'
