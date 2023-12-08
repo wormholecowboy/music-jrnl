@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { formControlClasses, InputLabel, Select, MenuItem } from '@mui/material';
 import * as Tone from 'tone';
 import { DndContext, closestCenter } from "@dnd-kit/core";
 import { arrayMove, SortableContext, horizontalListSortingStrategy } from "@dnd-kit/sortable";
@@ -73,7 +74,6 @@ export default function WorkingArea() {
 
     return (
         <div className="flex flex-col justify-center justify-items-center">
-            <h2 className="self-center">Chain your pool phrase together here.</h2>
             <div className="p-3 flex self-center">
 
                 <DndContext collisionDetection={closestCenter} onDragEnd={handleDragEnd}>
@@ -121,17 +121,26 @@ export default function WorkingArea() {
                 </DndContext>
             </div >
             <div className="flex flex-row justify-center" >
-                <select className='px-2 mx-4' onChange={(e) => setRest(e.target.value)}>
-                    <option value='2n'>2n</option>
-                    <option value='4n'>4n</option>
-                    <option value='8n'>8n</option>
-                    <option value='16n'>16n</option>
-                    <option value='4n.'>4n.</option>
-                    <option value='2n.'>2n.</option>
-                    <option value='8n.'>8n.</option>
-                    <option value='16n.'>16n.</option>
-                </select>
-                <button onClick={() => playPhrase(workingPhrases)} className="self-center px-4 py-2 text-green-500 shadow-md rounded-md bg-slate-700"
+                <formControlClasses >
+                    <InputLabel id="demo-simple-select-label">Rest</InputLabel>
+                    <Select
+                        labelId="Rest"
+                        id="Rest"
+                        value={rest}
+                        label="Rest"
+                        onChange={(e) => setRest(e.target.value)}
+                    >
+                        <MenuItem value='2n'>2n</MenuItem>
+                        <MenuItem value='4n'>4n</MenuItem>
+                        <MenuItem value='8n'>8n</MenuItem>
+                        <MenuItem value='16n'>16n</MenuItem>
+                        <MenuItem value='4n.'>4n.</MenuItem>
+                        <MenuItem value='2n.'>2n.</MenuItem>
+                        <MenuItem value='8n.'>8n.</MenuItem>
+                        <MenuItem value='16n.'>16n.</MenuItem>
+                    </Select>
+                </formControlClasses>
+                <button onClick={() => playPhrase(workingPhrases)} className="self-center px-4 py-2 text-color4 shadow-md rounded-md bg-color5 border-2 border-color4"
                 >Play</button>
             </div>
         </div >

@@ -115,13 +115,13 @@ export default function GenerateButton({
             <div className="self-center flex flex-row gap-2">
                 <button
                     onClick={run}
-                    className="self-center px-4 py-2 text-green-500 shadow-md rounded-md bg-slate-700"
+                    className="self-center px-4 py-2 text-color4 border-2 border-color4 shadow-lg rounded-lg bg-color5"
                 >
                     Generate
                 </button>
                 <button
                     onClick={repeat}
-                    className="self-center px-4 py-2 text-green-500 shadow-md rounded-md bg-slate-700"
+                    className="self-center px-4 py-2 text-color4 border-2 border-color4 shadow-lg rounded-lg bg-color5"
                 >
                     Repeat
                 </button>
@@ -129,7 +129,7 @@ export default function GenerateButton({
                     onClick={() => {
                         setPoolPhrases((prev) => [...prev, currentPhrase]);
                     }}
-                    className="self-center px-4 py-2 text-green-500 shadow-md rounded-md bg-slate-700"
+                    className="self-center px-4 py-2 text-color4 shadow-lg rounded-lg bg-color5 border-2 border-color4"
                 >
                     Send to Pool
                 </button>
