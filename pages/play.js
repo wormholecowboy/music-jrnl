@@ -1,9 +1,9 @@
-import Generator from '../../components/generator';
-import Nav from '../../components/nav';
-import WorkingArea from '../../components/working';
+import Generator from '../components/generator';
+import Nav from '../components/nav';
+import WorkingArea from '../components/working';
 import React, { useState } from 'react';
-import { PoolPhrasesProvider } from '../../components/use-poolphrases-context';
-import Pool from '../../components/pool';
+import { PoolPhrasesProvider } from '../components/use-poolphrases-context';
+import Pool from '../components/pool';
 
 export default function PlayIndex() {
     return (

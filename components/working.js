@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { formControlClasses, InputLabel, Select, MenuItem } from '@mui/material';
+import { InputLabel, Select, MenuItem, TextField, FormControl } from '@mui/material';
 import * as Tone from 'tone';
 import { DndContext, closestCenter } from "@dnd-kit/core";
 import { arrayMove, SortableContext, horizontalListSortingStrategy } from "@dnd-kit/sortable";
@@ -121,10 +121,11 @@ export default function WorkingArea() {
                 </DndContext>
             </div >
             <div className="flex flex-row justify-center" >
-                <formControlClasses >
-                    <InputLabel id="demo-simple-select-label">Rest</InputLabel>
+                <FormControl >
+                    <InputLabel id="rest-selector">Rest</InputLabel>
                     <Select
                         labelId="Rest"
+                        variant="outlined"
                         id="Rest"
                         value={rest}
                         label="Rest"
@@ -139,7 +140,7 @@ export default function WorkingArea() {
                         <MenuItem value='8n.'>8n.</MenuItem>
                         <MenuItem value='16n.'>16n.</MenuItem>
                     </Select>
-                </formControlClasses>
+                </FormControl>
                 <button onClick={() => playPhrase(workingPhrases)} className="self-center px-4 py-2 text-color4 shadow-md rounded-md bg-color5 border-2 border-color4"
                 >Play</button>
             </div>
