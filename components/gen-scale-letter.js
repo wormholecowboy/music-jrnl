@@ -1,28 +1,40 @@
+import {
+  InputLabel,
+  Select,
+  MenuItem,
+  FormControl,
+} from "@mui/material";
+
 export default function ScaleLetter({ scaleLetter, setScaleLetter }) {
   const handleClick = (e) => {
     setScaleLetter(e.target.value);
   };
   return (
     <div className="self-center">
-      <span>Key</span>
-      <select
-        value={scaleLetter}
-        className="self-center"
-        onChange={(e) => handleClick(e)}
-      >
-        <option value="Ab">Ab</option>
-        <option value="A">A</option>
-        <option value="Bb">Bb</option>
-        <option value="B">B</option>
-        <option value="C">C</option>
-        <option value="Db">Db</option>
-        <option value="D">D</option>
-        <option value="Eb">Eb</option>
-        <option value="E">D</option>
-        <option value="F">F</option>
-        <option value="Gb">Gb</option>
-        <option value="G">G</option>
-      </select>
+      <FormControl>
+        <InputLabel id="rest-selector">Rest</InputLabel>
+        <Select
+          labelId="Rest"
+          variant="outlined"
+          id="Rest"
+          value={scaleLetter}
+          label="Rest"
+          onChange={(e) => handleClick(e)}
+        >
+          <MenuItem value="Ab">Ab</MenuItem>
+          <MenuItem value="A">A</MenuItem>
+          <MenuItem value="Bb">Bb</MenuItem>
+          <MenuItem value="B">B</MenuItem>
+          <MenuItem value="C">C</MenuItem>
+          <MenuItem value="Db">Db</MenuItem>
+          <MenuItem value="D">D</MenuItem>
+          <MenuItem value="Eb">Eb</MenuItem>
+          <MenuItem value="E">D</MenuItem>
+          <MenuItem value="F">F</MenuItem>
+          <MenuItem value="Gb">Gb</MenuItem>
+          <MenuItem value="G">G</MenuItem>
+        </Select>
+      </FormControl>
     </div>
   );
 }

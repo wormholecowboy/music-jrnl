@@ -141,7 +141,7 @@ export default function WorkingArea() {
                         <MenuItem value='16n.'>16n.</MenuItem>
                     </Select>
                 </FormControl>
-                <button onClick={() => playPhrase(workingPhrases)} className="self-center px-4 py-2 text-color4 shadow-md rounded-md bg-color5 border-2 border-color4"
+                <button onClick={() => playPhrase(workingPhrases)} className="self-center px-4 py-2 mx-4 text-color4 shadow-md rounded-md bg-color5 border-2 border-color4"
                 >Play</button>
             </div>
         </div >

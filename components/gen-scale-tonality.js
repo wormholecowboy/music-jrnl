@@ -1,31 +1,38 @@
+import { InputLabel, Select, MenuItem, FormControl } from "@mui/material";
+
 export default function ScaleTonality({
-    scaleTonality,
-    setScaleTonality,
-    getScale,
+  scaleTonality,
+  setScaleTonality,
+  getScale,
 }) {
-    const handleClick = (e) => {
-        setScaleTonality(e.target.value);
-    };
-    return (
-        <div className="self-center">
-            <span>Scale Type</span>
-            <select
-                value={scaleTonality}
-                onChange={(e) => handleClick(e)}
-                className="self-center"
-            >
-                <option value="Major">Major</option>
-                <option value="Minor">Minor</option>
-                <option value="Blues">Blues</option>
-                <option value="Dorian">Dorian</option>
-                <option value="Phrygian">Phrygian</option>
-                <option value="Lydian">Lydian</option>
-                <option value="Mixolydian">Mixolydian</option>
-                <option value="Locrian">Locrian</option>
-                <option value="Chromatic">Chromatic</option>
-                <option value="Bebop">Bebop</option>
-                <option value="Diminished">Diminished</option>
-            </select>
-        </div>
-    );
+  const handleClick = (e) => {
+    setScaleTonality(e.target.value);
+  };
+  return (
+    <div className="self-center">
+      <FormControl>
+        <InputLabel id="rest-selector">Rest</InputLabel>
+        <Select
+          labelId="Rest"
+          variant="outlined"
+          id="Rest"
+          value={scaleTonality}
+          label="Rest"
+          onChange={(e) => handleClick(e)}
+        >
+          <MenuItem value="Major">Major</MenuItem>
+          <MenuItem value="Minor">Minor</MenuItem>
+          <MenuItem value="Blues">Blues</MenuItem>
+          <MenuItem value="Dorian">Dorian</MenuItem>
+          <MenuItem value="Phrygian">Phrygian</MenuItem>
+          <MenuItem value="Lydian">Lydian</MenuItem>
+          <MenuItem value="Mixolydian">Mixolydian</MenuItem>
+          <MenuItem value="Locrian">Locrian</MenuItem>
+          <MenuItem value="Chromatic">Chromatic</MenuItem>
+          <MenuItem value="Bebop">Bebop</MenuItem>
+          <MenuItem value="Diminished">Diminished</MenuItem>
+        </Select>
+      </FormControl>
+    </div>
+  );
 }
