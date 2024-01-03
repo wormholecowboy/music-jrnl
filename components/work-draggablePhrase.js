@@ -2,7 +2,6 @@ import Image from 'next/image';
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { Card } from "@mui/material";
-import { list } from 'postcss';
 
 export default function DraggablePhrase(props) {
 
@@ -22,7 +21,7 @@ export default function DraggablePhrase(props) {
                 <span {...attributes} {...listeners}>
                     <Image
                         alt="move"
-                        src="/../public/move.png"
+                        src="/move.png"
                         className="rounded-full m-2"
                         width={20}
                         height={20}

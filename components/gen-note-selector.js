@@ -26,9 +26,9 @@ export default function NoteSelector({
 
   const displayNotes = () => {
     return selectedRangeOfNotes.map((note, index) => (
-      <option key={note} value={index}>
+        <MenuItem key={note} value={index}>
         {note}
-      </option>
+        </MenuItem>
     ));
   };
 
@@ -39,7 +39,7 @@ export default function NoteSelector({
           <InputLabel id="low-label">Low Note</InputLabel>
           <Select
             id="low"
-            className="px-5 py-7 mx-1 w-12 h-10 "
+            sx={{width:100}}
             value={lowState}
             onChange={(e) => setLowState(e.target.value)}
             labelId="low-label"
@@ -53,7 +53,7 @@ export default function NoteSelector({
           <InputLabel id="hi-label">High Note</InputLabel>
           <Select
             id="high"
-            className="px-5 py-7 mx-1 w-12 h-10 "
+            sx={{width:100}}
             value={hiState}
             onChange={(e) => setHiState(e.target.value)}
             labelId="hi-label"

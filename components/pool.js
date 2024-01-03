@@ -55,7 +55,7 @@ export default function Pool() {
                         <span className="ml-4 cursor-pointer" onClick={() => playPhrase(phraseObj)}>
                             <Image
                                 alt="play"
-                                src="/../public/play.png"
+                                src="/play.png"
                                 width={20}
                                 height={20}
                             />
@@ -64,7 +64,7 @@ export default function Pool() {
                             onClick={() => addToWorkingPhrases(phraseObj)}>
                             <Image
                                 alt="work"
-                                src="/../public/hammer.png"
+                                src="/hammer.png"
                                 width={20}
                                 height={20}
                             />
@@ -73,7 +73,7 @@ export default function Pool() {
                             onClick={() => deletePhrase(phraseObj.id)} >
                             <Image
                                 alt="delete"
-                                src="/../public/trash.png"
+                                src="/trash.png"
                                 className="rounded-full m-2"
                                 width={20}
                                 height={20}
@@ -81,7 +81,7 @@ export default function Pool() {
                         </span>
                         <Image
                             alt="save"
-                            src="/../public/save.png"
+                            src="/save.png"
                             className="rounded-full m-2"
                             width={20}
                             height={20}

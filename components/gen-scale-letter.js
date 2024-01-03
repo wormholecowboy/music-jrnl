@@ -12,13 +12,13 @@ export default function ScaleLetter({ scaleLetter, setScaleLetter }) {
   return (
     <div className="self-center">
       <FormControl>
-        <InputLabel id="rest-selector">Rest</InputLabel>
+        <InputLabel id="letter-selector">Key</InputLabel>
         <Select
-          labelId="Rest"
+          labelId="letter-selector"
           variant="outlined"
-          id="Rest"
+          id="letter"
           value={scaleLetter}
-          label="Rest"
+          label="Letter"
           onChange={(e) => handleClick(e)}
         >
           <MenuItem value="Ab">Ab</MenuItem>

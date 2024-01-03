@@ -88,7 +88,7 @@ export default function WorkingArea() {
                                     onClick={() => removeRest(idx)} >
                                     <Image
                                         alt="minus"
-                                        src="/../public/minus.png"
+                                        src="/minus.png"
                                         className="rounded-full m-2"
                                         width={20}
                                         height={20}
@@ -98,7 +98,7 @@ export default function WorkingArea() {
                                     onClick={() => addRest(idx, rest)} >
                                     <Image
                                         alt="rest"
-                                        src="/../public/rest.png"
+                                        src="/rest.png"
                                         className="rounded-full m-2"
                                         width={20}
                                         height={20}
@@ -108,7 +108,7 @@ export default function WorkingArea() {
                                     onClick={() => deletePhrase(phraseObj.id)}>
                                     <Image
                                         alt="delete"
-                                        src="/../public/trash.png"
+                                        src="/trash.png"
                                         className="rounded-full m-2"
                                         width={20}
                                         height={20}
@@ -122,14 +122,15 @@ export default function WorkingArea() {
             </div >
             <div className="flex flex-row justify-center" >
                 <FormControl >
-                    <InputLabel id="rest-selector">Rest</InputLabel>
+                    <InputLabel id="rest-selector">Add Rest</InputLabel>
                     <Select
                         labelId="Rest"
                         variant="outlined"
                         id="Rest"
                         value={rest}
-                        label="Rest"
+                        label="Add Rest"
                         onChange={(e) => setRest(e.target.value)}
+                        sx={{width: 100}}
                     >
                         <MenuItem value='2n'>2n</MenuItem>
                         <MenuItem value='4n'>4n</MenuItem>

@@ -11,13 +11,13 @@ export default function ScaleTonality({
   return (
     <div className="self-center">
       <FormControl>
-        <InputLabel id="rest-selector">Rest</InputLabel>
+        <InputLabel id="tonality-selector">Tonality</InputLabel>
         <Select
-          labelId="Rest"
+          labelId="tonality-selector"
           variant="outlined"
-          id="Rest"
+          id="tonality"
           value={scaleTonality}
-          label="Rest"
+          label="Tonality"
           onChange={(e) => handleClick(e)}
         >
           <MenuItem value="Major">Major</MenuItem>
