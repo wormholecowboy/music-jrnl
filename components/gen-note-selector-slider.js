@@ -24,28 +24,32 @@ export default function NoteSelectorSlider({
     const tempArray = [...Array(generatedScale.length).keys()];
     setNumArray(tempArray);
     setSelectedRangeOfNotes(generatedScale);
-    console.log("temp: ", tempArray);
+  }
+
+  const marks = selectedRangeOfNotes.map((value, index) => ({
+    value: index,
+    label: value,
+  }));
+
+  function handleChange(_, newVal) {
+    //
   }
 
   useEffect(() => {
     getScale();
   }, [scaleLetter, scaleTonality]);
 
-  const displayNotes = () => {
-    return selectedRangeOfNotes.map((note, index) => (
-      <MenuItem key={note} value={index}>
-        {note}
-      </MenuItem>
-    ));
-  };
-
+  console.log("numarrary: ", numArray);
   console.log("selectedRangeOfNotes", selectedRangeOfNotes);
   return (
     <>
       <div className="flex flex-row">
         <Slider
-          value={selectedRangeOfNotes.indexOf(selectedNotes)}
-          valueLabelDisplay="on"
+          value={[0, numArray.length - 1]}
+          min={0}
+          max={numArray.length - 1}
+          marks={marks}
+          onChange={handleChange}
         />
       </div>
     </>
