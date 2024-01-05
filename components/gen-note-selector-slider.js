@@ -15,6 +15,7 @@ export default function NoteSelectorSlider({
   selectedNotes,
 }) {
   const [numArray, setNumArray] = useState([]);
+  const [selected, setSelected] = useState([0, numArray.length - 1]);
 
   function getScale() {
     // This is causing an infinite loop. generatedScale will always look different to diffing algo
@@ -32,20 +33,23 @@ export default function NoteSelectorSlider({
   }));
 
   function handleChange(_, newVal) {
-    //
+    setSelected(newVal);
+    setHiState(newVal[1]);
+    setLowState(newVal[0]);
   }
 
   useEffect(() => {
     getScale();
   }, [scaleLetter, scaleTonality]);
 
-  console.log("numarrary: ", numArray);
-  console.log("selectedRangeOfNotes", selectedRangeOfNotes);
+  console.log("selected", selected);
+  console.log(hiState);
+  console.log(lowState);
   return (
     <>
       <div className="flex flex-row">
         <Slider
-          value={[0, numArray.length - 1]}
+          value={selected}
           min={0}
           max={numArray.length - 1}
           marks={marks}
