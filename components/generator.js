@@ -41,20 +41,10 @@ export default function Generator() {
             scaleTonality={scaleTonality}
             setScaleTonality={setScaleTonality}
           />
+        <NumOFNotesSel numOFNotes={numOFNotes} setNumOfNotes={setNumOfNotes} />
         </div>
       </div>
       <div className="flex flex-row gap-5 justify-around">
-        <NoteSelector
-          selectedRangeOfNotes={selectedRangeOfNotes}
-          setSelectedRangeOfNotes={setSelectedRangeOfNotes}
-          scaleTonality={scaleTonality}
-          scaleLetter={scaleLetter}
-          hiState={hiState}
-          lowState={lowState}
-          setHiState={setHiState}
-          setLowState={setLowState}
-        />
-        <NumOFNotesSel numOFNotes={numOFNotes} setNumOfNotes={setNumOfNotes} />
       </div>
       <div className="px-20">
         <NoteSelectorSlider

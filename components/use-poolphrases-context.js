@@ -9,7 +9,7 @@ export function usePoolPhrasesContext() {
 export function PoolPhrasesProvider({ children }) {
     const [poolPhrases, setPoolPhrases] = useState([]);
     const [workingPhrases, setWorkingPhrases] = useState([])
-    const [bpm, setBpm] = useState(280);
+    const [bpm, setBpm] = useState(200);
 
     return (
         <>

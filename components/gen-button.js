@@ -12,7 +12,7 @@ export default function GenerateButton({
     setCurrentPhrase,
     currentPhrase,
 }) {
-    //
+    
     const slicedScale = selectedRangeOfNotes.slice(
         lowState,
         parseInt(hiState) + 1
@@ -20,7 +20,7 @@ export default function GenerateButton({
     const [synthA, setSynthA] = useState({});
     let currentNote = 0;
     let previousNote = 0;
-    const rhythmArray = ['4n'];
+    const rhythmArray = ['8n'];
     // Object, ({"4n" : 3, "8t" : -1}). The resulting time is equal to the sum of all of the keys multiplied by the values in the object.
     const phraseHistory = useRef([]);
 

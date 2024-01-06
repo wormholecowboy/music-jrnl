@@ -15,7 +15,7 @@ export default function NoteSelectorSlider({
   selectedNotes,
 }) {
   const [numArray, setNumArray] = useState([]);
-  const [selected, setSelected] = useState([0, numArray.length - 1]);
+  const [selected, setSelected] = useState([6, 13]);
 
   function getScale() {
     // This is causing an infinite loop. generatedScale will always look different to diffing algo
@@ -54,6 +54,8 @@ export default function NoteSelectorSlider({
           max={numArray.length - 1}
           marks={marks}
           onChange={handleChange}
+          color="secondary"
+          disableSwap={true}
         />
       </div>
     </>

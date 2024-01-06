@@ -12,7 +12,7 @@ export default function NumOFNotesSel(props) {
           value={props.numOFNotes}
           onChange={(e) => props.setNumOfNotes(e.target.value)}
           label="Length"
-          sx={{width: 100}}
+          sx={{width: 80}}
         >
           <MenuItem value="1">1</MenuItem>
           <MenuItem value="2">2</MenuItem>
@@ -24,6 +24,11 @@ export default function NumOFNotesSel(props) {
           <MenuItem value="8">8</MenuItem>
           <MenuItem value="9">9</MenuItem>
           <MenuItem value="10">10</MenuItem>
+          <MenuItem value="10">11</MenuItem>
+          <MenuItem value="10">12</MenuItem>
+          <MenuItem value="10">13</MenuItem>
+          <MenuItem value="10">14</MenuItem>
+          <MenuItem value="10">15</MenuItem>
         </Select>
       </FormControl>
     </div>
