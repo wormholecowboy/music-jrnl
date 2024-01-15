@@ -11,8 +11,6 @@ export default function NoteSelectorSlider({
   hiState,
   setHiState,
   setLowState,
-  setSelectedNotes,
-  selectedNotes,
 }) {
   const [numArray, setNumArray] = useState([]);
   const [selected, setSelected] = useState([6, 13]);

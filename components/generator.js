@@ -4,7 +4,6 @@ import GenerateButton from "./gen-button";
 import NumOFNotesSel from "./gen-num-of-notes";
 import BpmSlider from "./gen-bpm-slider";
 import ScaleTonality from "./gen-scale-tonality";
-import NoteSelector from "./gen-note-selector";
 import ScaleLetter from "./gen-scale-letter";
 import NoteSelectorSlider from "./gen-note-selector-slider";
 
@@ -18,9 +17,7 @@ export default function Generator() {
   const [lowState, setLowState] = useState(6);
   const [hiState, setHiState] = useState(13);
   const [currentPhrase, setCurrentPhrase] = useState([]);
-  const [selectedNotes, setSelectedNotes] = useState("B3");
 
-    console.log("selnote: ", selectedNotes)
   return (
     <>
       <div className="flex flex-col gap-5 mt-5">
@@ -31,6 +28,8 @@ export default function Generator() {
           lowState={lowState}
           currentPhrase={currentPhrase}
           setCurrentPhrase={setCurrentPhrase}
+          scaleTonality={scaleTonality}
+          ScaleLetter={scaleLetter}
         />
         <div className="self-center flex flex-row gap-2 my-3">
           <ScaleLetter
@@ -41,12 +40,14 @@ export default function Generator() {
             scaleTonality={scaleTonality}
             setScaleTonality={setScaleTonality}
           />
-        <NumOFNotesSel numOFNotes={numOFNotes} setNumOfNotes={setNumOfNotes} />
+          <NumOFNotesSel
+            numOFNotes={numOFNotes}
+            setNumOfNotes={setNumOfNotes}
+          />
         </div>
       </div>
-      <div className="flex flex-row gap-5 justify-around">
-      </div>
-      <div className="px-20">
+      <div className="flex flex-row gap-5 justify-around"></div>
+      <div className="px-5">
         <NoteSelectorSlider
           selectedRangeOfNotes={selectedRangeOfNotes}
           setSelectedRangeOfNotes={setSelectedRangeOfNotes}
@@ -56,8 +57,6 @@ export default function Generator() {
           lowState={lowState}
           setHiState={setHiState}
           setLowState={setLowState}
-          setSelectedNotes={setSelectedNotes}
-          selectedNotes={selectedNotes}
         />
       </div>
       <div className="px-20">
