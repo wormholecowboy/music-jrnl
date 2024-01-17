@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import playPhrase from "../utils/playPhrase";
 import { InputLabel, Select, MenuItem, TextField, FormControl } from '@mui/material';
 import * as Tone from 'tone';
 import { DndContext, closestCenter } from "@dnd-kit/core";
@@ -6,6 +7,7 @@ import { arrayMove, SortableContext, horizontalListSortingStrategy } from "@dnd-
 import DraggablePhrase from "./work-draggablePhrase";
 import { usePoolPhrasesContext } from "./use-poolphrases-context";
 import { useState, useEffect } from 'react';
+import ScaleLetter from './gen-scale-letter';
 
 export default function WorkingArea() {
 
@@ -19,6 +21,16 @@ export default function WorkingArea() {
         setWorkingPhrases(newWorkingPhrases)
     }
 
+    function handleClick(phrases) {
+        const phrase = []
+        phrases.map(phraseObj => {
+            phraseObj.phrase.map(noteandtime => phrase.push(noteandtime))
+        })
+        const obj = { phrase: phrase}
+        console.log('obj:', obj) 
+        playPhrase(obj, ScaleLetter, bpm)
+    }
+
     function addRest(idx, time) {
         const rest = { note: null, time: time };
         const newWorkingPhrases = [...workingPhrases]
@@ -28,14 +40,13 @@ export default function WorkingArea() {
     }
 
     function deletePhrase(id) {
-        console.log('run del prhase')
         setWorkingPhrases(prev => {
             const updatedPhrases = prev.filter(phraseObj => phraseObj.id !== id);
             return updatedPhrases;
         });
     }
 
-    function playPhrase(workingPhrases) {
+    /* function playPhrase(workingPhrases) {
         const phrase = []
         workingPhrases.map(phraseObj => {
             phraseObj.phrase.map(noteandtime => phrase.push(noteandtime))
@@ -53,7 +64,7 @@ export default function WorkingArea() {
         }
     }
 
-
+*/
     function handleDragEnd(event) {
         const { active, over } = event;
 
@@ -67,10 +78,10 @@ export default function WorkingArea() {
         }
     }
 
-    useEffect(() => {
+    /* useEffect(() => {
         let synth = new Tone.Synth().toDestination();
         setSynthA(synth);
-    }, []);
+    }, []); */
 
     return (
         <div className="flex flex-col justify-center justify-items-center">
@@ -142,7 +153,7 @@ export default function WorkingArea() {
                         <MenuItem value='16n.'>16n.</MenuItem>
                     </Select>
                 </FormControl>
-                <button onClick={() => playPhrase(workingPhrases)} className="self-center px-4 py-2 mx-4 text-color4 shadow-md rounded-md bg-color5 border-2 border-color4"
+                <button onClick={() => handleClick(workingPhrases)} className="self-center px-4 py-2 mx-4 text-color4 shadow-md rounded-md bg-color5 border-2 border-color4"
                 >Play</button>
             </div>
         </div >

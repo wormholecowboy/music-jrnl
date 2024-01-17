@@ -1,9 +1,11 @@
 import { useEffect, useRef, useState } from "react";
-import { Interval, Scale } from "@tonaljs/tonal";
-import * as Tone from "tone"; //this can be reduced to 'scale'
 import { usePoolPhrasesContext } from "./use-poolphrases-context";
+import { Interval, Scale } from "@tonaljs/tonal";
+import { transpose } from "@tonaljs/tonal";
+import * as Tone from "tone"; //this can be reduced to 'scale'
 import { v4 as uuidv4 } from "uuid";
 import { colors } from "../styles/colors.js";
+import playPhrase from "../utils/playPhrase";
 import ScaleLetter from "./gen-scale-letter";
 
 export default function GenerateButton({
@@ -16,11 +18,13 @@ export default function GenerateButton({
   scaleTonality,
   ScaleLetter,
 }) {
+  //
+  //
   const slicedScale = selectedRangeOfNotes.slice(
     lowState,
     parseInt(hiState) + 1,
   );
-  const [synthA, setSynthA] = useState({});
+  // const [synthA, setSynthA] = useState({});
   let currentNote = 0;
   let previousNote = 0;
   const rhythmArray = ["8n"];
@@ -31,17 +35,23 @@ export default function GenerateButton({
     phraseHistory.current.push(phrase);
   }
 
-  function playPhrase(phraseObj) {
+  /* function playPhrase(phraseObj) {
     const phrase = phraseObj.phrase;
-    const dist = Interval.distance("C", `${ScaleLetter}`)
-    console.log("dist", dist, ScaleLetter)
+    const dist = Interval.distance("C", `${ScaleLetter}`);
+    console.log("dist", dist, ScaleLetter);
+    const trans = phrase.map((noteandtime) => {
+      const newNote = transpose(noteandtime.note, dist);
+      const time = noteandtime.time;
+      return { note: newNote, time: time };
+    });
+
     let delay = Tone.now();
-    for (let i = 0; i < phrase.length; i++) {
-      let time = phrase[i].time;
+    for (let i = 0; i < trans.length; i++) {
+      let time = trans[i].time;
       delay += Tone.Time(time).toSeconds();
-      synthA.triggerAttackRelease(phrase[i].note, phrase[i].time, delay);
+      synthA.triggerAttackRelease(trans[i].note, trans[i].time, delay);
     }
-  }
+  } */
 
   const createPhrase = () => {
     let phrase = [];
@@ -67,8 +77,6 @@ export default function GenerateButton({
     };
     updateHistory(phraseObj);
     setCurrentPhrase(phraseObj);
-
-    console.log("color: ", phraseObj.color);
 
     return phraseObj;
   };
@@ -96,27 +104,28 @@ export default function GenerateButton({
   }
 
   function run() {
-    Tone.start();
+    /* Tone.start();
     Tone.Transport.bpm.value = bpm;
-    Tone.Transport.start();
+    Tone.Transport.start(); */
     const phraseObj = createPhrase();
-    playPhrase(phraseObj);
+    playPhrase(phraseObj, ScaleLetter, bpm);
   }
 
   function repeat() {
     Tone.start();
     Tone.Transport.bpm.value = bpm;
     Tone.Transport.start();
-    playPhrase(phraseHistory.current[phraseHistory.current.length - 1]);
+    const lastPhrase = phraseHistory.current[phraseHistory.current.length - 1]
+    playPhrase(lastPhrase, ScaleLetter, bpm);
   }
 
   const { setPoolPhrases, bpm } = usePoolPhrasesContext();
 
   // this is here to avoid instantiating in node, needs the browser
-  useEffect(() => {
+  /* useEffect(() => {
     let synth = new Tone.Synth().toDestination();
     setSynthA(synth);
-  }, []);
+  }, []); */
 
   return (
     <>

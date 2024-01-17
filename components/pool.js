@@ -2,6 +2,8 @@ import { usePoolPhrasesContext } from "./use-poolphrases-context";
 import Image from "next/image";
 import * as Tone from 'tone';
 import { useState, useEffect } from 'react';
+import playPhrase from "../utils/playPhrase";
+import ScaleLetter from "./gen-scale-letter";
 
 export default function Pool() {
 

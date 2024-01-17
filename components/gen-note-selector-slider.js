@@ -40,9 +40,6 @@ export default function NoteSelectorSlider({
     getScale();
   }, [scaleLetter, scaleTonality]);
 
-  console.log("selected", selected);
-  console.log(hiState);
-  console.log(lowState);
   return (
     <>
       <div className="flex flex-row">
