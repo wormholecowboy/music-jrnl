@@ -1,6 +1,7 @@
 import * as Tone from "tone";
 import { Interval, transpose } from "@tonaljs/tonal";
 
+// BUG: needs to handle rests (null note values)
 function transposePhrase(phraseObj, scaleLetter) {
   const phrase = phraseObj.phrase;
   const dist = Interval.distance("C", scaleLetter);

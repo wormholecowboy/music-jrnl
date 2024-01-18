@@ -1,12 +1,8 @@
-import { useEffect, useRef, useState } from "react";
 import { usePoolPhrasesContext } from "./use-poolphrases-context";
-import { Interval, Scale } from "@tonaljs/tonal";
-import { transpose } from "@tonaljs/tonal";
-import * as Tone from "tone"; //this can be reduced to 'scale'
+import { Scale } from "@tonaljs/tonal";
 import { v4 as uuidv4 } from "uuid";
-import { colors } from "../styles/colors.js";
 import playPhrase from "../utils/playPhrase";
-import ScaleLetter from "./gen-scale-letter";
+import { randomColor, randomIndex, randomIndexNoRepeat } from "../utils/random";
 
 export default function GenerateButton({
   selectedRangeOfNotes,
@@ -16,7 +12,6 @@ export default function GenerateButton({
   setCurrentPhrase,
   currentPhrase,
   scaleTonality,
-  ScaleLetter,
 }) {
   //
   //
@@ -24,21 +19,21 @@ export default function GenerateButton({
     lowState,
     parseInt(hiState) + 1,
   );
-  // const [synthA, setSynthA] = useState({});
-  let currentNote = 0;
-  let previousNote = 0;
+  const { setPoolPhrases, bpm, scaleLetter } = usePoolPhrasesContext();
   const rhythmArray = ["8n"];
-  // Object, ({"4n" : 3, "8t" : -1}). The resulting time is equal to the sum of all of the keys multiplied by the values in the object.
-  const phraseHistory = useRef([]);
 
+  // Object, ({"4n" : 3, "8t" : -1}). The resulting time is equal to the sum of all of the keys multiplied by the values in the object.
+
+  // prob can del this
+  /* const phraseHistory = useRef([]);
   function updateHistory(phrase) {
     phraseHistory.current.push(phrase);
-  }
+  } */
 
   /* function playPhrase(phraseObj) {
     const phrase = phraseObj.phrase;
-    const dist = Interval.distance("C", `${ScaleLetter}`);
-    console.log("dist", dist, ScaleLetter);
+    const dist = Interval.distance("C", `${scaleLetter}`);
+    console.log("dist", dist, scaleLetter);
     const trans = phrase.map((noteandtime) => {
       const newNote = transpose(noteandtime.note, dist);
       const time = noteandtime.time;
@@ -57,10 +52,7 @@ export default function GenerateButton({
     let phrase = [];
     const id = uuidv4();
     const color = randomColor();
-
-    let lowerCaseTonality = scaleTonality.toLowerCase();
-    let scaleGenerator = Scale.rangeOf(`C ${lowerCaseTonality}`);
-    let generatedScale = scaleGenerator("A2", "G5"); // beyond this range sounds bad
+    const generatedScale = scaleGenerator();
     const tempArray = [...Array(generatedScale.length).keys()];
 
     for (let i = 0; i < numOFNotes; i++) {
@@ -68,39 +60,25 @@ export default function GenerateButton({
         generatedScale[randomIndexNoRepeat(0, generatedScale.length)];
       let rhythm = rhythmArray[randomIndex(0, rhythmArray.length)];
       phrase = [...phrase, { note: randomNote, time: rhythm }];
+      // WARN: get rid of spread operator here
     }
     const phraseObj = {
       phrase: phrase,
       id: id,
       color: color,
-      tonality: lowerCaseTonality,
+      tonality: scaleTonality,
     };
-    updateHistory(phraseObj);
+    // updateHistory(phraseObj);
     setCurrentPhrase(phraseObj);
 
     return phraseObj;
   };
 
-  function randomColor() {
-    const idx = randomIndex(0, colors.length - 1);
-    return colors[idx];
-  }
-
-  function randomIndex(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    let index = Math.floor(Math.random() * (max - min) + min);
-    return index;
-  }
-  // TODO: refactor these into one function
-  function randomIndexNoRepeat(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    previousNote = currentNote;
-    while (currentNote == previousNote) {
-      currentNote = Math.floor(Math.random() * (max - min) + min);
-    }
-    return currentNote;
+  function scaleGenerator() {
+    let lowerCaseTonality = scaleTonality.toLowerCase();
+    let scaleGenerator = Scale.rangeOf(`C ${lowerCaseTonality}`);
+    let generatedScale = scaleGenerator("A2", "G5"); // beyond this range sounds bad
+    return generatedScale;
   }
 
   function run() {
@@ -108,18 +86,16 @@ export default function GenerateButton({
     Tone.Transport.bpm.value = bpm;
     Tone.Transport.start(); */
     const phraseObj = createPhrase();
-    playPhrase(phraseObj, ScaleLetter, bpm);
+    playPhrase(phraseObj, scaleLetter, bpm);
   }
 
   function repeat() {
-    Tone.start();
-    Tone.Transport.bpm.value = bpm;
-    Tone.Transport.start();
-    const lastPhrase = phraseHistory.current[phraseHistory.current.length - 1]
-    playPhrase(lastPhrase, ScaleLetter, bpm);
+    // Tone.start();
+    // Tone.Transport.bpm.value = bpm;
+    // Tone.Transport.start();
+    // const lastPhrase = phraseHistory.current[phraseHistory.current.length - 1]
+    playPhrase(currentPhrase, scaleLetter, bpm);
   }
-
-  const { setPoolPhrases, bpm } = usePoolPhrasesContext();
 
   // this is here to avoid instantiating in node, needs the browser
   /* useEffect(() => {

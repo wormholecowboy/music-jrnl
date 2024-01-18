@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import { Scale } from "@tonaljs/tonal";
 import { MenuItem, Slider } from "@mui/material";
+import { usePoolPhrasesContext } from "./use-poolphrases-context";
 
 export default function NoteSelectorSlider({
   selectedRangeOfNotes,
-  scaleLetter,
   scaleTonality,
   setSelectedRangeOfNotes,
   lowState,
@@ -14,6 +14,7 @@ export default function NoteSelectorSlider({
 }) {
   const [numArray, setNumArray] = useState([]);
   const [selected, setSelected] = useState([6, 13]);
+  const { scaleLetter } = usePoolPhrasesContext();
 
   function getScale() {
     // This is causing an infinite loop. generatedScale will always look different to diffing algo

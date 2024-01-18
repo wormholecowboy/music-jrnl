@@ -1,18 +1,15 @@
 import Image from 'next/image';
 import playPhrase from "../utils/playPhrase";
 import { InputLabel, Select, MenuItem, TextField, FormControl } from '@mui/material';
-import * as Tone from 'tone';
 import { DndContext, closestCenter } from "@dnd-kit/core";
 import { arrayMove, SortableContext, horizontalListSortingStrategy } from "@dnd-kit/sortable";
 import DraggablePhrase from "./work-draggablePhrase";
 import { usePoolPhrasesContext } from "./use-poolphrases-context";
-import { useState, useEffect } from 'react';
-import ScaleLetter from './gen-scale-letter';
+import { useState } from 'react';
 
 export default function WorkingArea() {
 
-    const { bpm, workingPhrases, setWorkingPhrases } = usePoolPhrasesContext();
-    const [synthA, setSynthA] = useState({});
+    const { bpm, workingPhrases, setWorkingPhrases, scaleLetter } = usePoolPhrasesContext();
     const [rest, setRest] = useState('4n')
 
     function removeRest(idx) {
@@ -21,14 +18,14 @@ export default function WorkingArea() {
         setWorkingPhrases(newWorkingPhrases)
     }
 
-    function handleClick(phrases) {
+    function handlePlayClick(phrases) {
         const phrase = []
         phrases.map(phraseObj => {
             phraseObj.phrase.map(noteandtime => phrase.push(noteandtime))
         })
         const obj = { phrase: phrase}
         console.log('obj:', obj) 
-        playPhrase(obj, ScaleLetter, bpm)
+        playPhrase(obj, scaleLetter, bpm)
     }
 
     function addRest(idx, time) {
@@ -153,7 +150,7 @@ export default function WorkingArea() {
                         <MenuItem value='16n.'>16n.</MenuItem>
                     </Select>
                 </FormControl>
-                <button onClick={() => handleClick(workingPhrases)} className="self-center px-4 py-2 mx-4 text-color4 shadow-md rounded-md bg-color5 border-2 border-color4"
+                <button onClick={() => handlePlayClick(workingPhrases)} className="self-center px-4 py-2 mx-4 text-color4 shadow-md rounded-md bg-color5 border-2 border-color4"
                 >Play</button>
             </div>
         </div >

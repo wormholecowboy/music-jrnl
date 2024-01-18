@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-
+import React, { useState } from "react";
 import GenerateButton from "./gen-button";
 import NumOFNotesSel from "./gen-num-of-notes";
 import BpmSlider from "./gen-bpm-slider";
@@ -7,11 +6,8 @@ import ScaleTonality from "./gen-scale-tonality";
 import ScaleLetter from "./gen-scale-letter";
 import NoteSelectorSlider from "./gen-note-selector-slider";
 
-// TODO: add the 'repeat phrase' button
-
 export default function Generator() {
   const [selectedRangeOfNotes, setSelectedRangeOfNotes] = useState([]);
-  const [scaleLetter, setScaleLetter] = useState("B");
   const [numOFNotes, setNumOfNotes] = useState(7);
   const [scaleTonality, setScaleTonality] = useState("Blues");
   const [lowState, setLowState] = useState(6);
@@ -29,13 +25,9 @@ export default function Generator() {
           currentPhrase={currentPhrase}
           setCurrentPhrase={setCurrentPhrase}
           scaleTonality={scaleTonality}
-          ScaleLetter={scaleLetter}
         />
         <div className="self-center flex flex-row gap-2 my-3">
-          <ScaleLetter
-            scaleLetter={scaleLetter}
-            setScaleLetter={setScaleLetter}
-          />
+          <ScaleLetter />
           <ScaleTonality
             scaleTonality={scaleTonality}
             setScaleTonality={setScaleTonality}
@@ -52,7 +44,6 @@ export default function Generator() {
           selectedRangeOfNotes={selectedRangeOfNotes}
           setSelectedRangeOfNotes={setSelectedRangeOfNotes}
           scaleTonality={scaleTonality}
-          scaleLetter={scaleLetter}
           hiState={hiState}
           lowState={lowState}
           setHiState={setHiState}
