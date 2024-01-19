@@ -1,20 +1,26 @@
 import * as Tone from "tone";
 import { Interval, transpose } from "@tonaljs/tonal";
 
-// BUG: needs to handle rests (null note values)
 function transposePhrase(phraseObj, scaleLetter) {
   const phrase = phraseObj.phrase;
   const dist = Interval.distance("C", scaleLetter);
 
-  const transposedPhrase = phrase.map((noteandtime) => {
+  const transposedPhrase = [];
+  for (const noteandtime of phrase) {
+    if (noteandtime.note === null) {
+      transposedPhrase.push(noteandtime);
+      continue;
+    }
+
     const newNote = transpose(noteandtime.note, dist);
     const time = noteandtime.time;
-    return { note: newNote, time: time };
-  });
+    transposedPhrase.push({ note: newNote, time: time });
+  }
+
   return transposedPhrase;
 }
 
-export default function playPhrase(phraseObj, scaleLetter, bpm ) {
+export default function playPhrase(phraseObj, scaleLetter, bpm) {
   const phrase = transposePhrase(phraseObj, scaleLetter);
   Tone.start();
   Tone.Transport.bpm.value = bpm;
