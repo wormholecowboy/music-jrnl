@@ -16,6 +16,7 @@ function transposePhrase(phraseObj, scaleLetter) {
     const time = noteandtime.time;
     transposedPhrase.push({ note: newNote, time: time });
   }
+  console.log("transposedPhrase:", transposedPhrase);
 
   return transposedPhrase;
 }

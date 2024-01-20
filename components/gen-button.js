@@ -8,7 +8,7 @@ export default function GenerateButton({
   selectedRangeOfNotes,
   lowState,
   hiState,
-  numOFNotes,
+  numOFNotes, // FIX: capitalization for this var
   setCurrentPhrase,
   currentPhrase,
   scaleTonality,
@@ -22,62 +22,40 @@ export default function GenerateButton({
   const { setPoolPhrases, bpm, scaleLetter } = usePoolPhrasesContext();
   const rhythmArray = ["8n"];
 
-  // Object, ({"4n" : 3, "8t" : -1}). The resulting time is equal to the sum of all of the keys multiplied by the values in the object.
-
-  // prob can del this
-  /* const phraseHistory = useRef([]);
-  function updateHistory(phrase) {
-    phraseHistory.current.push(phrase);
-  } */
-
-  /* function playPhrase(phraseObj) {
-    const phrase = phraseObj.phrase;
-    const dist = Interval.distance("C", `${scaleLetter}`);
-    console.log("dist", dist, scaleLetter);
-    const trans = phrase.map((noteandtime) => {
-      const newNote = transpose(noteandtime.note, dist);
-      const time = noteandtime.time;
-      return { note: newNote, time: time };
-    });
-
-    let delay = Tone.now();
-    for (let i = 0; i < trans.length; i++) {
-      let time = trans[i].time;
-      delay += Tone.Time(time).toSeconds();
-      synthA.triggerAttackRelease(trans[i].note, trans[i].time, delay);
-    }
-  } */
-
   const createPhrase = () => {
     let phrase = [];
     const id = uuidv4();
+    const name = "temp";
     const color = randomColor();
     const generatedScale = scaleGenerator();
+    console.log("gen button")
+    console.log('generatedScale:', generatedScale)
     const tempArray = [...Array(generatedScale.length).keys()];
 
     for (let i = 0; i < numOFNotes; i++) {
       let randomNote =
-        generatedScale[randomIndexNoRepeat(0, generatedScale.length)];
+        generatedScale[randomIndexNoRepeat(lowState, hiState + 1)];
       let rhythm = rhythmArray[randomIndex(0, rhythmArray.length)];
-      phrase = [...phrase, { note: randomNote, time: rhythm }];
-      // WARN: get rid of spread operator here
+      phrase.push({ note: randomNote, time: rhythm });
     }
+    console.log('phrase:', phrase)
+
     const phraseObj = {
       phrase: phrase,
+      name: name,
       id: id,
       color: color,
       tonality: scaleTonality,
     };
-    // updateHistory(phraseObj);
-    setCurrentPhrase(phraseObj);
 
+    setCurrentPhrase(phraseObj);
     return phraseObj;
   };
 
   function scaleGenerator() {
     let lowerCaseTonality = scaleTonality.toLowerCase();
     let scaleGenerator = Scale.rangeOf(`C ${lowerCaseTonality}`);
-    let generatedScale = scaleGenerator("A2", "G5"); // beyond this range sounds bad
+    let generatedScale = scaleGenerator("C2", "C5"); // beyond this range sounds bad
     return generatedScale;
   }
 

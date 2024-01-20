@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { Scale } from "@tonaljs/tonal";
-import { MenuItem, Slider } from "@mui/material";
+import { Slider } from "@mui/material";
 import { usePoolPhrasesContext } from "./use-poolphrases-context";
+import { red } from "@mui/material/colors";
 
 export default function NoteSelectorSlider({
   selectedRangeOfNotes,
@@ -12,17 +13,20 @@ export default function NoteSelectorSlider({
   setHiState,
   setLowState,
 }) {
-  const [numArray, setNumArray] = useState([]);
+  const [indexArray, setIndexArray] = useState([]);
   const [selected, setSelected] = useState([6, 13]);
   const { scaleLetter } = usePoolPhrasesContext();
 
   function getScale() {
-    // This is causing an infinite loop. generatedScale will always look different to diffing algo
     let lowerCaseTonality = scaleTonality.toLowerCase();
     let scaleGenerator = Scale.rangeOf(`${scaleLetter} ${lowerCaseTonality}`);
-    let generatedScale = scaleGenerator("A2", "G5"); // beyond this range sounds bad
-    const tempArray = [...Array(generatedScale.length).keys()];
-    setNumArray(tempArray);
+    let generatedScale = scaleGenerator(`${scaleLetter}2`, `${scaleLetter}5`); // beyond this range sounds bad
+    const indices = [...Array(generatedScale.length).keys()];
+    console.log("note selector");
+    console.log("generatedScale:", generatedScale);
+    // NOTE: maybe detect the scale and then generate both scales using a tonic at the bottom to keep aligned
+
+    setIndexArray(indices);
     setSelectedRangeOfNotes(generatedScale);
   }
 
@@ -33,8 +37,10 @@ export default function NoteSelectorSlider({
 
   function handleChange(_, newVal) {
     setSelected(newVal);
-    setHiState(newVal[1]);
     setLowState(newVal[0]);
+    setHiState(newVal[1]);
+    console.log("newvalhi: ", newVal[1]);
+    console.log("newvallo: ", newVal[0]);
   }
 
   useEffect(() => {
@@ -47,7 +53,7 @@ export default function NoteSelectorSlider({
         <Slider
           value={selected}
           min={0}
-          max={numArray.length - 1}
+          max={indexArray.length - 1}
           marks={marks}
           onChange={handleChange}
           color="secondary"
