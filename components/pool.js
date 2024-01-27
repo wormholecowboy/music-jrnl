@@ -1,5 +1,5 @@
 import { usePoolPhrasesContext } from "./use-poolphrases-context";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import * as Tone from "tone";
 import { useState, useEffect } from "react";
 import playPhrase from "../utils/playPhrase";
@@ -49,49 +49,69 @@ export default function Pool() {
   //   setSynthA(synth);
   // }, []);
 
-  return (
-    <>
-      <div>
-        {poolPhrases.map((phraseObj) => (
-          <div
-            key={phraseObj.id}
-            className={` rounded-full m-2 px-4 py-1 w-10px h-10px ${phraseObj.color}`}
+  return <>
+    <div>
+      {poolPhrases.map((phraseObj) => (
+        <div
+          key={phraseObj.id}
+          className={` rounded-full m-2 px-4 py-1 w-10px h-10px ${phraseObj.color}`}
+        >
+          {phraseObj.phrase.map((noteandtime) => noteandtime.note).toString()}
+          <span
+            className="ml-4 cursor-pointer"
+            onClick={() => handlePlayClick(phraseObj)}
           >
-            {phraseObj.phrase.map((noteandtime) => noteandtime.note).toString()}
-            <span
-              className="ml-4 cursor-pointer"
-              onClick={() => handlePlayClick(phraseObj)}
-            >
-              <Image alt="play" src="/play.png" width={20} height={20} />
-            </span>
-            <span
-              className="m-1 cursor-pointer"
-              onClick={() => addToWorkingPhrases(phraseObj)}
-            >
-              <Image alt="work" src="/hammer.png" width={20} height={20} />
-            </span>
-            <span
-              className="m-1 cursor-pointer"
-              onClick={() => deletePhrase(phraseObj.id)}
-            >
-              <Image
-                alt="delete"
-                src="/trash.png"
-                className="rounded-full m-2"
-                width={20}
-                height={20}
-              />
-            </span>
             <Image
-              alt="save"
-              src="/save.png"
+              alt="play"
+              src="/play.png"
+              width={20}
+              height={20}
+              style={{
+                maxWidth: "100%",
+                height: "auto"
+              }} />
+          </span>
+          <span
+            className="m-1 cursor-pointer"
+            onClick={() => addToWorkingPhrases(phraseObj)}
+          >
+            <Image
+              alt="work"
+              src="/hammer.png"
+              width={20}
+              height={20}
+              style={{
+                maxWidth: "100%",
+                height: "auto"
+              }} />
+          </span>
+          <span
+            className="m-1 cursor-pointer"
+            onClick={() => deletePhrase(phraseObj.id)}
+          >
+            <Image
+              alt="delete"
+              src="/trash.png"
               className="rounded-full m-2"
               width={20}
               height={20}
-            />
-          </div>
-        ))}
-      </div>
-    </>
-  );
+              style={{
+                maxWidth: "100%",
+                height: "auto"
+              }} />
+          </span>
+          <Image
+            alt="save"
+            src="/save.png"
+            className="rounded-full m-2"
+            width={20}
+            height={20}
+            style={{
+              maxWidth: "100%",
+              height: "auto"
+            }} />
+        </div>
+      ))}
+    </div>
+  </>;
 }

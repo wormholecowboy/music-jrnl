@@ -1,4 +1,4 @@
-import Image from "next/legacy/image";
+import Image from "next/image";
 import playPhrase from "../utils/playPhrase";
 import {
   InputLabel,
@@ -123,7 +123,10 @@ export default function WorkingArea() {
                       className="rounded-full m-2"
                       width={20}
                       height={20}
-                    />
+                      style={{
+                        maxWidth: "100%",
+                        height: "auto"
+                      }} />
                   </span>
                   <span
                     className="m-1 cursor-pointer"
@@ -135,7 +138,10 @@ export default function WorkingArea() {
                       className="rounded-full m-2"
                       width={20}
                       height={20}
-                    />
+                      style={{
+                        maxWidth: "100%",
+                        height: "auto"
+                      }} />
                   </span>
                   <span
                     className="m-1 cursor-pointer"
@@ -147,7 +153,10 @@ export default function WorkingArea() {
                       className="rounded-full m-2"
                       width={20}
                       height={20}
-                    />
+                      style={{
+                        maxWidth: "100%",
+                        height: "auto"
+                      }} />
                   </span>
                 </DraggablePhrase>
               </span>
