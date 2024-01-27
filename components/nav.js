@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Avatar from './avatar';
 
 export default function Nav() {
     return (
@@ -18,6 +19,7 @@ export default function Nav() {
                 </li>
             </ul>
             <h1 className="text-center text-xl p-3">Music Vocabulary Journal</h1>
+        <Avatar />
         </nav>
     );
 }
