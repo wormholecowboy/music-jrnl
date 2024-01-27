@@ -1,5 +1,5 @@
 import { usePoolPhrasesContext } from "./use-poolphrases-context";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import * as Tone from "tone";
 import { useState, useEffect } from "react";
 import playPhrase from "../utils/playPhrase";
