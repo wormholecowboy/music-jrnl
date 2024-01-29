@@ -1,3 +1,4 @@
+'use client';
 import { InputLabel, Select, MenuItem, FormControl } from "@mui/material";
 import { usePoolPhrasesContext } from "./use-poolphrases-context";
 

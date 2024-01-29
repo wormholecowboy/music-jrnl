@@ -1,3 +1,4 @@
+'use client';
 import { InputLabel, Select, MenuItem, FormControl } from "@mui/material";
 
 export default function NumOFNotesSel(props) {

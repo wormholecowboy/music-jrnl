@@ -1,5 +1,6 @@
+'use client';
 import Image from "next/image";
-import playPhrase from "../utils/playPhrase";
+import playPhrase from "../../utils/playPhrase";
 import {
   InputLabel,
   Select,

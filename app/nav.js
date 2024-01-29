@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import Avatar from './avatar';
+// import Avatar from './avatar';
 
 export default function Nav() {
     return (
@@ -9,17 +9,16 @@ export default function Nav() {
                     <Link href="/">Home</Link>
                 </li>
                 <li className="ml-10">
-                    <Link href="/">Why</Link>
+                    <Link href="/why">Why</Link>
                 </li>
                 <li className="ml-10">
-                    <Link href="/">How</Link>
+                    <Link href="/how">How</Link>
                 </li>
                 <li className="ml-10">
                     <Link href="/play">Play</Link>
                 </li>
             </ul>
             <h1 className="text-center text-xl p-3">Music Vocabulary Journal</h1>
-        <Avatar />
         </nav>
     );
 }

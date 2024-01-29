@@ -1,3 +1,4 @@
+'use client';
 import { useState, useEffect } from "react";
 import { Scale } from "@tonaljs/tonal";
 import { Slider } from "@mui/material";

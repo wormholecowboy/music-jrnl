@@ -1,3 +1,4 @@
+'use client';
 import React, { useContext, useState } from "react";
 
 const PoolPhrasesContext = React.createContext();

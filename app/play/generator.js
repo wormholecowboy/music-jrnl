@@ -1,3 +1,4 @@
+'use client';
 import React, { useState } from "react";
 import GenerateButton from "./gen-button";
 import NumOFNotesSel from "./gen-num-of-notes";

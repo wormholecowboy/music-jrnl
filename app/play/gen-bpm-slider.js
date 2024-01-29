@@ -1,3 +1,4 @@
+'use client';
 import { Slider } from "@mui/material";
 import { usePoolPhrasesContext } from "./use-poolphrases-context";
 

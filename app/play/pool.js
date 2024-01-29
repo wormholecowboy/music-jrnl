@@ -1,8 +1,9 @@
+'use client';
 import { usePoolPhrasesContext } from "./use-poolphrases-context";
 import Image from "next/image";
 import * as Tone from "tone";
 import { useState, useEffect } from "react";
-import playPhrase from "../utils/playPhrase";
+import playPhrase from "../../utils/playPhrase";
 
 export default function Pool() {
   const { poolPhrases, setPoolPhrases, setWorkingPhrases, bpm, scaleLetter } =

@@ -1,15 +1,13 @@
-import Generator from '../components/generator';
-import Nav from '../components/nav';
-import WorkingArea from '../components/working';
-import React, { useState } from 'react';
-import { PoolPhrasesProvider } from '../components/use-poolphrases-context';
-import Pool from '../components/pool';
+import Generator from './generator';
+import WorkingArea from './working';
+import React from 'react';
+import { PoolPhrasesProvider } from './use-poolphrases-context';
+import Pool from './pool';
 
-export default function PlayIndex() {
+export default function Layout({children}) {
     return (
         <div className='bg-color1'>
             <PoolPhrasesProvider>
-                <Nav />
                 <div
                     id="main-play"
                     className="h-screen grid grid-cols-3 grid-rows-4 gap-5 mx-5"
@@ -26,6 +24,7 @@ export default function PlayIndex() {
 
                     <div id="my-vocab" className="row-start-2 row-end-4 bg-color2 rounded-md drop-shadow-md">
                     </div>
+      {children}
                 </div>
             </PoolPhrasesProvider>
         </div>

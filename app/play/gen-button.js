@@ -1,8 +1,9 @@
+'use client';
 import { usePoolPhrasesContext } from "./use-poolphrases-context";
 import { Scale } from "@tonaljs/tonal";
 import { v4 as uuidv4 } from "uuid";
-import playPhrase from "../utils/playPhrase";
-import { randomColor, randomIndex, randomIndexNoRepeat } from "../utils/random";
+import playPhrase from "../../utils/playPhrase";
+import { randomColor, randomIndex, randomIndexNoRepeat } from "../../utils/random";
 
 export default function GenerateButton({
   selectedRangeOfNotes,
