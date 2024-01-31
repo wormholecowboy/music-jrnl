@@ -5,7 +5,6 @@ import {
   InputLabel,
   Select,
   MenuItem,
-  TextField,
   FormControl,
 } from "@mui/material";
 import { DndContext, closestCenter } from "@dnd-kit/core";
@@ -93,7 +92,7 @@ export default function WorkingArea() {
 
   return (
     <div className="flex flex-col justify-center justify-items-center">
-      <div className="p-3 flex self-center">
+      <div className="p-3 flex flex-row self-center">
         <DndContext
           collisionDetection={closestCenter}
           onDragEnd={handleDragEnd}
