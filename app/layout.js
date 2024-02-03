@@ -1,19 +1,18 @@
+"use client";
 import "./globals.css";
 import Nav from "./nav";
+import { SessionProvider } from "next-auth/react";
 
-export const metadata = {
-  title: "Home",
-  description: "Welcome to Next.js",
-};
-
-export default function RootLayout({ children }) {
+export default function RootLayout({ children, params: {session, ...params}}) {
   return (
     <html lang="en">
       <body className="bg-color1">
-        <header>
-          <Nav />
-        </header>
-        {children}
+        <SessionProvider session={session}>
+          <header>
+            <Nav />
+          </header>
+          {children}
+        </SessionProvider>
       </body>
     </html>
   );
