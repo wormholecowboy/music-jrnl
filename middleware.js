@@ -1,18 +1,16 @@
-import { updateSession } from '/utils/supabase/middleware'
+import { NextResponse } from 'next/server'
+import { createServerSupabaseClient } from './utils/supabase/server'
 
 export async function middleware(request) {
-  return await updateSession(request)
-}
+  let response = NextResponse.next({
+    request: {
+      headers: request.headers,
+    },
+  })
 
-export const config = {
-  matcher: [
-    /*
-     * Match all request paths except for the ones starting with:
-     * - _next/static (static files)
-     * - _next/image (image optimization files)
-     * - favicon.ico (favicon file)
-     * Feel free to modify this pattern to include more paths.
-     */
-    '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
-  ],
+  const supabase = createServerSupabaseClient(request, response)
+
+  await supabase.auth.getSession()
+
+  return response
 }

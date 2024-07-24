@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Login from "./login/page";
 // import Avatar from "./avatar";
 
 export default function Nav() {
@@ -18,6 +19,7 @@ export default function Nav() {
           <Link href="/play">Play</Link>
         </li>
       </ul>
+      <Login />
       <h1 className="text-center text-xl p-3">Music Vocabulary Journal</h1>
     </nav>
   );
