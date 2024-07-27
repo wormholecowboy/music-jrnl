@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Login from "./login/page";
 // import Avatar from "./avatar";
+import LoginButton from "./auth/components/login-button";
 
 export default function Nav() {
   return (
@@ -19,7 +20,7 @@ export default function Nav() {
           <Link href="/play">Play</Link>
         </li>
       </ul>
-      <Login />
+      <LoginButton />
       <h1 className="text-center text-xl p-3">Music Vocabulary Journal</h1>
     </nav>
   );
