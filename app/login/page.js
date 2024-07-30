@@ -1,7 +1,6 @@
 'use client'
 
 import { redirect, useRouter } from 'next/navigation'
-// import { createBrowserClient } from '@supabase/ssr'
 import { createClient } from '../../utils/supabase/browser-client'
 
 export default function Login() {

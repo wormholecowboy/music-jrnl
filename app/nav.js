@@ -1,7 +1,6 @@
 import Link from "next/link";
-import Login from "./login/page";
 // import Avatar from "./avatar";
-import LoginButton from "./auth/components/login-button";
+import LoginButton from "./components/login-button";
 
 export default function Nav() {
   return (
