@@ -2,6 +2,7 @@
 import { usePoolPhrasesContext } from "./use-poolphrases-context";
 import Image from "next/image";
 import playPhrase from "../../utils/playPhrase";
+import { phraseToString } from "../../utils/random";
 
 export default function Pool() {
   const { poolPhrases, setPoolPhrases, setWorkingPhrases, bpm, scaleLetter } =
@@ -52,10 +53,11 @@ export default function Pool() {
       <div>
         {poolPhrases.map((phraseObj) => (
           <div
+          title={phraseToString(phraseObj.phrase)}
             key={phraseObj.id}
             className={`flex items-center rounded-full m-2 px-4 py-1 w-10px h-10px ${phraseObj.color}`}
           >
-            {phraseObj.phrase.map((noteandtime) => noteandtime.note).toString()}
+            {phraseObj.name}
             <div className={"flex items-center justify-around"}>
               <span
                 className="ml-4 cursor-pointer"

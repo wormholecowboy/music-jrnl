@@ -16,6 +16,7 @@ import {
 import DraggablePhrase from "./work-draggablePhrase";
 import { usePoolPhrasesContext } from "./use-poolphrases-context";
 import { useState } from "react";
+import { phraseToString } from "../../utils/random";
 
 export default function WorkingArea() {
   const { bpm, workingPhrases, setWorkingPhrases, scaleLetter } =
@@ -102,17 +103,13 @@ export default function WorkingArea() {
             strategy={horizontalListSortingStrategy}
           >
             {workingPhrases.map((phraseObj, idx) => (
-              <span title="poop">
+              <span title={phraseToString(phraseObj.phrase)}>
                 <DraggablePhrase
                   id={phraseObj.id}
                   key={phraseObj.id}
                   color={`${phraseObj.color}`}
                 >
-                  {phraseObj.phrase.map((noteandtime) => {
-                    if (noteandtime.note === null)
-                      return `_${noteandtime.time.toString()}`;
-                    return noteandtime.note.toString();
-                  })}
+                  {phraseObj.name}
                   <span
                     className="m-1 cursor-pointer"
                     onClick={() => removeRest(idx)}

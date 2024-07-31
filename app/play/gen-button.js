@@ -1,9 +1,14 @@
-'use client';
+"use client";
 import { usePoolPhrasesContext } from "./use-poolphrases-context";
 import { Scale } from "@tonaljs/tonal";
 import { v4 as uuidv4 } from "uuid";
 import playPhrase from "../../utils/playPhrase";
-import { randomColor, randomIndex, randomIndexNoRepeat } from "../../utils/random";
+import {
+  randomColor,
+  randomIndex,
+  randomIndexNoRepeat,
+} from "../../utils/random";
+import { colors, soundAdjectives, sounds } from "../../utils/lists-of-words";
 
 export default function GenerateButton({
   selectedRangeOfNotes,
@@ -23,15 +28,20 @@ export default function GenerateButton({
   const { setPoolPhrases, bpm, scaleLetter } = usePoolPhrasesContext();
   const rhythmArray = ["8n"];
 
+  const createName = () => {
+    const color = colors[randomIndex(0, colors.length - 1)];
+    const sound = sounds[randomIndex(0, sounds.length - 1)];
+    const adjective =
+      soundAdjectives[randomIndex(0, soundAdjectives.length - 1)];
+    return `${color} ${adjective} ${sound}`;
+  };
+
   const createPhrase = () => {
     let phrase = [];
     const id = uuidv4();
-    const name = "temp";
+    const name = createName();
     const color = randomColor();
     const generatedScale = scaleGenerator();
-    console.log("gen button")
-    console.log('generatedScale:', generatedScale)
-    const tempArray = [...Array(generatedScale.length).keys()];
 
     for (let i = 0; i < numOFNotes; i++) {
       let randomNote =
@@ -39,7 +49,6 @@ export default function GenerateButton({
       let rhythm = rhythmArray[randomIndex(0, rhythmArray.length)];
       phrase.push({ note: randomNote, time: rhythm });
     }
-    console.log('phrase:', phrase)
 
     const phraseObj = {
       phrase: phrase,
