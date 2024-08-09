@@ -3,6 +3,7 @@ import { usePoolPhrasesContext } from "./use-poolphrases-context";
 import Image from "next/image";
 import playPhrase from "../../utils/playPhrase";
 import { phraseToString } from "../../utils/random";
+import insertPhrases from "../actions/insert-phrase";
 
 export default function Pool() {
   const { poolPhrases, setPoolPhrases, setWorkingPhrases, bpm, scaleLetter } =
@@ -53,7 +54,7 @@ export default function Pool() {
       <div>
         {poolPhrases.map((phraseObj) => (
           <div
-          title={phraseToString(phraseObj.phrase)}
+            title={phraseToString(phraseObj.phrase)}
             key={phraseObj.id}
             className={`flex items-center rounded-full m-2 px-4 py-1 w-10px h-10px ${phraseObj.color}`}
           >
@@ -105,17 +106,25 @@ export default function Pool() {
                   }}
                 />
               </span>
-              <Image
-                alt="save"
-                src="/save.png"
-                className="rounded-full m-2"
-                width={20}
-                height={20}
-                style={{
-                  maxWidth: "100%",
-                  height: "auto",
+              <span
+                className="m-1 cursor-pointer"
+                onClick={() => {
+                  const data = insertPhrases(phraseObj);
+                  console.log("insert return: ", data);
                 }}
-              />
+              >
+                <Image
+                  alt="save"
+                  src="/save.png"
+                  className="rounded-full m-2"
+                  width={20}
+                  height={20}
+                  style={{
+                    maxWidth: "100%",
+                    height: "auto",
+                  }}
+                />
+              </span>
             </div>
           </div>
         ))}

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { createSupabaseBrowserClient } from "./browser-client";
+import createSupabaseBrowserClient  from "./browser-client";
 
 export default function useSession() {
   const [session, setSession] = useState(null);
