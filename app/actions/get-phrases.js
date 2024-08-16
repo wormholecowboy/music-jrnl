@@ -7,5 +7,11 @@ export default async function getPhrases() {
 
   if (!user) return
   const { data, error} = await supabase.from("phrases").select()
-  return data
+  const formattedData = data.map(phraseObj => {
+    return {
+      ...phraseObj,
+      phrase: JSON.parse(phraseObj.phrase)
+    }
+  })
+  return formattedData
 }

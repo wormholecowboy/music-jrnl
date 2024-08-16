@@ -23,8 +23,6 @@ export default function NoteSelectorSlider({
     let scaleGenerator = Scale.rangeOf(`${scaleLetter} ${lowerCaseTonality}`);
     let generatedScale = scaleGenerator(`${scaleLetter}2`, `${scaleLetter}5`); // beyond this range sounds bad
     const indices = [...Array(generatedScale.length).keys()];
-    console.log("note selector");
-    console.log("generatedScale:", generatedScale);
     // NOTE: maybe detect the scale and then generate both scales using a tonic at the bottom to keep aligned
 
     setIndexArray(indices);
