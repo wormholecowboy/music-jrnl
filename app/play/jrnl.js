@@ -22,7 +22,7 @@ export default function Jrnl() {
   console.log("poolphr: ", poolPhrases)
 
   function handleDelete(phraseObj) {
-    const phraseId = phraseObj.phrase_id
+    const phraseId = phraseObj.phraseId
     // TODO: remove snake case from clientside
     console.log("phrase obj jrnl: ", phraseObj)
     deletePhrase(phraseId)

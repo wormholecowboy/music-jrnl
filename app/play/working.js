@@ -49,7 +49,7 @@ export default function WorkingArea() {
 
   function deletePhrase(id) {
     setWorkingPhrases((prev) => {
-      const updatedPhrases = prev.filter((phraseObj) => phraseObj.id !== id);
+      const updatedPhrases = prev.filter((phraseObj) => phraseObj.phrase_id !== id);
       return updatedPhrases;
     });
   }
@@ -105,8 +105,8 @@ export default function WorkingArea() {
             {workingPhrases.map((phraseObj, idx) => (
               <span title={phraseToString(phraseObj.phrase)}>
                 <DraggablePhrase
-                  id={phraseObj.id}
-                  key={phraseObj.id}
+                  id={phraseObj.phrase_id}
+                  key={phraseObj.phrase_id}
                   color={`${phraseObj.color}`}
                 >
                   {phraseObj.name}
@@ -142,7 +142,7 @@ export default function WorkingArea() {
                   </span>
                   <span
                     className="m-1 cursor-pointer"
-                    onClick={() => deletePhrase(phraseObj.id)}
+                    onClick={() => deletePhrase(phraseObj.phrase_id)}
                   >
                     <Image
                       alt="delete"

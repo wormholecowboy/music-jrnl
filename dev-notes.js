@@ -1,8 +1,10 @@
 /*
     *  NOTE: try a rhythm generator
-    *
-    * NOTE: style it, scale converter, add backend
   *
   *
+  * TODO: reskin
+  * TODO: refactor
+  * TODO: add error handling
+  * TODO: add loading states
   * TODO: 
     */

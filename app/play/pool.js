@@ -15,39 +15,18 @@ export default function Pool() {
   }
 
   function handlePlayClick(phraseObj) {
-    console.log("pool obj:", phraseObj);
     playPhrase(phraseObj, scaleLetter, bpm);
   }
 
-  // function playPhrase(poolPhrase) {
-  //     const phrase = poolPhrase.phrase
-  //     /* poolPhrase.phrase.map(
-  //         noteandtime => phrase.push(noteandtime)
-  //     ) */
-  //     Tone.Transport.bpm.value = bpm;
-  //     let delay = Tone.now();
-  //     for (let i = 0; i < phrase.length; i++) {
-  //         let time = phrase[i].time;
-  //         delay += Tone.Time(time).toSeconds();
-  //         synthA.triggerAttackRelease(
-  //             phrase[i].note,
-  //             phrase[i].time,
-  //             delay
-  //         );
-  //     }
-  // }
-
   function deletePhrase(id) {
+    console.log("id: ", id);
     setPoolPhrases((prev) => {
-      const updatedPhrases = prev.filter((phraseObj) => phraseObj.id !== id);
-      return updatedPhrases;
+      console.log("prev: ", prev);
+      const filtered = prev.filter((phraseObj) => phraseObj.phrase_id !== id);
+      console.log("filtered: ", filtered);
+      return prev.filter((phraseObj) => phraseObj.phrase_id !== id);
     });
   }
-
-  // useEffect(() => {
-  //   let synth = new Tone.Synth().toDestination();
-  //   setSynthA(synth);
-  // }, []);
 
   return (
     <>
@@ -55,7 +34,7 @@ export default function Pool() {
         {poolPhrases.map((phraseObj) => (
           <div
             title={phraseToString(phraseObj.phrase)}
-            key={phraseObj.id}
+            key={phraseObj.phrase_id}
             className={`flex items-center rounded-full m-2 px-4 py-1 w-10px h-10px ${phraseObj.color}`}
           >
             {phraseObj.name}
@@ -92,7 +71,7 @@ export default function Pool() {
               </span>
               <span
                 className="m-1 cursor-pointer"
-                onClick={() => deletePhrase(phraseObj.id)}
+                onClick={() => deletePhrase(phraseObj.phrase_id)}
               >
                 <Image
                   alt="delete"

@@ -19,7 +19,7 @@ export default async function insertPhrases(phrase) {
         name: phrase.name,
         color: phrase.color,
         phrase: JSONPhrase,
-        phrase_id: phrase.id,
+        phrase_id: phrase.phrase_id,
         tonality: phrase.tonality,
         user_id: userID,
       },

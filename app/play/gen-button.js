@@ -53,7 +53,7 @@ export default function GenerateButton({
     const phraseObj = {
       phrase: phrase,
       name: name,
-      id: id,
+      phrase_id: id,
       color: color,
       tonality: scaleTonality,
     };
