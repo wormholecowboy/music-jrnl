@@ -3,6 +3,20 @@ import { colors } from "../styles/colors.js";
 let currentNote = 0;
 let previousNote = 0;
 
+export const scalesMasterList = [
+  "Major",
+  "Minor",
+  "Blues",
+  "Dorian",
+  "Phrygian",
+  "Lydian",
+  "Mixolydian",
+  "Locrian",
+  "Chromatic",
+  "Bebop",
+  "Diminished",
+];
+
 export function phraseToString(phrase) {
   return phrase.map((noteandtime) => noteandtime.note).toString();
   // phraseObj.phrase.map((noteandtime) => {

@@ -1,5 +1,6 @@
-'use client';
+"use client";
 import { InputLabel, Select, MenuItem, FormControl } from "@mui/material";
+import { scalesMasterList } from "../../utils/random";
 
 export default function ScaleTonality({
   scaleTonality,
@@ -21,17 +22,9 @@ export default function ScaleTonality({
           label="Tonality"
           onChange={(e) => handleClick(e)}
         >
-          <MenuItem value="Major">Major</MenuItem>
-          <MenuItem value="Minor">Minor</MenuItem>
-          <MenuItem value="Blues">Blues</MenuItem>
-          <MenuItem value="Dorian">Dorian</MenuItem>
-          <MenuItem value="Phrygian">Phrygian</MenuItem>
-          <MenuItem value="Lydian">Lydian</MenuItem>
-          <MenuItem value="Mixolydian">Mixolydian</MenuItem>
-          <MenuItem value="Locrian">Locrian</MenuItem>
-          <MenuItem value="Chromatic">Chromatic</MenuItem>
-          <MenuItem value="Bebop">Bebop</MenuItem>
-          <MenuItem value="Diminished">Diminished</MenuItem>
+          {scalesMasterList.map((scale) => {
+       return    (<MenuItem value={scale}>{scale}</MenuItem>) 
+          })}
         </Select>
       </FormControl>
     </div>

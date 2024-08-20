@@ -4,8 +4,8 @@
   *
   * TODO: add tonality filtering on jrnl comp
   * TODO: rename context
-  * TODO: 
-  * TODO: 
+  * TODO: add rename modal
+  * TODO: rename updateJrnlPhrases var and its set var
   * TODO: 
   * TODO: 
   * TODO: reskin
