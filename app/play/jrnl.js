@@ -11,6 +11,8 @@ import {
   Select,
   MenuItem,
   InputLabel,
+  Dialog,
+  DialogTitle,
 } from "@mui/material";
 import { useState, useEffect } from "react";
 import getPhrases from "../actions/get-phrases";
@@ -18,12 +20,14 @@ import deletePhrase from "../actions/delete-phrase";
 import Image from "next/image";
 import { usePoolPhrasesContext } from "/app/play/use-poolphrases-context";
 import { scalesMasterList } from "../../utils/random";
+import RenameModal from "../components/jrnl/rename-modal";
 
 export default function Jrnl() {
-  const [selected, setSelected] = useState();
   const [phrases, setPhrases] = useState([]);
   const [isLoading, setLoading] = useState(true);
   const [scaleTonality, setScaleTonality] = useState("Blues");
+  const [modalOpen, setModalOpen] = useState(false);
+  const [renameValue, setRenameValue] = useState("");
 
   const {
     poolPhrases,
@@ -34,7 +38,12 @@ export default function Jrnl() {
   console.log("poolphr: ", poolPhrases);
 
   function handleTonalitySelection(e) {
-    setScaleTonality(e.target.value)
+    setScaleTonality(e.target.value);
+  }
+
+  function handleRename(phraseObj) {
+    setRenameValue(phraseObj.name)
+    setModalOpen(true)
   }
 
   async function handleDelete(phraseObj) {
@@ -102,17 +111,6 @@ export default function Jrnl() {
                   <ListItemText>{phraseObj.name}</ListItemText>
                   <ListItemIcon>
                     <span
-                      onClick={() => handleRename(phraseObj)}
-                      className="ml-4 cursor-pointer"
-                    >
-                      <Image
-                        src="/rename.png"
-                        width={20}
-                        height={20}
-                        alt="rename"
-                      />
-                    </span>
-                    <span
                       onClick={() => handleLoad(phraseObj)}
                       className="ml-4 cursor-pointer"
                     >
@@ -121,6 +119,17 @@ export default function Jrnl() {
                         width={20}
                         height={20}
                         alt="load"
+                      />
+                    </span>
+                    <span
+                      onClick={() => handleRename(phraseObj)}
+                      className="ml-4 cursor-pointer"
+                    >
+                      <Image
+                        src="/rename.png"
+                        width={20}
+                        height={20}
+                        alt="rename"
                       />
                     </span>
                     <span
@@ -139,6 +148,7 @@ export default function Jrnl() {
               ))}
           </List>
         </Box>
+        <RenameModal modalOpen={modalOpen} setModalOpen={setModalOpen} renameValue={renameValue} setRenameValue={setRenameValue}/>
       </div>
     </>
   );
