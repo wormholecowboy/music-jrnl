@@ -1,5 +1,6 @@
 "use client";
 import {
+  Box,
   Icon,
   List,
   ListItem,
@@ -18,20 +19,25 @@ export default function Jrnl() {
   const [phrases, setPhrases] = useState([]);
   const [isLoading, setLoading] = useState(true);
 
-  const { poolPhrases, setPoolPhrases } = usePoolPhrasesContext();
-  console.log("poolphr: ", poolPhrases)
+  const {
+    poolPhrases,
+    setPoolPhrases,
+    updateJrnlPhrases,
+    setUpdateJrnlPhrases,
+  } = usePoolPhrasesContext();
+  console.log("poolphr: ", poolPhrases);
 
-  function handleDelete(phraseObj) {
-    const phraseId = phraseObj.phraseId
+  async function handleDelete(phraseObj) {
+    const phraseId = phraseObj.phrase_id;
     // TODO: remove snake case from clientside
-    console.log("phrase obj jrnl: ", phraseObj)
-    deletePhrase(phraseId)
-    return
+    console.log("phrase obj jrnl: ", phraseObj);
+    await deletePhrase(phraseId);
+    setUpdateJrnlPhrases(updateJrnlPhrases + 1);
   }
 
   function handleLoad(phraseObj) {
-    console.log("phraseobj: ", phraseObj)
-    setPoolPhrases((prev) => [phraseObj, ...prev]);
+    console.log("phraseobj: ", phraseObj);
+    setPoolPhrases((prev) => [...prev, phraseObj]);
   }
 
   useEffect(() => {
@@ -46,7 +52,7 @@ export default function Jrnl() {
       .finally(() => {
         setLoading(false);
       });
-  }, []);
+  }, [updateJrnlPhrases]);
 
   return (
     <>
@@ -54,39 +60,55 @@ export default function Jrnl() {
         <p>
           <strong>Your Phrase Journal</strong>
         </p>
-        <div></div>
-        <List>
-          {phrases.map((phraseObj) => (
-            <ListItem key={phraseObj.phrase_id}>
-              <ListItemText>{phraseObj.name}</ListItemText>
-              <ListItemIcon>
-                <span
-                  onClick={() => handleRename(phraseObj)}
-                  className="ml-4 cursor-pointer"
-                >
-                  <Image
-                    src="/rename.png"
-                    width={20}
-                    height={20}
-                    alt="rename"
-                  />
-                </span>
-                <span
-                  onClick={() => handleLoad(phraseObj)}
-                  className="ml-4 cursor-pointer"
-                >
-                  <Image src="/larrow.png" width={20} height={20} alt="load" />
-                </span>
-                <span
-                  onClick={() => handleDelete(phraseObj)}
-                  className="ml-4 cursor-pointer"
-                >
-                  <Image src="/trash.png" width={20} height={20} alt="delete" />
-                </span>
-              </ListItemIcon>
-            </ListItem>
-          ))}
-        </List>
+        <Box
+          sx={{
+            overflowY: 'auto',
+            maxHeight: 450
+          }}
+        >
+          <List>
+            {phrases.map((phraseObj) => (
+              <ListItem key={phraseObj.phrase_id}>
+                <ListItemText>{phraseObj.name}</ListItemText>
+                <ListItemIcon>
+                  <span
+                    onClick={() => handleRename(phraseObj)}
+                    className="ml-4 cursor-pointer"
+                  >
+                    <Image
+                      src="/rename.png"
+                      width={20}
+                      height={20}
+                      alt="rename"
+                    />
+                  </span>
+                  <span
+                    onClick={() => handleLoad(phraseObj)}
+                    className="ml-4 cursor-pointer"
+                  >
+                    <Image
+                      src="/larrow.png"
+                      width={20}
+                      height={20}
+                      alt="load"
+                    />
+                  </span>
+                  <span
+                    onClick={() => handleDelete(phraseObj)}
+                    className="ml-4 cursor-pointer"
+                  >
+                    <Image
+                      src="/trash.png"
+                      width={20}
+                      height={20}
+                      alt="delete"
+                    />
+                  </span>
+                </ListItemIcon>
+              </ListItem>
+            ))}
+          </List>
+        </Box>
       </div>
     </>
   );

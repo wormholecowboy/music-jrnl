@@ -12,5 +12,4 @@ export default async function deletePhrase(phraseId) {
 
   if (!user) return;
   const res = await supabase.from("phrases").delete().eq("phrase_id", phraseId);
-  console.log("delete res: ", res);
 }
