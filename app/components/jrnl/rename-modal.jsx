@@ -1,7 +1,14 @@
 import { DialogTitle, Dialog, TextField, Button } from "@mui/material";
-import { useState } from "react";
+import RenamePhrase from "/app/actions/rename-phrase";
 
-export default function RenameModal({ modalOpen, setModalOpen, renameValue, setRenameValue }) {
+export default function RenameModal({
+  modalOpen,
+  setModalOpen,
+  renameValue,
+  setRenameValue,
+  selectedPhrase,
+  setUpdateJrnlPhrases
+}) {
   function handleTextChange(e) {
     setRenameValue(e.target.value);
   }
@@ -10,13 +17,19 @@ export default function RenameModal({ modalOpen, setModalOpen, renameValue, setR
     setModalOpen(false);
   }
 
+  function handleSubmit() {
+    RenamePhrase(selectedPhrase, renameValue);
+    setModalOpen(false);
+    setUpdateJrnlPhrases(prev => prev + 1)
+  }
+
   return (
-    <Dialog open={modalOpen}>
+    <Dialog open={modalOpen} onClose={handleClose}>
       <DialogTitle>Rename</DialogTitle>
       <TextField
         autoFocus
-        onFocus={e => e.target.select()}
-        onChange={e => handleTextChange(e)}
+        onFocus={(e) => e.target.select()}
+        onChange={(e) => handleTextChange(e)}
         required
         value={renameValue}
         margin="dense"
@@ -28,7 +41,7 @@ export default function RenameModal({ modalOpen, setModalOpen, renameValue, setR
         variant="standard"
       />
       <Button onClick={handleClose}>Cancel</Button>
-      <Button type="submit">Confirm</Button>
+      <Button onClick={handleSubmit}>Confirm</Button>
     </Dialog>
   );
 }

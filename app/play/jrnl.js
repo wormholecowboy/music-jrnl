@@ -28,6 +28,7 @@ export default function Jrnl() {
   const [scaleTonality, setScaleTonality] = useState("Blues");
   const [modalOpen, setModalOpen] = useState(false);
   const [renameValue, setRenameValue] = useState("");
+  const [selectedPhrase, setSelectedPhrase] = useState({});
 
   const {
     poolPhrases,
@@ -42,8 +43,9 @@ export default function Jrnl() {
   }
 
   function handleRename(phraseObj) {
-    setRenameValue(phraseObj.name)
-    setModalOpen(true)
+    setRenameValue(phraseObj.name);
+    setSelectedPhrase(phraseObj);
+    setModalOpen(true);
   }
 
   async function handleDelete(phraseObj) {
@@ -148,7 +150,14 @@ export default function Jrnl() {
               ))}
           </List>
         </Box>
-        <RenameModal modalOpen={modalOpen} setModalOpen={setModalOpen} renameValue={renameValue} setRenameValue={setRenameValue}/>
+        <RenameModal
+          modalOpen={modalOpen}
+          setModalOpen={setModalOpen}
+          renameValue={renameValue}
+          setRenameValue={setRenameValue}
+          selectedPhrase={selectedPhrase}
+          setUpdateJrnlPhrases={setUpdateJrnlPhrases}
+        />
       </div>
     </>
   );

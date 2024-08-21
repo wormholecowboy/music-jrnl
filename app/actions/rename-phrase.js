@@ -1,4 +1,6 @@
-'use server'
+"use server";
+import { createSupabaseServerClient } from "/utils/supabase/server-client";
+// import { createSupabaseServerClient } from "../../utils/supabase/server-client";
 
 export default async function RenamePhrase(phraseObj, newName) {
   const supabase = createSupabaseServerClient();
@@ -8,8 +10,11 @@ export default async function RenamePhrase(phraseObj, newName) {
 
   if (!user) return;
 
-   const {data, error} = await supabase 
-    .from('phrases')
-    .update("name", newName)
-    .eq("phrase_id", phraseObj.phrase_id)
+  const { data, error } = await supabase
+    .from("phrases")
+    .update({ name: newName })
+    .eq("phrase_id", phraseObj.phrase_id);
+
+  if(error) console.log("Error renaming phrase.")
 }
+

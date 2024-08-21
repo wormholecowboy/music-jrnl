@@ -1,7 +1,7 @@
 "use server";
 import { createSupabaseServerClient } from "../../utils/supabase/server-client";
 
-export default async function insertPhrases(phrase) {
+export default async function insertPhrases(phraseObj) {
   const supabase = createSupabaseServerClient();
   const {
     data: { user },
@@ -9,18 +9,17 @@ export default async function insertPhrases(phrase) {
 
   if (!user) return;
   const userID = user?.id;
-  const JSONPhrase = JSON.stringify(phrase.phrase);
-  console.log("phrase id: ", phrase)
+  const JSONPhrase = JSON.stringify(phraseObj.phrase);
 
   const { data, error } = await supabase
     .from("phrases")
     .insert([
       {
-        name: phrase.name,
-        color: phrase.color,
+        name: phraseObj.name,
+        color: phraseObj.color,
         phrase: JSONPhrase,
-        phrase_id: phrase.phrase_id,
-        tonality: phrase.tonality,
+        phrase_id: phraseObj.phrase_id,
+        tonality: phraseObj.tonality,
         user_id: userID,
       },
     ])
