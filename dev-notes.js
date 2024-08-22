@@ -2,13 +2,13 @@
     *  NOTE: try a rhythm generator
   *
   *
+  * TODO: dnd is broken 
+  * TODO: change color list to another adjective
+  * TODO: rename needs to update the pool name as well
+  * BUG: jrnl comp breaks app if not logged in
   * TODO: 
   * TODO: 
-  * TODO: 
-  * TODO: 
-  * TODO: add tonality filtering on jrnl comp
-  * TODO: rename context
-  * TODO: add rename modal
+  * TODO: rename global conext
   * TODO: rename updateJrnlPhrases var and its set var
   * TODO: 
   * TODO: restructure folders and files

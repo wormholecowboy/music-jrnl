@@ -49,7 +49,7 @@ export default function WorkingArea() {
 
   function deletePhrase(id) {
     setWorkingPhrases((prev) => {
-      const updatedPhrases = prev.filter((phraseObj) => phraseObj.phrase_id !== id);
+      const updatedPhrases = prev.filter(phraseObj => phraseObj.phrase_id !== id);
       return updatedPhrases;
     });
   }
