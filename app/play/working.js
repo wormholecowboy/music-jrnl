@@ -30,7 +30,6 @@ export default function WorkingArea() {
       phraseObj.phrase.map((noteandtime) => phrase.push(noteandtime));
     });
     const obj = { phrase: phrase };
-    console.log("obj:", obj);
     playPhrase(obj, scaleLetter, bpm);
   }
 
@@ -53,17 +52,11 @@ export default function WorkingArea() {
 
   function handleDragEnd(event) {
     const { active, over } = event;
-    console.log("dragEndEvent :", event);
 
     if (active.id !== over.id) {
       setWorkingPhrases((phrases) => {
-        console.log("phrases: ", phrases)
-        console.log("active.id: ", active.id)
-        console.log("over.id: ", over.id)
-
         const activeIndex = phrases.findIndex((p) => p.phrase_id === active.id);
         const overIndex = phrases.findIndex((p) => p.phrase_id === over.id);
-        console.log("ai: ", activeIndex, "oi: ", overIndex)
 
         return arrayMove([...phrases], activeIndex, overIndex);
       });

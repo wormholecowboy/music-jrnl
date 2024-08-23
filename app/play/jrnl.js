@@ -36,7 +36,6 @@ export default function Jrnl() {
     updateJrnlPhrases,
     setUpdateJrnlPhrases,
   } = usePoolPhrasesContext();
-  console.log("poolphr: ", poolPhrases);
 
   function handleTonalitySelection(e) {
     setScaleTonality(e.target.value);
@@ -51,13 +50,11 @@ export default function Jrnl() {
   async function handleDelete(phraseObj) {
     const phraseId = phraseObj.phrase_id;
     // TODO: remove snake case from clientside
-    console.log("phrase obj jrnl: ", phraseObj);
     await deletePhrase(phraseId);
     setUpdateJrnlPhrases(updateJrnlPhrases + 1);
   }
 
   function handleLoad(phraseObj) {
-    console.log("phraseobj: ", phraseObj);
     setPoolPhrases((prev) => [...prev, phraseObj]);
   }
 
@@ -65,7 +62,6 @@ export default function Jrnl() {
     getPhrases()
       .then((data) => {
         setPhrases(data);
-        console.log("data from jrnl comp: ", data);
       })
       .catch((error) => {
         console.error("Error fetching phrases:", error);
