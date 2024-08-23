@@ -1,12 +1,7 @@
-'use client';
+"use client";
 import Image from "next/image";
 import playPhrase from "../../utils/playPhrase";
-import {
-  InputLabel,
-  Select,
-  MenuItem,
-  FormControl,
-} from "@mui/material";
+import { InputLabel, Select, MenuItem, FormControl } from "@mui/material";
 import { DndContext, closestCenter } from "@dnd-kit/core";
 import {
   arrayMove,
@@ -49,47 +44,31 @@ export default function WorkingArea() {
 
   function deletePhrase(id) {
     setWorkingPhrases((prev) => {
-      const updatedPhrases = prev.filter(phraseObj => phraseObj.phrase_id !== id);
+      const updatedPhrases = prev.filter(
+        (phraseObj) => phraseObj.phrase_id !== id,
+      );
       return updatedPhrases;
     });
   }
 
-  /* function playPhrase(workingPhrases) {
-        const phrase = []
-        workingPhrases.map(phraseObj => {
-            phraseObj.phrase.map(noteandtime => phrase.push(noteandtime))
-        })
-        Tone.Transport.bpm.value = bpm;
-        let delay = Tone.now();
-        for (let i = 0; i < phrase.length; i++) {
-            let time = phrase[i].time;
-            delay += Tone.Time(time).toSeconds();
-            synthA.triggerAttackRelease(
-                phrase[i].note,
-                phrase[i].time,
-                delay
-            );
-        }
-    }
-
-*/
   function handleDragEnd(event) {
     const { active, over } = event;
+    console.log("dragEndEvent :", event);
 
     if (active.id !== over.id) {
       setWorkingPhrases((phrases) => {
-        const activeIndex = phrases.findIndex((p) => p.id === active.id);
-        const overIndex = phrases.findIndex((p) => p.id === over.id);
+        console.log("phrases: ", phrases)
+        console.log("active.id: ", active.id)
+        console.log("over.id: ", over.id)
+
+        const activeIndex = phrases.findIndex((p) => p.phrase_id === active.id);
+        const overIndex = phrases.findIndex((p) => p.phrase_id === over.id);
+        console.log("ai: ", activeIndex, "oi: ", overIndex)
 
         return arrayMove([...phrases], activeIndex, overIndex);
       });
     }
   }
-
-  /* useEffect(() => {
-        let synth = new Tone.Synth().toDestination();
-        setSynthA(synth);
-    }, []); */
 
   return (
     <div className="flex flex-col justify-center justify-items-center">
@@ -99,7 +78,7 @@ export default function WorkingArea() {
           onDragEnd={handleDragEnd}
         >
           <SortableContext
-            items={workingPhrases}
+            items={workingPhrases.map((phraseObj) => phraseObj.phrase_id)}
             strategy={horizontalListSortingStrategy}
           >
             {workingPhrases.map((phraseObj, idx) => (
@@ -122,8 +101,9 @@ export default function WorkingArea() {
                       height={20}
                       style={{
                         maxWidth: "100%",
-                        height: "auto"
-                      }} />
+                        height: "auto",
+                      }}
+                    />
                   </span>
                   <span
                     className="m-1 cursor-pointer"
@@ -137,8 +117,9 @@ export default function WorkingArea() {
                       height={20}
                       style={{
                         maxWidth: "100%",
-                        height: "auto"
-                      }} />
+                        height: "auto",
+                      }}
+                    />
                   </span>
                   <span
                     className="m-1 cursor-pointer"
@@ -152,8 +133,9 @@ export default function WorkingArea() {
                       height={20}
                       style={{
                         maxWidth: "100%",
-                        height: "auto"
-                      }} />
+                        height: "auto",
+                      }}
+                    />
                   </span>
                 </DraggablePhrase>
               </span>

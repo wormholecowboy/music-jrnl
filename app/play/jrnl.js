@@ -102,7 +102,7 @@ export default function Jrnl() {
         <Box
           sx={{
             overflowY: "auto",
-            maxHeight: 450,
+            maxHeight: 400,
           }}
         >
           <List>
