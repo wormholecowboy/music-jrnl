@@ -21,6 +21,7 @@ import Image from "next/image";
 import { usePoolPhrasesContext } from "/app/play/use-poolphrases-context";
 import { scalesMasterList } from "../../utils/random";
 import RenameModal from "../components/jrnl/rename-modal";
+import useSession from "../../utils/supabase/use-session";
 
 export default function Jrnl() {
   const [phrases, setPhrases] = useState([]);
@@ -36,6 +37,7 @@ export default function Jrnl() {
     updateJrnlPhrases,
     setUpdateJrnlPhrases,
   } = usePoolPhrasesContext();
+  const session = useSession();
 
   function handleTonalitySelection(e) {
     setScaleTonality(e.target.value);
@@ -70,6 +72,10 @@ export default function Jrnl() {
         setLoading(false);
       });
   }, [updateJrnlPhrases]);
+
+  if (!session) {
+    return <p>Login to save phrases.</p>;
+  }
 
   return (
     <>
