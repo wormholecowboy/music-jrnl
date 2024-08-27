@@ -1,7 +1,10 @@
-'use client';
+"use client";
 import { InputLabel, Select, MenuItem, FormControl } from "@mui/material";
 
 export default function NumOFNotesSel(props) {
+  const maxNotesAllowed = 20;
+  const array = Array.from({ length: maxNotesAllowed }, (_, index) => index + 1);
+
   return (
     <div className="self-center my-3">
       <FormControl>
@@ -13,23 +16,11 @@ export default function NumOFNotesSel(props) {
           value={props.numOFNotes}
           onChange={(e) => props.setNumOfNotes(e.target.value)}
           label="Length"
-          sx={{width: 80}}
+          sx={{ width: 80 }}
         >
-          <MenuItem value="1">1</MenuItem>
-          <MenuItem value="2">2</MenuItem>
-          <MenuItem value="3">3</MenuItem>
-          <MenuItem value="4">4</MenuItem>
-          <MenuItem value="5">5</MenuItem>
-          <MenuItem value="6">6</MenuItem>
-          <MenuItem value="7">7</MenuItem>
-          <MenuItem value="8">8</MenuItem>
-          <MenuItem value="9">9</MenuItem>
-          <MenuItem value="10">10</MenuItem>
-          <MenuItem value="10">11</MenuItem>
-          <MenuItem value="10">12</MenuItem>
-          <MenuItem value="10">13</MenuItem>
-          <MenuItem value="10">14</MenuItem>
-          <MenuItem value="10">15</MenuItem>
+          {array.map((val) => {
+            return <MenuItem value={val}>{val}</MenuItem>;
+          })}
         </Select>
       </FormControl>
     </div>

@@ -1,5 +1,5 @@
 /*
-    *  NOTE: try a rhythm generator
+    *  NOTE: try a rhythm 
   *
   *
   * TODO: change color list to another adjective
@@ -7,8 +7,8 @@
   * TODO: add alphabetical sort to jrnl phrases
   * TODO: make save button coniditonal
   * TODO: fix login redirect
-  * TODO: 
-  * TODO: 
+  * TODO: fix num of notes dropdown
+  * TODO: add search to jrnl
   * TODO: 
   * TODO: rename global conext
   * TODO: rename updateJrnlPhrases var and its set var
@@ -21,7 +21,7 @@
   * TODO: refactor
   * TODO: add error handling
   * TODO: add loading states
-  * TODO: 
+  * TODO: Allow other types of oauth signins
   * TODO: 
   * TODO: 
   * TODO: 
