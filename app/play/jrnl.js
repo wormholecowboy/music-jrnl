@@ -1,18 +1,14 @@
 "use client";
 import {
   Box,
-  Icon,
   List,
   ListItem,
-  ListItemButton,
   ListItemIcon,
   ListItemText,
   FormControl,
   Select,
   MenuItem,
   InputLabel,
-  Dialog,
-  DialogTitle,
 } from "@mui/material";
 import { useState, useEffect } from "react";
 import getPhrases from "../actions/get-phrases";
@@ -24,7 +20,6 @@ import RenameModal from "../components/jrnl/rename-modal";
 import useSession from "../../utils/supabase/use-session";
 
 export default function Jrnl() {
-  const [phrases, setPhrases] = useState([]);
   const [isLoading, setLoading] = useState(true);
   const [scaleTonality, setScaleTonality] = useState("Blues");
   const [modalOpen, setModalOpen] = useState(false);
@@ -36,6 +31,8 @@ export default function Jrnl() {
     setPoolPhrases,
     updateJrnlPhrases,
     setUpdateJrnlPhrases,
+    jrnlPhrases,
+    setJrnlPhrases
   } = usePoolPhrasesContext();
   const session = useSession();
 
@@ -51,7 +48,6 @@ export default function Jrnl() {
 
   async function handleDelete(phraseObj) {
     const phraseId = phraseObj.phrase_id;
-    // TODO: remove snake case from clientside
     await deletePhrase(phraseId);
     setUpdateJrnlPhrases(updateJrnlPhrases + 1);
   }
@@ -63,7 +59,7 @@ export default function Jrnl() {
   useEffect(() => {
     getPhrases()
       .then((data) => {
-        setPhrases(data);
+        setJrnlPhrases(data);
       })
       .catch((error) => {
         console.error("Error fetching phrases:", error);
@@ -108,7 +104,7 @@ export default function Jrnl() {
           }}
         >
           <List>
-            {phrases
+            {jrnlPhrases
               .filter((phraseObj) => phraseObj.tonality === scaleTonality)
               .map((phraseObj) => (
                 <ListItem key={phraseObj.phrase_id}>

@@ -5,6 +5,7 @@ import playPhrase from "../../utils/playPhrase";
 import { phraseToString } from "../../utils/random";
 import insertPhrases from "../actions/insert-phrase";
 import { Box } from "@mui/system";
+import SaveButton from "../components/pool/saveButton";
 
 export default function Pool() {
   const {
@@ -15,12 +16,8 @@ export default function Pool() {
     scaleLetter,
     updateJrnlPhrases,
     setUpdateJrnlPhrases,
+    jrnlPhrases
   } = usePoolPhrasesContext();
-
-  function addPhraseToJrnl(phraseObj) {
-    insertPhrases(phraseObj);
-    setUpdateJrnlPhrases(updateJrnlPhrases + 1);
-  }
 
   function addToWorkingPhrases(phraseObj) {
     const deepCopy = JSON.parse(JSON.stringify(phraseObj));
@@ -104,24 +101,7 @@ export default function Pool() {
                     }}
                   />
                 </span>
-                <span
-                  className="m-1 cursor-pointer"
-                  onClick={() => {
-                    addPhraseToJrnl(phraseObj);
-                  }}
-                >
-                  <Image
-                    alt="save"
-                    src="/save.png"
-                    className="rounded-full m-2"
-                    width={20}
-                    height={20}
-                    style={{
-                      maxWidth: "100%",
-                      height: "auto",
-                    }}
-                  />
-                </span>
+                <SaveButton phraseObj={phraseObj} jrnlPhrases={jrnlPhrases} />
               </div>
             </div>
           ))}

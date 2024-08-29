@@ -7,7 +7,6 @@
   * TODO: add alphabetical sort to jrnl phrases
   * TODO: make save button coniditonal
   * TODO: fix login redirect
-  * TODO: fix num of notes dropdown
   * TODO: add search to jrnl
   * TODO: 
   * TODO: rename global conext

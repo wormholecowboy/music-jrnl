@@ -13,6 +13,7 @@ export function PoolPhrasesProvider({ children }) {
   const [bpm, setBpm] = useState(200);
   const [scaleLetter, setScaleLetter] = useState("B");
   const [updateJrnlPhrases, setUpdateJrnlPhrases] = useState(0);
+  const [jrnlPhrases, setJrnlPhrases] = useState([]);
 
   return (
     <>
@@ -28,6 +29,8 @@ export function PoolPhrasesProvider({ children }) {
           setScaleLetter,
           updateJrnlPhrases,
           setUpdateJrnlPhrases,
+          jrnlPhrases,
+          setJrnlPhrases,
         }}
       >
         {children}
