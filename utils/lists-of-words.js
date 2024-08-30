@@ -50,3 +50,20 @@ export const soundAdjectives = [
   "plopping", "quacking", "rustling", "sighing", "snarling", "snorting", "squeaking",
   "squelching", "stammering", "tapping", "thudding"
 ];
+
+export const tasteAdjectives = [
+  "savory", "sweet", "salty", "bitter", "sour", "umami", "tangy", "spicy", "zesty", 
+  "earthy", "buttery", "creamy", "smoky", "peppery", "garlicky", "nutty", "fruity", 
+  "herbal", "citrusy", "pungent", "fiery", "rich", "succulent", "juicy", "tart", 
+  "caramelized", "roasted", "grilled", "smoky", "charred", "crisp", "crunchy", 
+  "chewy", "gooey", "sticky", "silky", "velvety", "fluffy", "flaky", "crumbly", 
+  "fibrous", "tender", "mellow", "piquant", "sharp", "acrid", "refreshing", "zippy", 
+  "bold", "delicate", "mild", "bland", "briny", "gamey", "oaky", "toasty", 
+  "butterscotch", "honeyed", "vanilla", "molasses", "maple", "cinnamon", "clove", 
+  "gingery", "mustardy", "anise", "minty", "savory", "umami", "pungent", "aromatic", 
+  "zesty", "peppery", "spiced", "smoky", "oily", "buttered", "glazed", "marinated", 
+  "pickled", "fermented", "yeasty", "aged", "fizzy", "bubbly", "effervescent", 
+  "astringent", "sharp", "acrid", "metallic", "medicinal", "floral", "tangy", 
+  "cheesy", "funky", "gamey", "barnyard", "smoky", "lemony", "limey", "orange", 
+  "grapefruity", "berry", "appley", "peachy"
+];

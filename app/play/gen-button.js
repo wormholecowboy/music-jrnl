@@ -8,7 +8,7 @@ import {
   randomIndex,
   randomIndexNoRepeat,
 } from "../../utils/random";
-import { colors, soundAdjectives, sounds } from "../../utils/lists-of-words";
+import { tasteAdjectives, soundAdjectives, sounds } from "../../utils/lists-of-words";
 
 export default function GenerateButton({
   selectedRangeOfNotes,
@@ -29,11 +29,11 @@ export default function GenerateButton({
   const rhythmArray = ["8n"];
 
   const createName = () => {
-    const color = colors[randomIndex(0, colors.length - 1)];
+    const taste = tasteAdjectives[randomIndex(0, tasteAdjectives.length - 1)];
     const sound = sounds[randomIndex(0, sounds.length - 1)];
     const adjective =
       soundAdjectives[randomIndex(0, soundAdjectives.length - 1)];
-    return `${color} ${adjective} ${sound}`;
+    return `${taste} ${adjective} ${sound}`;
   };
 
   const createPhrase = () => {

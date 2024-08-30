@@ -3,7 +3,6 @@
   *
   *
   * TODO: change color list to another adjective
-  * TODO: rename needs to update the pool name as well
   * TODO: add alphabetical sort to jrnl phrases
   * TODO: make save button coniditonal
   * TODO: fix login redirect
