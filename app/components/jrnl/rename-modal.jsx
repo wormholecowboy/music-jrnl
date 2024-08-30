@@ -1,4 +1,5 @@
 import { DialogTitle, Dialog, TextField, Button } from "@mui/material";
+import updateNameInArray from "../../../utils/updateNameInArray";
 import RenamePhrase from "/app/actions/rename-phrase";
 
 export default function RenameModal({
@@ -7,7 +8,11 @@ export default function RenameModal({
   renameValue,
   setRenameValue,
   selectedPhrase,
-  setUpdateJrnlPhrases
+  setUpdateJrnlPhrases,
+  workingPhrases,
+  setWorkingPhrases,
+  poolPhrases,
+  setPoolPhrases,
 }) {
   function handleTextChange(e) {
     setRenameValue(e.target.value);
@@ -18,9 +23,12 @@ export default function RenameModal({
   }
 
   function handleSubmit() {
+    console.log("poolPhrases from handle: ", poolPhrases);
     RenamePhrase(selectedPhrase, renameValue);
     setModalOpen(false);
-    setUpdateJrnlPhrases(prev => prev + 1)
+    setUpdateJrnlPhrases((prev) => prev + 1);
+    setPoolPhrases(updateNameInArray(poolPhrases, selectedPhrase, renameValue));
+    setWorkingPhrases(updateNameInArray(workingPhrases, selectedPhrase, renameValue));
   }
 
   return (

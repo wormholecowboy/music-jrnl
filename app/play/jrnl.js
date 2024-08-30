@@ -29,10 +29,12 @@ export default function Jrnl() {
   const {
     poolPhrases,
     setPoolPhrases,
+    workingPhrases,
+    setWorkingPhrases,
     updateJrnlPhrases,
     setUpdateJrnlPhrases,
     jrnlPhrases,
-    setJrnlPhrases
+    setJrnlPhrases,
   } = usePoolPhrasesContext();
   const session = useSession();
 
@@ -155,6 +157,12 @@ export default function Jrnl() {
           setRenameValue={setRenameValue}
           selectedPhrase={selectedPhrase}
           setUpdateJrnlPhrases={setUpdateJrnlPhrases}
+          jrnlPhrases={jrnlPhrases}
+          setJrnlPhrases={setJrnlPhrases}
+          workingPhrases={workingPhrases}
+          setWorkingPhrases={setWorkingPhrases}
+          setPoolPhrases={setPoolPhrases}
+          poolPhrases={poolPhrases}
         />
       </div>
     </>
