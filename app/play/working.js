@@ -25,6 +25,11 @@ export default function WorkingArea() {
   }
 
   function handlePlayClick(phrases) {
+    if (phrases.length < 1) {
+      window.alert("Add some phrases to the working area first.");
+      return;
+    }
+
     const phrase = [];
     phrases.map((phraseObj) => {
       phraseObj.phrase.map((noteandtime) => phrase.push(noteandtime));
