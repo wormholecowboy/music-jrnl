@@ -3,12 +3,18 @@ import { usePoolPhrasesContext } from "./use-poolphrases-context";
 import { Scale } from "@tonaljs/tonal";
 import { v4 as uuidv4 } from "uuid";
 import playPhrase from "../../utils/playPhrase";
+
 import {
   randomColor,
   randomIndex,
   randomIndexNoRepeat,
 } from "../../utils/random";
-import { tasteAdjectives, soundAdjectives, sounds } from "../../utils/lists-of-words";
+
+import {
+  tasteAdjectives,
+  soundAdjectives,
+  sounds,
+} from "../../utils/lists-of-words";
 
 export default function GenerateButton({
   selectedRangeOfNotes,
@@ -27,6 +33,14 @@ export default function GenerateButton({
   );
   const { setPoolPhrases, bpm, scaleLetter } = usePoolPhrasesContext();
   const rhythmArray = ["8n"];
+
+  function handleSendToPool() {
+    if (!currentPhrase) {
+      window.alert("Try generating a phrase first");
+      return;
+    }
+    setPoolPhrases((prev) => [...prev, currentPhrase]);
+  }
 
   const createName = () => {
     const taste = tasteAdjectives[randomIndex(0, tasteAdjectives.length - 1)];
@@ -70,26 +84,17 @@ export default function GenerateButton({
   }
 
   function run() {
-    /* Tone.start();
-    Tone.Transport.bpm.value = bpm;
-    Tone.Transport.start(); */
     const phraseObj = createPhrase();
     playPhrase(phraseObj, scaleLetter, bpm);
   }
 
   function repeat() {
-    // Tone.start();
-    // Tone.Transport.bpm.value = bpm;
-    // Tone.Transport.start();
-    // const lastPhrase = phraseHistory.current[phraseHistory.current.length - 1]
+    if (!currentPhrase) {
+      window.alert("Try generating a phrase first");
+      return;
+    }
     playPhrase(currentPhrase, scaleLetter, bpm);
   }
-
-  // this is here to avoid instantiating in node, needs the browser
-  /* useEffect(() => {
-    let synth = new Tone.Synth().toDestination();
-    setSynthA(synth);
-  }, []); */
 
   return (
     <>
@@ -107,9 +112,7 @@ export default function GenerateButton({
           Repeat
         </button>
         <button
-          onClick={() => {
-            setPoolPhrases((prev) => [...prev, currentPhrase]);
-          }}
+          onClick={handleSendToPool}
           className="self-center px-4 py-2 text-color4 shadow-lg rounded-lg bg-color5 border-2 border-color4"
         >
           Send to Pool

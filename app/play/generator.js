@@ -13,7 +13,7 @@ export default function Generator() {
   const [scaleTonality, setScaleTonality] = useState("Blues");
   const [lowState, setLowState] = useState(6);
   const [hiState, setHiState] = useState(13);
-  const [currentPhrase, setCurrentPhrase] = useState([]);
+  const [currentPhrase, setCurrentPhrase] = useState(null);
 
   return (
     <>

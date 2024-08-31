@@ -2,22 +2,18 @@
     *  NOTE: try a rhythm 
   *
   *
-  * TODO: change color list to another adjective
-  * TODO: add alphabetical sort to jrnl phrases
-  * TODO: make save button coniditonal
-  * TODO: fix login redirect
+  * TODO: add error handling
   * TODO: add search to jrnl
+  * TODO: left align pool buttons
   * TODO: 
   * TODO: rename global conext
   * TODO: rename updateJrnlPhrases var and its set var
-  * TODO: left align pool buttons
+  * TODO: refactor
+  * TODO: reskin
   * TODO: 
   * TODO: 
   * TODO: restructure folders and files
-  * TODO: add button feedback
-  * TODO: reskin
-  * TODO: refactor
-  * TODO: add error handling
+  * TODO: add button feedback after click
   * TODO: add loading states
   * TODO: Allow other types of oauth signins
   * TODO: 
