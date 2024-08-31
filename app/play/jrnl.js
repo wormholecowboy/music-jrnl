@@ -18,6 +18,7 @@ import { usePoolPhrasesContext } from "/app/play/use-poolphrases-context";
 import { scalesMasterList } from "../../utils/random";
 import RenameModal from "../components/jrnl/rename-modal";
 import useSession from "../../utils/supabase/use-session";
+import phraseAlreadyInList from "../../utils/phraseAlreadyInList";
 
 export default function Jrnl() {
   const [isLoading, setLoading] = useState(true);
@@ -55,6 +56,10 @@ export default function Jrnl() {
   }
 
   function handleLoad(phraseObj) {
+    if (phraseAlreadyInList(phraseObj, poolPhrases)) {
+      window.alert("Phrase is already in your list.");
+      return;
+    }
     setPoolPhrases((prev) => [...prev, phraseObj]);
   }
 

@@ -3,6 +3,7 @@ import { usePoolPhrasesContext } from "./use-poolphrases-context";
 import { Scale } from "@tonaljs/tonal";
 import { v4 as uuidv4 } from "uuid";
 import playPhrase from "../../utils/playPhrase";
+import phraseAlreadyInList from "../../utils/phraseAlreadyInList";
 
 import {
   randomColor,
@@ -31,7 +32,7 @@ export default function GenerateButton({
     lowState,
     parseInt(hiState) + 1,
   );
-  const { setPoolPhrases, bpm, scaleLetter } = usePoolPhrasesContext();
+  const { poolPhrases, setPoolPhrases, bpm, scaleLetter } = usePoolPhrasesContext();
   const rhythmArray = ["8n"];
 
   function handleSendToPool() {
@@ -39,6 +40,12 @@ export default function GenerateButton({
       window.alert("Try generating a phrase first");
       return;
     }
+
+    if (phraseAlreadyInList(currentPhrase, poolPhrases)) {
+      window.alert("Phrase is already in your list.");
+      return;
+    }
+
     setPoolPhrases((prev) => [...prev, currentPhrase]);
   }
 

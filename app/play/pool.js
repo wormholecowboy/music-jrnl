@@ -6,20 +6,24 @@ import { phraseToString } from "../../utils/random";
 import insertPhrases from "../actions/insert-phrase";
 import { Box } from "@mui/system";
 import SaveButton from "../components/pool/saveButton";
+import phraseAlreadyInList from "../../utils/phraseAlreadyInList";
 
 export default function Pool() {
   const {
     poolPhrases,
     setPoolPhrases,
+    workingPhrases,
     setWorkingPhrases,
     bpm,
     scaleLetter,
-    updateJrnlPhrases,
-    setUpdateJrnlPhrases,
-    jrnlPhrases
+    jrnlPhrases,
   } = usePoolPhrasesContext();
 
   function addToWorkingPhrases(phraseObj) {
+    if (phraseAlreadyInList(phraseObj, workingPhrases)) {
+      window.alert("Phrase is already in your list.");
+      return;
+    }
     const deepCopy = JSON.parse(JSON.stringify(phraseObj));
     setWorkingPhrases((prev) => [...prev, deepCopy]);
   }
