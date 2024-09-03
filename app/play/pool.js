@@ -55,10 +55,10 @@ export default function Pool() {
             <div
               title={phraseToString(phraseObj.phrase)}
               key={phraseObj.phrase_id}
-              className={`flex items-center rounded-full m-2 px-4 py-1 w-10px h-10px ${phraseObj.color} text-black`}
+              className={`flex rounded-full m-2 px-4 py-1 w-10px items-center h-10px ${phraseObj.color} text-black`}
             >
               {phraseObj.name}
-              <div className={"flex items-center justify-around"}>
+              <div className={"flex justify-around items-center ml-auto"} id="temp">
                 <span
                   className="ml-4 cursor-pointer"
                   onClick={() => handlePlayClick(phraseObj)}

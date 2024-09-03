@@ -1,10 +1,8 @@
 /*
-    *  NOTE: try a rhythm 
+    *  NOTE: try a rhythm generator
   *
   *
-  * TODO: add error handling
   * TODO: add search to jrnl
-  * TODO: left align pool buttons
   * TODO: 
   * TODO: rename global conext
   * TODO: rename updateJrnlPhrases var and its set var
