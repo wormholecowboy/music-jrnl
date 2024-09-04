@@ -2,7 +2,7 @@
     *  NOTE: try a rhythm generator
   *
   *
-  * TODO: add search to jrnl
+  * TODO: 
   * TODO: 
   * TODO: rename global conext
   * TODO: rename updateJrnlPhrases var and its set var

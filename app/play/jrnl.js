@@ -9,6 +9,7 @@ import {
   Select,
   MenuItem,
   InputLabel,
+  TextField,
 } from "@mui/material";
 import { useState, useEffect } from "react";
 import getPhrases from "../actions/get-phrases";
@@ -26,6 +27,7 @@ export default function Jrnl() {
   const [modalOpen, setModalOpen] = useState(false);
   const [renameValue, setRenameValue] = useState("");
   const [selectedPhrase, setSelectedPhrase] = useState({});
+  const [searchPhrase, setSearchPhrase] = useState("");
 
   const {
     poolPhrases,
@@ -41,6 +43,10 @@ export default function Jrnl() {
 
   function handleTonalitySelection(e) {
     setScaleTonality(e.target.value);
+  }
+
+  function handleSearch(e) {
+    setSearchPhrase(e.target.value);
   }
 
   function handleRename(phraseObj) {
@@ -84,9 +90,7 @@ export default function Jrnl() {
     <>
       <div className="flex flex-col">
         <div className="flex p-3 justify-around items-center">
-          <p>
-            <strong>Your Phrase Journal</strong>
-          </p>
+          <TextField id="outlined-basic" label="Search Your Phrases" variant="outlined" value={searchPhrase} onChange={e => handleSearch(e)}/>
           <FormControl>
             <InputLabel id="jrnl-tonality-selector">Tonality</InputLabel>
             <Select
@@ -102,7 +106,6 @@ export default function Jrnl() {
               })}
             </Select>
           </FormControl>
-          <select></select>
         </div>
         <Box
           sx={{
@@ -112,7 +115,8 @@ export default function Jrnl() {
         >
           <List>
             {jrnlPhrases
-              .filter((phraseObj) => phraseObj.tonality === scaleTonality)
+              .filter(phraseObj => phraseObj.tonality === scaleTonality)
+              .filter(phraseObj => phraseObj.name.toLowerCase().includes(searchPhrase.toLowerCase()))
               .map((phraseObj) => (
                 <ListItem key={phraseObj.phrase_id}>
                   <ListItemText>{phraseObj.name}</ListItemText>

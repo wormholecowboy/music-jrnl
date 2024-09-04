@@ -5,7 +5,6 @@ import { scalesMasterList } from "../../utils/random";
 export default function ScaleTonality({
   scaleTonality,
   setScaleTonality,
-  getScale,
 }) {
   const handleClick = (e) => {
     setScaleTonality(e.target.value);
