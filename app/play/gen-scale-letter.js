@@ -29,7 +29,7 @@ export default function ScaleLetter() {
           <MenuItem value="Db">Db</MenuItem>
           <MenuItem value="D">D</MenuItem>
           <MenuItem value="Eb">Eb</MenuItem>
-          <MenuItem value="E">D</MenuItem>
+          <MenuItem value="E">E</MenuItem>
           <MenuItem value="F">F</MenuItem>
           <MenuItem value="Gb">Gb</MenuItem>
           <MenuItem value="G">G</MenuItem>

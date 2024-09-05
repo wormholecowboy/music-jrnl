@@ -26,29 +26,21 @@ export default function GenerateButton({
   currentPhrase,
   scaleTonality,
 }) {
-
-  const slicedScale = selectedRangeOfNotes.slice(
-    lowState,
-    parseInt(hiState) + 1,
-  );
   const { poolPhrases, setPoolPhrases, bpm, scaleLetter } = useGlobalContext();
-  const rhythmArray = ["8n"];
 
   function handleSendToPool() {
     if (!currentPhrase) {
       window.alert("Try generating a phrase first");
       return;
     }
-
     if (phraseAlreadyInList(currentPhrase, poolPhrases)) {
       window.alert("Phrase is already in your list.");
       return;
     }
-
     setPoolPhrases((prev) => [...prev, currentPhrase]);
   }
 
-  const createName = () => {
+  function createName() {
     const taste = tasteAdjectives[randomIndex(0, tasteAdjectives.length - 1)];
     const sound = sounds[randomIndex(0, sounds.length - 1)];
     const adjective =
@@ -56,19 +48,23 @@ export default function GenerateButton({
     return `${taste} ${adjective} ${sound}`;
   };
 
-  const createPhrase = () => {
+  function createPhrase(generatedScale, rhythmArray) {
     let phrase = [];
-    const id = uuidv4();
-    const name = createName();
-    const color = randomColor();
-    const generatedScale = scaleGenerator();
-
     for (let i = 0; i < numOfNotes; i++) {
-      let randomNote =
-        generatedScale[randomIndexNoRepeat(lowState, hiState + 1)];
+      let randomNote = generatedScale[randomIndexNoRepeat(lowState, hiState + 1)];
       let rhythm = rhythmArray[randomIndex(0, rhythmArray.length)];
       phrase.push({ note: randomNote, time: rhythm });
     }
+    return phrase;
+  };
+
+  function createPhraseObject() {
+    const id = uuidv4();
+    const name = createName();
+    const color = randomColor();
+    const generatedScale = generateScale();
+    const rhythmArray = ["8n"];
+    const phrase = createPhrase(generatedScale, rhythmArray);
 
     const phraseObj = {
       phrase: phrase,
@@ -82,19 +78,19 @@ export default function GenerateButton({
     return phraseObj;
   };
 
-  function scaleGenerator() {
+  function generateScale() {
     let lowerCaseTonality = scaleTonality.toLowerCase();
-    let scaleGenerator = Scale.rangeOf(`C ${lowerCaseTonality}`);
-    let generatedScale = scaleGenerator("C2", "C5"); // beyond this range sounds bad
+    let scaleRange = Scale.rangeOf(`C ${lowerCaseTonality}`);
+    let generatedScale = scaleRange("C2", "C5"); // beyond this range sounds bad
     return generatedScale;
   }
 
-  function run() {
-    const phraseObj = createPhrase();
+  function handleGeneratePhrase() {
+    const phraseObj = createPhraseObject();
     playPhrase(phraseObj, scaleLetter, bpm);
   }
 
-  function repeat() {
+  function handleRepeat() {
     if (!currentPhrase) {
       window.alert("Try generating a phrase first");
       return;
@@ -106,13 +102,13 @@ export default function GenerateButton({
     <>
       <div className="self-center flex flex-row gap-2">
         <button
-          onClick={run}
+          onClick={handleGeneratePhrase}
           className="self-center px-4 py-2 text-color4 border-2 border-color4 shadow-lg rounded-lg bg-color5"
         >
           Generate
         </button>
         <button
-          onClick={repeat}
+          onClick={handleRepeat}
           className="self-center px-4 py-2 text-color4 border-2 border-color4 shadow-lg rounded-lg bg-color5"
         >
           Repeat
