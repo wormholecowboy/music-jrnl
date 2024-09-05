@@ -15,7 +15,7 @@ import { useState, useEffect } from "react";
 import getPhrases from "../actions/get-phrases";
 import deletePhrase from "../actions/delete-phrase";
 import Image from "next/image";
-import { usePoolPhrasesContext } from "/app/play/use-poolphrases-context";
+import { useGlobalContext } from "/app/play/use-global-context";
 import { scalesMasterList } from "../../utils/random";
 import RenameModal from "../components/jrnl/rename-modal";
 import useSession from "../../utils/supabase/use-session";
@@ -38,7 +38,7 @@ export default function Jrnl() {
     setUpdateJrnlPhrases,
     jrnlPhrases,
     setJrnlPhrases,
-  } = usePoolPhrasesContext();
+  } = useGlobalContext();
   const session = useSession();
 
   function handleTonalitySelection(e) {

@@ -1,13 +1,13 @@
 'use client';
 import React, { useContext, useState } from "react";
 
-const PoolPhrasesContext = React.createContext();
+const GlobalContext = React.createContext();
 
-export function usePoolPhrasesContext() {
-  return useContext(PoolPhrasesContext);
+export function useGlobalContext() {
+  return useContext(GlobalContext);
 }
 
-export function PoolPhrasesProvider({ children }) {
+export function GlobalContextProvider({ children }) {
   const [poolPhrases, setPoolPhrases] = useState([]);
   const [workingPhrases, setWorkingPhrases] = useState([]);
   const [bpm, setBpm] = useState(200);
@@ -17,7 +17,7 @@ export function PoolPhrasesProvider({ children }) {
 
   return (
     <>
-      <PoolPhrasesContext.Provider
+      <GlobalContext.Provider
         value={{
           poolPhrases,
           setPoolPhrases,
@@ -34,7 +34,7 @@ export function PoolPhrasesProvider({ children }) {
         }}
       >
         {children}
-      </PoolPhrasesContext.Provider>
+      </GlobalContext.Provider>
     </>
   );
 }

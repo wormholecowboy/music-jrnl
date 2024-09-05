@@ -1,14 +1,14 @@
 import Generator from "./generator";
 import WorkingArea from "./working";
 import React from "react";
-import { PoolPhrasesProvider } from "./use-poolphrases-context";
+import { GlobalContextProvider } from "./use-global-context";
 import Pool from "./pool";
 import Jrnl from "./jrnl";
 
 export default function Layout({ children }) {
   return (
     <div className="bg-color1">
-      <PoolPhrasesProvider>
+      <GlobalContextProvider>
         <div
           id="main-play"
           className="h-screen grid grid-cols-3 grid-rows-4 gap-5 mx-5"
@@ -40,7 +40,7 @@ export default function Layout({ children }) {
           </div>
           {children}
         </div>
-      </PoolPhrasesProvider>
+      </GlobalContextProvider>
     </div>
   );
 }

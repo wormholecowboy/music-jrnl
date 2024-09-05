@@ -1,5 +1,5 @@
 "use client";
-import { usePoolPhrasesContext } from "./use-poolphrases-context";
+import { useGlobalContext } from "./use-global-context";
 import { Scale } from "@tonaljs/tonal";
 import { v4 as uuidv4 } from "uuid";
 import playPhrase from "../../utils/playPhrase";
@@ -32,7 +32,7 @@ export default function GenerateButton({
     lowState,
     parseInt(hiState) + 1,
   );
-  const { poolPhrases, setPoolPhrases, bpm, scaleLetter } = usePoolPhrasesContext();
+  const { poolPhrases, setPoolPhrases, bpm, scaleLetter } = useGlobalContext();
   const rhythmArray = ["8n"];
 
   function handleSendToPool() {

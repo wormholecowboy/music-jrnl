@@ -1,9 +1,9 @@
 'use client';
 import { InputLabel, Select, MenuItem, FormControl } from "@mui/material";
-import { usePoolPhrasesContext } from "./use-poolphrases-context";
+import { useGlobalContext } from "./use-global-context";
 
 export default function ScaleLetter() {
-  const { scaleLetter, setScaleLetter } = usePoolPhrasesContext();
+  const { scaleLetter, setScaleLetter } = useGlobalContext();
 
   const handleClick = (e) => {
     setScaleLetter(e.target.value);

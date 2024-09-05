@@ -1,5 +1,5 @@
 "use client";
-import { usePoolPhrasesContext } from "./use-poolphrases-context";
+import { useGlobalContext } from "./use-global-context";
 import Image from "next/image";
 import playPhrase from "../../utils/playPhrase";
 import { phraseToString } from "../../utils/random";
@@ -17,7 +17,7 @@ export default function Pool() {
     bpm,
     scaleLetter,
     jrnlPhrases,
-  } = usePoolPhrasesContext();
+  } = useGlobalContext();
 
   function addToWorkingPhrases(phraseObj) {
     if (phraseAlreadyInList(phraseObj, workingPhrases)) {

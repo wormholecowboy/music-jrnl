@@ -1,13 +1,13 @@
 'use client';
 import { Slider } from "@mui/material";
-import { usePoolPhrasesContext } from "./use-poolphrases-context";
+import { useGlobalContext } from "./use-global-context";
 
 export default function BpmSlider(props) {
   const handleChange = (event, newValue) => {
     setBpm(newValue);
   };
 
-  const { bpm, setBpm } = usePoolPhrasesContext();
+  const { bpm, setBpm } = useGlobalContext();
 
   return (
     <div className="self-center">

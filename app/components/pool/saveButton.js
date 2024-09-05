@@ -1,9 +1,9 @@
 import Image from "next/image";
 import insertPhrases from "../../actions/insert-phrase";
-import { usePoolPhrasesContext } from "../../play/use-poolphrases-context";
+import { useGlobalContext } from "../../play/use-global-context";
 
 export default function SaveButton({ jrnlPhrases, phraseObj }) {
-  const { updateJrnlPhrases, setUpdateJrnlPhrases } = usePoolPhrasesContext();
+  const { updateJrnlPhrases, setUpdateJrnlPhrases } = useGlobalContext();
 
   function addPhraseToJrnl(phraseObj) {
     insertPhrases(phraseObj);

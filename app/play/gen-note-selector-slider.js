@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { Scale } from "@tonaljs/tonal";
 import { Slider } from "@mui/material";
-import { usePoolPhrasesContext } from "./use-poolphrases-context";
+import { useGlobalContext } from "./use-global-context";
 import { red } from "@mui/material/colors";
 
 export default function NoteSelectorSlider({
@@ -16,7 +16,7 @@ export default function NoteSelectorSlider({
 }) {
   const [indexArray, setIndexArray] = useState([]);
   const [selected, setSelected] = useState([6, 13]);
-  const { scaleLetter } = usePoolPhrasesContext();
+  const { scaleLetter } = useGlobalContext();
 
   function getScale() {
     let lowerCaseTonality = scaleTonality.toLowerCase();

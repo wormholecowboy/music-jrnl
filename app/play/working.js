@@ -9,13 +9,13 @@ import {
   horizontalListSortingStrategy,
 } from "@dnd-kit/sortable";
 import DraggablePhrase from "./work-draggablePhrase";
-import { usePoolPhrasesContext } from "./use-poolphrases-context";
+import { useGlobalContext } from "./use-global-context";
 import { useState } from "react";
 import { phraseToString } from "../../utils/random";
 
 export default function WorkingArea() {
   const { bpm, workingPhrases, setWorkingPhrases, scaleLetter } =
-    usePoolPhrasesContext();
+    useGlobalContext();
   const [rest, setRest] = useState("4n");
 
   function removeRest(idx) {
