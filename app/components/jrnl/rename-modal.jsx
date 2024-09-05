@@ -8,7 +8,7 @@ export default function RenameModal({
   renameValue,
   setRenameValue,
   selectedPhrase,
-  setUpdateJrnlPhrases,
+  setJrnlPhrasesUpdateCounter,
   workingPhrases,
   setWorkingPhrases,
   poolPhrases,
@@ -26,7 +26,7 @@ export default function RenameModal({
     console.log("poolPhrases from handle: ", poolPhrases);
     RenamePhrase(selectedPhrase, renameValue);
     setModalOpen(false);
-    setUpdateJrnlPhrases((prev) => prev + 1);
+    setJrnlPhrasesUpdateCounter((prev) => prev + 1);
     setPoolPhrases(updateNameInArray(poolPhrases, selectedPhrase, renameValue));
     setWorkingPhrases(updateNameInArray(workingPhrases, selectedPhrase, renameValue));
   }

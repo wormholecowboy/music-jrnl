@@ -2,8 +2,6 @@
     *  NOTE: try a rhythm generator
   *
   *
-  * TODO: 
-  * TODO: rename updateJrnlPhrases var and its set var
   * TODO: refactor
   * TODO: reskin
   * TODO: add confirm for deletes (john cena)

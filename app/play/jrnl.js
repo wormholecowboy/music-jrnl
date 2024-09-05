@@ -34,8 +34,8 @@ export default function Jrnl() {
     setPoolPhrases,
     workingPhrases,
     setWorkingPhrases,
-    updateJrnlPhrases,
-    setUpdateJrnlPhrases,
+    jrnlPhrasesUpdateCounter,
+    setJrnlPhrasesUpdateCounter,
     jrnlPhrases,
     setJrnlPhrases,
   } = useGlobalContext();
@@ -58,7 +58,7 @@ export default function Jrnl() {
   async function handleDelete(phraseObj) {
     const phraseId = phraseObj.phrase_id;
     await deletePhrase(phraseId);
-    setUpdateJrnlPhrases(updateJrnlPhrases + 1);
+    setJrnlPhrasesUpdateCounter(jrnlPhrasesUpdateCounter + 1);
   }
 
   function handleLoad(phraseObj) {
@@ -80,7 +80,7 @@ export default function Jrnl() {
       .finally(() => {
         setLoading(false);
       });
-  }, [updateJrnlPhrases]);
+  }, [jrnlPhrasesUpdateCounter]);
 
   if (!session) {
     return <p>Login to save phrases.</p>;
@@ -165,7 +165,7 @@ export default function Jrnl() {
           renameValue={renameValue}
           setRenameValue={setRenameValue}
           selectedPhrase={selectedPhrase}
-          setUpdateJrnlPhrases={setUpdateJrnlPhrases}
+          setJrnlPhrasesUpdateCounter={setJrnlPhrasesUpdateCounter}
           jrnlPhrases={jrnlPhrases}
           setJrnlPhrases={setJrnlPhrases}
           workingPhrases={workingPhrases}

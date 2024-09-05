@@ -12,7 +12,7 @@ export function GlobalContextProvider({ children }) {
   const [workingPhrases, setWorkingPhrases] = useState([]);
   const [bpm, setBpm] = useState(200);
   const [scaleLetter, setScaleLetter] = useState("B");
-  const [updateJrnlPhrases, setUpdateJrnlPhrases] = useState(0);
+  const [jrnlPhrasesUpdateCounter, setJrnlPhrasesUpdateCounter] = useState(0);
   const [jrnlPhrases, setJrnlPhrases] = useState([]);
 
   return (
@@ -27,8 +27,8 @@ export function GlobalContextProvider({ children }) {
           setBpm,
           scaleLetter,
           setScaleLetter,
-          updateJrnlPhrases,
-          setUpdateJrnlPhrases,
+          jrnlPhrasesUpdateCounter,
+          setJrnlPhrasesUpdateCounter,
           jrnlPhrases,
           setJrnlPhrases,
         }}

@@ -3,11 +3,11 @@ import insertPhrases from "../../actions/insert-phrase";
 import { useGlobalContext } from "../../play/use-global-context";
 
 export default function SaveButton({ jrnlPhrases, phraseObj }) {
-  const { updateJrnlPhrases, setUpdateJrnlPhrases } = useGlobalContext();
+  const { jrnlPhrasesUpdateCounter, setJrnlPhrasesUpdateCounter } = useGlobalContext();
 
   function addPhraseToJrnl(phraseObj) {
     insertPhrases(phraseObj);
-    setUpdateJrnlPhrases(updateJrnlPhrases + 1);
+    setJrnlPhrasesUpdateCounter(jrnlPhrasesUpdateCounter + 1);
   }
 
   const isSaved = jrnlPhrases.some(
