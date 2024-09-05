@@ -23,7 +23,7 @@ import phraseAlreadyInList from "../../utils/phraseAlreadyInList";
 
 export default function Jrnl() {
   const [isLoading, setLoading] = useState(true);
-  const [scaleTonality, setScaleTonality] = useState("Blues");
+  const [scaleTonality, setScaleTonality] = useState("Chromatic");
   const [modalOpen, setModalOpen] = useState(false);
   const [renameValue, setRenameValue] = useState("");
   const [selectedPhrase, setSelectedPhrase] = useState({});

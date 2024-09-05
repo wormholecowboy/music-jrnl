@@ -8,12 +8,12 @@ export default function NumOFNotesSel(props) {
   return (
     <div className="self-center my-3">
       <FormControl>
-        <InputLabel id="numOFNotes-label">Length</InputLabel>
+        <InputLabel id="numOfNotes-label">Length</InputLabel>
         <Select
-          labelId="numOFNotes-label"
+          labelId="numOfNotes-label"
           variant="outlined"
-          id="numOFNotes"
-          value={props.numOFNotes}
+          id="numOfNotes"
+          value={props.numOfNotes}
           onChange={(e) => props.setNumOfNotes(e.target.value)}
           label="Length"
           sx={{ width: 80 }}

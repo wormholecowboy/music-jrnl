@@ -21,13 +21,12 @@ export default function GenerateButton({
   selectedRangeOfNotes,
   lowState,
   hiState,
-  numOFNotes, // FIX: capitalization for this var
+  numOfNotes,
   setCurrentPhrase,
   currentPhrase,
   scaleTonality,
 }) {
-  //
-  //
+
   const slicedScale = selectedRangeOfNotes.slice(
     lowState,
     parseInt(hiState) + 1,
@@ -64,7 +63,7 @@ export default function GenerateButton({
     const color = randomColor();
     const generatedScale = scaleGenerator();
 
-    for (let i = 0; i < numOFNotes; i++) {
+    for (let i = 0; i < numOfNotes; i++) {
       let randomNote =
         generatedScale[randomIndexNoRepeat(lowState, hiState + 1)];
       let rhythm = rhythmArray[randomIndex(0, rhythmArray.length)];

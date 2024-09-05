@@ -9,7 +9,7 @@ import NoteSelectorSlider from "./gen-note-selector-slider";
 
 export default function Generator() {
   const [selectedRangeOfNotes, setSelectedRangeOfNotes] = useState([]);
-  const [numOFNotes, setNumOfNotes] = useState(7);
+  const [numOfNotes, setNumOfNotes] = useState(7);
   const [scaleTonality, setScaleTonality] = useState("Chromatic");
   const [lowState, setLowState] = useState(6);
   const [hiState, setHiState] = useState(13);
@@ -19,7 +19,7 @@ export default function Generator() {
     <>
       <div className="flex flex-col gap-5 mt-5">
         <GenerateButton
-          numOFNotes={numOFNotes}
+          numOfNotes={numOfNotes}
           selectedRangeOfNotes={selectedRangeOfNotes}
           hiState={hiState}
           lowState={lowState}
@@ -34,7 +34,7 @@ export default function Generator() {
             setScaleTonality={setScaleTonality}
           />
           <NumOFNotesSel
-            numOFNotes={numOFNotes}
+            numOfNotes={numOfNotes}
             setNumOfNotes={setNumOfNotes}
           />
         </div>
