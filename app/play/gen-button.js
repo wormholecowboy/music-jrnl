@@ -18,9 +18,8 @@ import {
 } from "../../utils/lists-of-words";
 
 export default function GenerateButton({
-  selectedRangeOfNotes,
-  lowState,
-  hiState,
+  generatorLowNote,
+  generatorHighNote,
   numOfNotes,
   setCurrentPhrase,
   currentPhrase,
@@ -51,7 +50,7 @@ export default function GenerateButton({
   function createPhrase(generatedScale, rhythmArray) {
     let phrase = [];
     for (let i = 0; i < numOfNotes; i++) {
-      let randomNote = generatedScale[randomIndexNoRepeat(lowState, hiState + 1)];
+      let randomNote = generatedScale[randomIndexNoRepeat(generatorLowNote, generatorHighNote + 1)];
       let rhythm = rhythmArray[randomIndex(0, rhythmArray.length)];
       phrase.push({ note: randomNote, time: rhythm });
     }

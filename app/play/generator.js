@@ -8,11 +8,11 @@ import ScaleLetter from "./gen-scale-letter";
 import NoteSelectorSlider from "./gen-note-selector-slider";
 
 export default function Generator() {
-  const [selectedRangeOfNotes, setSelectedRangeOfNotes] = useState([]);
+  const [fullRangeOfNotes, setFullRangeOfNotes] = useState([]);
   const [numOfNotes, setNumOfNotes] = useState(7);
   const [scaleTonality, setScaleTonality] = useState("Chromatic");
-  const [lowState, setLowState] = useState(6);
-  const [hiState, setHiState] = useState(13);
+  const [generatorLowNote, setGeneratorLowNote] = useState(6);
+  const [generatorHighNote, setGeneratorHighNote] = useState(13);
   const [currentPhrase, setCurrentPhrase] = useState(null);
 
   return (
@@ -20,9 +20,8 @@ export default function Generator() {
       <div className="flex flex-col gap-5 mt-5">
         <GenerateButton
           numOfNotes={numOfNotes}
-          selectedRangeOfNotes={selectedRangeOfNotes}
-          hiState={hiState}
-          lowState={lowState}
+          generatorHighNote={generatorHighNote}
+          generatorLowNote={generatorLowNote}
           currentPhrase={currentPhrase}
           setCurrentPhrase={setCurrentPhrase}
           scaleTonality={scaleTonality}
@@ -42,13 +41,11 @@ export default function Generator() {
       <div className="flex flex-row gap-5 justify-around"></div>
       <div className="px-5">
         <NoteSelectorSlider
-          selectedRangeOfNotes={selectedRangeOfNotes}
-          setSelectedRangeOfNotes={setSelectedRangeOfNotes}
+          fullRangeOfNotes={fullRangeOfNotes}
+          setFullRangeOfNotes={setFullRangeOfNotes}
           scaleTonality={scaleTonality}
-          hiState={hiState}
-          lowState={lowState}
-          setHiState={setHiState}
-          setLowState={setLowState}
+          setGeneratorHighNote={setGeneratorHighNote}
+          setGeneratorLowNote={setGeneratorLowNote}
         />
       </div>
       <div className="px-20">

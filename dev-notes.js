@@ -2,8 +2,11 @@
     *  NOTE: try a rhythm generator
   *
   *
-  * TODO: refactor
+  * TODO: refactor pool
+  * TODO: refactor working
+  * TODO: refactor jrnl
   * TODO: restructure folders and files
+  * TODO: 
   * TODO: make working area vertical? (more room for notes on selector slider)
   * TODO: reskin
   * TODO: add confirm for deletes (john cena)
