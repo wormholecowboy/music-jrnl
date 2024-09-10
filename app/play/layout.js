@@ -1,9 +1,9 @@
 import Generator from "app/components/generator/generator";
-import WorkingArea from "./working";
+import WorkingArea from "app/components/working/working";
 import React from "react";
-import { GlobalContextProvider } from "./use-global-context";
-import Pool from "./pool";
-import Jrnl from "./jrnl";
+import { GlobalContextProvider } from "./useGlobalContext";
+import Pool from "app/components/pool/pool";
+import Jrnl from "app/components/jrnl/jrnl";
 
 export default function Layout({ children }) {
   return (

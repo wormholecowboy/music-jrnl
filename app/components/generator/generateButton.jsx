@@ -1,5 +1,5 @@
 "use client";
-import { useGlobalContext } from "../../play/use-global-context";
+import { useGlobalContext } from "../../play/useGlobalContext";
 import { Scale } from "@tonaljs/tonal";
 import { v4 as uuidv4 } from "uuid";
 import playPhrase from "../../../utils/playPhrase";

@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { Scale } from "@tonaljs/tonal";
 import { Slider } from "@mui/material";
-import { useGlobalContext } from "../../play/use-global-context";
+import { useGlobalContext } from "../../play/useGlobalContext";
 
 export default function NoteSelectorSlider({
   fullRangeOfNotes,

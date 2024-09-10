@@ -10,7 +10,7 @@ import NoteSelectorSlider from "app/components/generator/noteSelector";
 export default function Generator() {
   const [fullRangeOfNotes, setFullRangeOfNotes] = useState([]);
   const [numOfNotes, setNumOfNotes] = useState(7);
-  const [scaleTonality, setScaleTonality] = useState("Chromatic");
+  const [scaleTonality, setScaleTonality] = useState("Blues");
   const [generatorLowNote, setGeneratorLowNote] = useState(6);
   const [generatorHighNote, setGeneratorHighNote] = useState(13);
   const [currentPhrase, setCurrentPhrase] = useState(null);

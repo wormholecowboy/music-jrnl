@@ -1,12 +1,12 @@
 "use client";
-import { useGlobalContext } from "./use-global-context";
+import { useGlobalContext } from "../../play/useGlobalContext";
 import Image from "next/image";
-import playPhrase from "../../utils/playPhrase";
-import { phraseToString } from "../../utils/random";
-import insertPhrases from "../actions/insert-phrase";
+import playPhrase from "../../../utils/playPhrase";
+import { phraseToString } from "../../../utils/random";
+import insertPhrases from "../../actions/insert-phrase";
 import { Box } from "@mui/system";
-import SaveButton from "../components/pool/saveButton";
-import phraseAlreadyInList from "../../utils/phraseAlreadyInList";
+import SaveButton from "./saveButton";
+import phraseAlreadyInList from "../../../utils/phraseAlreadyInList";
 
 export default function Pool() {
   const {

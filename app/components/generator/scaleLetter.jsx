@@ -1,6 +1,6 @@
 'use client';
 import { InputLabel, Select, MenuItem, FormControl } from "@mui/material";
-import { useGlobalContext } from "../../play/use-global-context";
+import { useGlobalContext } from "../../play/useGlobalContext";
 
 export default function ScaleLetter() {
   const { scaleLetter, setScaleLetter } = useGlobalContext();

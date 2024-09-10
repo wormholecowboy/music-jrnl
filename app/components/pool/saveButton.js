@@ -1,6 +1,6 @@
 import Image from "next/image";
 import insertPhrases from "../../actions/insert-phrase";
-import { useGlobalContext } from "../../play/use-global-context";
+import { useGlobalContext } from "../../play/useGlobalContext";
 
 export default function SaveButton({ jrnlPhrases, phraseObj }) {
   const { jrnlPhrasesUpdateCounter, setJrnlPhrasesUpdateCounter } = useGlobalContext();
