@@ -1,11 +1,11 @@
 'use client';
 import React, { useState } from "react";
-import GenerateButton from "./gen-button";
-import NumOFNotesSel from "./gen-num-of-notes";
-import BpmSlider from "./gen-bpm-slider";
-import ScaleTonality from "./gen-scale-tonality";
-import ScaleLetter from "./gen-scale-letter";
-import NoteSelectorSlider from "./gen-note-selector-slider";
+import GenerateButton from "app/components/generator/generateButton";
+import NumOFNotesSel from "app/components/generator/numOfNotes";
+import BpmSlider from "app/components/generator/bpmSlider";
+import ScaleTonality from "app/components/generator/scaleTonality";
+import ScaleLetter from "app/components/generator/scaleLetter";
+import NoteSelectorSlider from "app/components/generator/noteSelector";
 
 export default function Generator() {
   const [fullRangeOfNotes, setFullRangeOfNotes] = useState([]);

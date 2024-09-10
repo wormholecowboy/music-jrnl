@@ -1,6 +1,6 @@
 'use client';
 import { Slider } from "@mui/material";
-import { useGlobalContext } from "./use-global-context";
+import { useGlobalContext } from "../../play/use-global-context";
 
 export default function BpmSlider(props) {
   const handleChange = (event, newValue) => {

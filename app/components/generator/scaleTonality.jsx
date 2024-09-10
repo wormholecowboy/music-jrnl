@@ -1,6 +1,6 @@
 "use client";
 import { InputLabel, Select, MenuItem, FormControl } from "@mui/material";
-import { scalesMasterList } from "../../utils/random";
+import { scalesMasterList } from "../../../utils/random";
 
 export default function ScaleTonality({
   scaleTonality,
