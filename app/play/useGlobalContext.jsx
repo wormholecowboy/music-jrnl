@@ -1,5 +1,6 @@
 'use client';
 import React, { useContext, useState } from "react";
+import { initState } from "utils/initState";
 
 const GlobalContext = React.createContext();
 
@@ -10,8 +11,8 @@ export function useGlobalContext() {
 export function GlobalContextProvider({ children }) {
   const [poolPhrases, setPoolPhrases] = useState([]);
   const [workingPhrases, setWorkingPhrases] = useState([]);
-  const [bpm, setBpm] = useState(200);
-  const [scaleLetter, setScaleLetter] = useState("B");
+  const [bpm, setBpm] = useState(initState.bpm);
+  const [scaleLetter, setScaleLetter] = useState(initState.scaleLetter);
   const [jrnlPhrasesUpdateCounter, setJrnlPhrasesUpdateCounter] = useState(0);
   const [jrnlPhrases, setJrnlPhrases] = useState([]);
 

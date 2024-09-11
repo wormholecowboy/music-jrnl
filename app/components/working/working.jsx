@@ -12,11 +12,12 @@ import DraggablePhrase from "./draggablePhrase";
 import { useGlobalContext } from "../../play/useGlobalContext";
 import { useState } from "react";
 import { phraseToString } from "utils/random";
+import { initState } from "utils/initState";
 
 export default function WorkingArea() {
   const { bpm, workingPhrases, setWorkingPhrases, scaleLetter } =
     useGlobalContext();
-  const [rest, setRest] = useState("4n");
+  const [rest, setRest] = useState(initState.addRest);
 
   function removeRest(idx) {
     const newWorkingPhrases = [...workingPhrases];

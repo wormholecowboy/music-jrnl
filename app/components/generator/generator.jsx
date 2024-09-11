@@ -6,13 +6,14 @@ import BpmSlider from "app/components/generator/bpmSlider";
 import ScaleTonality from "app/components/generator/scaleTonality";
 import ScaleLetter from "app/components/generator/scaleLetter";
 import NoteSelectorSlider from "app/components/generator/noteSelector";
+import { initState } from "utils/initState";
 
 export default function Generator() {
   const [fullRangeOfNotes, setFullRangeOfNotes] = useState([]);
-  const [numOfNotes, setNumOfNotes] = useState(7);
-  const [scaleTonality, setScaleTonality] = useState("Blues");
-  const [generatorLowNote, setGeneratorLowNote] = useState(6);
-  const [generatorHighNote, setGeneratorHighNote] = useState(13);
+  const [numOfNotes, setNumOfNotes] = useState(initState.numOfNotes);
+  const [scaleTonality, setScaleTonality] = useState(initState.scaleTonality);
+  const [generatorLowNote, setGeneratorLowNote] = useState(initState.noteSelectorLow);
+  const [generatorHighNote, setGeneratorHighNote] = useState(initState.noteSelectorHigh);
   const [currentPhrase, setCurrentPhrase] = useState(null);
 
   return (

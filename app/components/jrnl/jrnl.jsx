@@ -20,10 +20,11 @@ import { scalesMasterList } from "utils/random";
 import RenameModal from "./renameModal";
 import useSession from "utils/supabase/use-session";
 import phraseAlreadyInList from "utils/phraseAlreadyInList";
+import { initState } from "utils/initState";
 
 export default function Jrnl() {
   const [isLoading, setLoading] = useState(true);
-  const [scaleTonality, setScaleTonality] = useState("Blues");
+  const [scaleTonality, setScaleTonality] = useState(initState.scaleTonality);
   const [modalOpen, setModalOpen] = useState(false);
   const [renameValue, setRenameValue] = useState("");
   const [selectedPhrase, setSelectedPhrase] = useState({});
