@@ -8,6 +8,7 @@
   * TODO: make working area vertical? (more room for notes on selector slider)
   * TODO: reskin
   * TODO: add confirm for deletes (john cena)
+  * TODO: redo login/logout
   * TODO: 
   * TODO: add metronome
   * TODO: add button feedback after click

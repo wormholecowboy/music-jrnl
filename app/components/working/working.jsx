@@ -19,13 +19,13 @@ export default function WorkingArea() {
     useGlobalContext();
   const [rest, setRest] = useState(initState.addRest);
 
-  function removeRest(idx) {
+  function handleRemoveEndNote(idx) {
     const newWorkingPhrases = [...workingPhrases];
     newWorkingPhrases[idx].phrase.pop();
     setWorkingPhrases(newWorkingPhrases);
   }
 
-  function handlePlayClick(phrases) {
+  function handlePlay(phrases) {
     if (phrases.length < 1) {
       window.alert("Add some phrases to the working area first.");
       return;
@@ -39,7 +39,7 @@ export default function WorkingArea() {
     playPhrase(obj, scaleLetter, bpm);
   }
 
-  function addRest(idx, time) {
+  function handleAddRest(idx, time) {
     const rest = { note: null, time: time };
     const newWorkingPhrases = [...workingPhrases];
     newWorkingPhrases[idx].phrase.push(rest);
@@ -47,7 +47,7 @@ export default function WorkingArea() {
     setWorkingPhrases(newWorkingPhrases);
   }
 
-  function deletePhrase(id) {
+  function handleDelete(id) {
     setWorkingPhrases((prev) => {
       const updatedPhrases = prev.filter(
         (phraseObj) => phraseObj.phrase_id !== id,
@@ -93,7 +93,7 @@ export default function WorkingArea() {
                         {phraseObj.name}
                         <span
                           className="m-1 cursor-pointer"
-                          onClick={() => removeRest(idx)}
+                          onClick={() => handleRemoveEndNote(idx)}
                         >
                           <Image
                             alt="minus"
@@ -109,7 +109,7 @@ export default function WorkingArea() {
                         </span>
                         <span
                           className="m-1 cursor-pointer"
-                          onClick={() => addRest(idx, rest)}
+                          onClick={() => handleAddRest(idx, rest)}
                         >
                           <Image
                             alt="rest"
@@ -125,7 +125,7 @@ export default function WorkingArea() {
                         </span>
                         <span
                           className="m-1 cursor-pointer"
-                          onClick={() => deletePhrase(phraseObj.phrase_id)}
+                          onClick={() => handleDelete(phraseObj.phrase_id)}
                         >
                           <Image
                             alt="delete"
@@ -174,7 +174,7 @@ export default function WorkingArea() {
           </Select>
         </FormControl>
         <button
-          onClick={() => handlePlayClick(workingPhrases)}
+          onClick={() => handlePlay(workingPhrases)}
           className="self-center px-4 py-2 mx-4 text-color4 shadow-md rounded-md bg-color5 border-2 border-color4"
         >
           Play

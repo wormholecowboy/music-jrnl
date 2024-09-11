@@ -29,7 +29,7 @@ export default function Jrnl() {
   const [renameValue, setRenameValue] = useState("");
   const [selectedPhrase, setSelectedPhrase] = useState({});
   const [searchPhrase, setSearchPhrase] = useState("");
-
+  const session = useSession();
   const {
     poolPhrases,
     setPoolPhrases,
@@ -40,7 +40,6 @@ export default function Jrnl() {
     jrnlPhrases,
     setJrnlPhrases,
   } = useGlobalContext();
-  const session = useSession();
 
   function handleTonalitySelection(e) {
     setScaleTonality(e.target.value);
