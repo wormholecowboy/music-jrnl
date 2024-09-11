@@ -80,63 +80,72 @@ export default function WorkingArea() {
             strategy={horizontalListSortingStrategy}
           >
             {workingPhrases.map((phraseObj, idx) => (
-              <span title={phraseToString(phraseObj.phrase)}>
-                <DraggablePhrase
-                  id={phraseObj.phrase_id}
-                  key={phraseObj.phrase_id}
-                  color={`${phraseObj.color}`}
-                >
-                  {phraseObj.name}
-                  <span
-                    className="m-1 cursor-pointer"
-                    onClick={() => removeRest(idx)}
+              <>
+                <span title={phraseToString(phraseObj.phrase)}>
+                  <DraggablePhrase
+                    id={phraseObj.phrase_id}
+                    key={phraseObj.phrase_id}
+                    color={`${phraseObj.color}`}
                   >
-                    <Image
-                      alt="minus"
-                      src="/minus.png"
-                      className="rounded-full m-2"
-                      width={20}
-                      height={20}
-                      style={{
-                        maxWidth: "100%",
-                        height: "auto",
-                      }}
-                    />
-                  </span>
-                  <span
-                    className="m-1 cursor-pointer"
-                    onClick={() => addRest(idx, rest)}
-                  >
-                    <Image
-                      alt="rest"
-                      src="/rest.png"
-                      className="rounded-full m-2"
-                      width={20}
-                      height={20}
-                      style={{
-                        maxWidth: "100%",
-                        height: "auto",
-                      }}
-                    />
-                  </span>
-                  <span
-                    className="m-1 cursor-pointer"
-                    onClick={() => deletePhrase(phraseObj.phrase_id)}
-                  >
-                    <Image
-                      alt="delete"
-                      src="/trash.png"
-                      className="rounded-full m-2"
-                      width={20}
-                      height={20}
-                      style={{
-                        maxWidth: "100%",
-                        height: "auto",
-                      }}
-                    />
-                  </span>
-                </DraggablePhrase>
-              </span>
+                    <div id="pillParent">
+                      <div className="flex flex-row m-0 p-0 items-center">
+                        {phraseObj.name}
+                        <span
+                          className="m-1 cursor-pointer"
+                          onClick={() => removeRest(idx)}
+                        >
+                          <Image
+                            alt="minus"
+                            src="/minus.png"
+                            className="rounded-full m-2"
+                            width={20}
+                            height={20}
+                            style={{
+                              maxWidth: "100%",
+                              height: "auto",
+                            }}
+                          />
+                        </span>
+                        <span
+                          className="m-1 cursor-pointer"
+                          onClick={() => addRest(idx, rest)}
+                        >
+                          <Image
+                            alt="rest"
+                            src="/rest.png"
+                            className="rounded-full m-2"
+                            width={20}
+                            height={20}
+                            style={{
+                              maxWidth: "100%",
+                              height: "auto",
+                            }}
+                          />
+                        </span>
+                        <span
+                          className="m-1 cursor-pointer"
+                          onClick={() => deletePhrase(phraseObj.phrase_id)}
+                        >
+                          <Image
+                            alt="delete"
+                            src="/trash.png"
+                            className="rounded-full m-2"
+                            width={20}
+                            height={20}
+                            style={{
+                              maxWidth: "100%",
+                              height: "auto",
+                            }}
+                          />
+                        </span>
+                      </div>
+                      <div className="ml-7 p-0" id="notesInPhrase">
+                        {phraseToString(phraseObj.phrase)}
+                      </div>
+                    </div> {/* pillParent */}
+                  </DraggablePhrase>
+                </span>
+              </>
             ))}
           </SortableContext>
         </DndContext>

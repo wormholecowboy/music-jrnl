@@ -2,10 +2,10 @@
     *  NOTE: try a rhythm generator
   *
   *
+  * TODO: remove relative imports
   * TODO: refactor pool
   * TODO: refactor working
   * TODO: refactor jrnl
-  * TODO: restructure folders and files
   * TODO: 
   * TODO: make working area vertical? (more room for notes on selector slider)
   * TODO: reskin
