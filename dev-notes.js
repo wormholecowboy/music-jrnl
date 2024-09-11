@@ -2,7 +2,6 @@
     *  NOTE: try a rhythm generator
   *
   *
-  * TODO: refactor pool
   * TODO: refactor working
   * TODO: refactor jrnl
   * TODO: 

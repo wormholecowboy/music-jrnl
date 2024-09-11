@@ -12,8 +12,8 @@ import {
   TextField,
 } from "@mui/material";
 import { useState, useEffect } from "react";
-import getPhrases from "../../actions/get-phrases";
-import deletePhrase from "../../actions/delete-phrase";
+import getPhrases from "app/actions/get-phrases";
+import deletePhrase from "app/actions/delete-phrase";
 import Image from "next/image";
 import { useGlobalContext } from "/app/play/useGlobalContext";
 import { scalesMasterList } from "utils/random";
@@ -23,7 +23,7 @@ import phraseAlreadyInList from "utils/phraseAlreadyInList";
 
 export default function Jrnl() {
   const [isLoading, setLoading] = useState(true);
-  const [scaleTonality, setScaleTonality] = useState("Chromatic");
+  const [scaleTonality, setScaleTonality] = useState("Blues");
   const [modalOpen, setModalOpen] = useState(false);
   const [renameValue, setRenameValue] = useState("");
   const [selectedPhrase, setSelectedPhrase] = useState({});
