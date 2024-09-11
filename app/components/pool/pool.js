@@ -3,7 +3,6 @@ import { useGlobalContext } from "../../play/useGlobalContext";
 import Image from "next/image";
 import playPhrase from "utils/playPhrase";
 import { phraseToString } from "utils/random";
-import insertPhrases from "../../actions/insert-phrase";
 import { Box } from "@mui/system";
 import SaveButton from "./saveButton";
 import phraseAlreadyInList from "utils/phraseAlreadyInList";
@@ -19,7 +18,7 @@ export default function Pool() {
     jrnlPhrases,
   } = useGlobalContext();
 
-  function addToWorkingPhrases(phraseObj) {
+  function handleAddToWorking(phraseObj) {
     if (phraseAlreadyInList(phraseObj, workingPhrases)) {
       window.alert("Phrase is already in your list.");
       return;
@@ -32,12 +31,8 @@ export default function Pool() {
     playPhrase(phraseObj, scaleLetter, bpm);
   }
 
-  function deletePhrase(id) {
-    console.log("id: ", id);
+  function handleDelete(id) {
     setPoolPhrases((prev) => {
-      console.log("prev: ", prev);
-      const filtered = prev.filter((phraseObj) => phraseObj.phrase_id !== id);
-      console.log("filtered: ", filtered);
       return prev.filter((phraseObj) => phraseObj.phrase_id !== id);
     });
   }
@@ -76,7 +71,7 @@ export default function Pool() {
                 </span>
                 <span
                   className="m-1 cursor-pointer"
-                  onClick={() => addToWorkingPhrases(phraseObj)}
+                  onClick={() => handleAddToWorking(phraseObj)}
                 >
                   <Image
                     alt="work"
@@ -91,7 +86,7 @@ export default function Pool() {
                 </span>
                 <span
                   className="m-1 cursor-pointer"
-                  onClick={() => deletePhrase(phraseObj.phrase_id)}
+                  onClick={() => handleDelete(phraseObj.phrase_id)}
                 >
                   <Image
                     alt="delete"
