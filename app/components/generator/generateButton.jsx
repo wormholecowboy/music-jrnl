@@ -2,20 +2,20 @@
 import { useGlobalContext } from "../../play/useGlobalContext";
 import { Scale } from "@tonaljs/tonal";
 import { v4 as uuidv4 } from "uuid";
-import playPhrase from "../../../utils/playPhrase";
-import phraseAlreadyInList from "../../../utils/phraseAlreadyInList";
+import playPhrase from "utils/playPhrase";
+import phraseAlreadyInList from "utils/phraseAlreadyInList";
 
 import {
   randomColor,
   randomIndex,
   randomIndexNoRepeat,
-} from "../../../utils/random";
+} from "utils/random";
 
 import {
   tasteAdjectives,
   soundAdjectives,
   sounds,
-} from "../../../utils/lists-of-words";
+} from "utils/lists-of-words";
 
 export default function GenerateButton({
   generatorLowNote,

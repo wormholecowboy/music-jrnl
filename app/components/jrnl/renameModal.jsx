@@ -1,5 +1,5 @@
 import { DialogTitle, Dialog, TextField, Button } from "@mui/material";
-import updateNameInArray from "../../../utils/updateNameInArray";
+import updateNameInArray from "utils/updateNameInArray";
 import RenamePhrase from "/app/actions/rename-phrase";
 
 export default function RenameModal({

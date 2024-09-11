@@ -16,10 +16,10 @@ import getPhrases from "../../actions/get-phrases";
 import deletePhrase from "../../actions/delete-phrase";
 import Image from "next/image";
 import { useGlobalContext } from "/app/play/useGlobalContext";
-import { scalesMasterList } from "../../../utils/random";
+import { scalesMasterList } from "utils/random";
 import RenameModal from "./renameModal";
-import useSession from "../../../utils/supabase/use-session";
-import phraseAlreadyInList from "../../../utils/phraseAlreadyInList";
+import useSession from "utils/supabase/use-session";
+import phraseAlreadyInList from "utils/phraseAlreadyInList";
 
 export default function Jrnl() {
   const [isLoading, setLoading] = useState(true);

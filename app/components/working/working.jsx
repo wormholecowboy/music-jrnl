@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import playPhrase from "../../../utils/playPhrase";
+import playPhrase from "utils/playPhrase";
 import { InputLabel, Select, MenuItem, FormControl } from "@mui/material";
 import { DndContext, closestCenter } from "@dnd-kit/core";
 import {
@@ -11,7 +11,7 @@ import {
 import DraggablePhrase from "./draggablePhrase";
 import { useGlobalContext } from "../../play/useGlobalContext";
 import { useState } from "react";
-import { phraseToString } from "../../../utils/random";
+import { phraseToString } from "utils/random";
 
 export default function WorkingArea() {
   const { bpm, workingPhrases, setWorkingPhrases, scaleLetter } =

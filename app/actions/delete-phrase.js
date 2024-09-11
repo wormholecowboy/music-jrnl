@@ -1,5 +1,5 @@
 "use server";
-import { createSupabaseServerClient } from "../../utils/supabase/server-client";
+import { createSupabaseServerClient } from "utils/supabase/server-client";
 
 export default async function deletePhrase(phraseId) {
   const supabase = createSupabaseServerClient();

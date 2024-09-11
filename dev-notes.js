@@ -2,7 +2,6 @@
     *  NOTE: try a rhythm generator
   *
   *
-  * TODO: remove relative imports
   * TODO: refactor pool
   * TODO: refactor working
   * TODO: refactor jrnl
