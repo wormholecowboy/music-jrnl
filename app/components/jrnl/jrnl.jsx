@@ -21,11 +21,13 @@ import RenameModal from "./renameModal";
 import useSession from "utils/supabase/use-session";
 import phraseAlreadyInList from "utils/phraseAlreadyInList";
 import { initState } from "utils/initState";
+import DeleteModal from "./deleteModal";
 
 export default function Jrnl() {
   const [isLoading, setLoading] = useState(true);
   const [scaleTonality, setScaleTonality] = useState(initState.scaleTonality);
   const [modalOpen, setModalOpen] = useState(false);
+  const [deleteModalOpen, setDeleteModalOpen] = useState(false);
   const [renameValue, setRenameValue] = useState("");
   const [selectedPhrase, setSelectedPhrase] = useState({});
   const [searchPhrase, setSearchPhrase] = useState("");
@@ -54,11 +56,9 @@ export default function Jrnl() {
     setSelectedPhrase(phraseObj);
     setModalOpen(true);
   }
-
   async function handleDelete(phraseObj) {
-    const phraseId = phraseObj.phrase_id;
-    await deletePhrase(phraseId);
-    setJrnlPhrasesUpdateCounter(jrnlPhrasesUpdateCounter + 1);
+    setSelectedPhrase(phraseObj)
+    setDeleteModalOpen(true);
   }
 
   function handleLoad(phraseObj) {
@@ -90,7 +90,13 @@ export default function Jrnl() {
     <>
       <div className="flex flex-col">
         <div className="flex p-3 justify-around items-center">
-          <TextField id="outlined-basic" label="Search Your Phrases" variant="outlined" value={searchPhrase} onChange={e => handleSearch(e)}/>
+          <TextField
+            id="outlined-basic"
+            label="Search Your Phrases"
+            variant="outlined"
+            value={searchPhrase}
+            onChange={(e) => handleSearch(e)}
+          />
           <FormControl>
             <InputLabel id="jrnl-tonality-selector">Tonality</InputLabel>
             <Select
@@ -115,8 +121,12 @@ export default function Jrnl() {
         >
           <List>
             {jrnlPhrases
-              .filter(phraseObj => phraseObj.tonality === scaleTonality)
-              .filter(phraseObj => phraseObj.name.toLowerCase().includes(searchPhrase.toLowerCase()))
+              .filter((phraseObj) => phraseObj.tonality === scaleTonality)
+              .filter((phraseObj) =>
+                phraseObj.name
+                  .toLowerCase()
+                  .includes(searchPhrase.toLowerCase()),
+              )
               .map((phraseObj) => (
                 <ListItem key={phraseObj.phrase_id}>
                   <ListItemText>{phraseObj.name}</ListItemText>
@@ -172,6 +182,13 @@ export default function Jrnl() {
           setWorkingPhrases={setWorkingPhrases}
           setPoolPhrases={setPoolPhrases}
           poolPhrases={poolPhrases}
+        />
+        <DeleteModal
+          jrnlPhrasesUpdateCounter={jrnlPhrasesUpdateCounter}
+          setJrnlPhrasesUpdateCounter={setJrnlPhrasesUpdateCounter}
+          deleteModalOpen={deleteModalOpen}
+          setDeleteModalOpen={setDeleteModalOpen}
+          selectedPhrase={selectedPhrase}
         />
       </div>
     </>
