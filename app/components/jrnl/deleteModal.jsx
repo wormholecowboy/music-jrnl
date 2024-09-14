@@ -1,5 +1,6 @@
 import { DialogTitle, Dialog, Button } from "@mui/material";
 import deletePhrase from "app/actions/delete-phrase";
+import Image from "next/image";
 
 export default function DeleteModal({
   jrnlPhrasesUpdateCounter,
@@ -22,9 +23,12 @@ export default function DeleteModal({
   return (
     <Dialog open={deleteModalOpen} onClose={handleClose}>
       <DialogTitle>Delete</DialogTitle>
-    <p>Deleting {selectedPhrase.name}</p>
-      <Button onClick={handleClose}>Cancel</Button>
-      <Button onClick={handleDelete}>Delete</Button>
+      <Image src="/john.gif" width={220} height={165} alt="john cena" />
+      <p>Deleting {selectedPhrase.name}</p>
+      <div className="flex justify-around">
+        <Button onClick={handleClose}>Cancel</Button>
+        <Button onClick={handleDelete}>Delete</Button>
+      </div>
     </Dialog>
   );
 }
