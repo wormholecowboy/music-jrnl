@@ -71,6 +71,35 @@ export default function WorkingArea() {
 
   return (
     <div className="flex flex-col justify-center justify-items-center">
+      <div className="flex flex-row justify-center mt-5">
+        <FormControl>
+          <InputLabel id="rest-selector">Add Rest</InputLabel>
+          <Select
+            labelId="Rest"
+            variant="outlined"
+            id="Rest"
+            value={rest}
+            label="Add Rest"
+            onChange={(e) => setRest(e.target.value)}
+            sx={{ width: 100 }}
+          >
+            <MenuItem value="2n">2n</MenuItem>
+            <MenuItem value="4n">4n</MenuItem>
+            <MenuItem value="8n">8n</MenuItem>
+            <MenuItem value="16n">16n</MenuItem>
+            <MenuItem value="4n.">4n.</MenuItem>
+            <MenuItem value="2n.">2n.</MenuItem>
+            <MenuItem value="8n.">8n.</MenuItem>
+            <MenuItem value="16n.">16n.</MenuItem>
+          </Select>
+        </FormControl>
+        <button
+          onClick={() => handlePlay(workingPhrases)}
+          className="self-center px-4 py-2 mx-4 text-color4 shadow-md rounded-md bg-color5 border-2 border-color4"
+        >
+          Play
+        </button>
+      </div>
       <div className="p-3 flex flex-row self-center">
         <DndContext
           collisionDetection={closestCenter}
@@ -143,42 +172,14 @@ export default function WorkingArea() {
                       <div className="ml-7 p-0" id="notesInPhrase">
                         {phraseToString(phraseObj.phrase)}
                       </div>
-                    </div> {/* pillParent */}
+                    </div>{" "}
+                    {/* pillParent */}
                   </DraggablePhrase>
                 </span>
               </>
             ))}
           </SortableContext>
         </DndContext>
-      </div>
-      <div className="flex flex-row justify-center">
-        <FormControl>
-          <InputLabel id="rest-selector">Add Rest</InputLabel>
-          <Select
-            labelId="Rest"
-            variant="outlined"
-            id="Rest"
-            value={rest}
-            label="Add Rest"
-            onChange={(e) => setRest(e.target.value)}
-            sx={{ width: 100 }}
-          >
-            <MenuItem value="2n">2n</MenuItem>
-            <MenuItem value="4n">4n</MenuItem>
-            <MenuItem value="8n">8n</MenuItem>
-            <MenuItem value="16n">16n</MenuItem>
-            <MenuItem value="4n.">4n.</MenuItem>
-            <MenuItem value="2n.">2n.</MenuItem>
-            <MenuItem value="8n.">8n.</MenuItem>
-            <MenuItem value="16n.">16n.</MenuItem>
-          </Select>
-        </FormControl>
-        <button
-          onClick={() => handlePlay(workingPhrases)}
-          className="self-center px-4 py-2 mx-4 text-color4 shadow-md rounded-md bg-color5 border-2 border-color4"
-        >
-          Play
-        </button>
       </div>
     </div>
   );

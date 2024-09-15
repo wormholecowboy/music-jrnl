@@ -7,11 +7,11 @@ import Jrnl from "app/components/jrnl/jrnl";
 
 export default function Layout({ children }) {
   return (
-    <div className="bg-color1">
+    <div className="bg-color1 h-[90%]">
       <GlobalContextProvider>
         <div
           id="main-play"
-          className="h-screen grid grid-cols-3 grid-rows-4 gap-5 mx-5"
+          className="h-full grid grid-cols-3 grid-rows-[repeat(2, 1fr 1fr)] gap-5 mx-5"
         >
           <div
             id="working"
