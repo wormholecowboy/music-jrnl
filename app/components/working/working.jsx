@@ -18,6 +18,7 @@ export default function WorkingArea() {
   const { bpm, workingPhrases, setWorkingPhrases, scaleLetter } =
     useGlobalContext();
   const [rest, setRest] = useState(initState.addRest);
+  const availableRests = ["2n", "4n", "8n", "16n", "2n.", "4n.", "8n.", "16n."];
 
   function handleRemoveEndNote(idx) {
     const newWorkingPhrases = [...workingPhrases];
@@ -83,14 +84,9 @@ export default function WorkingArea() {
             onChange={(e) => setRest(e.target.value)}
             sx={{ width: 100 }}
           >
-            <MenuItem value="2n">2n</MenuItem>
-            <MenuItem value="4n">4n</MenuItem>
-            <MenuItem value="8n">8n</MenuItem>
-            <MenuItem value="16n">16n</MenuItem>
-            <MenuItem value="4n.">4n.</MenuItem>
-            <MenuItem value="2n.">2n.</MenuItem>
-            <MenuItem value="8n.">8n.</MenuItem>
-            <MenuItem value="16n.">16n.</MenuItem>
+            {availableRests.map((rest) => {
+              return <MenuItem value={rest}>{rest}</MenuItem>;
+            })}
           </Select>
         </FormControl>
         <button
