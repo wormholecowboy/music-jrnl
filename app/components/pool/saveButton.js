@@ -10,7 +10,7 @@ export default function SaveButton({ jrnlPhrases, phraseObj }) {
     setJrnlPhrasesUpdateCounter(jrnlPhrasesUpdateCounter + 1);
   }
 
-  const isSaved = jrnlPhrases.some(
+  const isSaved = jrnlPhrases?.some(
     (jrnlPhraseObj) => jrnlPhraseObj.phrase_id === phraseObj.phrase_id,
   );
 
