@@ -1,6 +1,7 @@
 import Image from "next/image";
 import insertPhrases from "app/actions/insert-phrase";
 import { useGlobalContext } from "../../play/useGlobalContext";
+import useSession from "utils/supabase/use-session";
 
 export default function SaveButton({ jrnlPhrases, phraseObj }) {
   const { jrnlPhrasesUpdateCounter, setJrnlPhrasesUpdateCounter } = useGlobalContext();
@@ -14,7 +15,8 @@ export default function SaveButton({ jrnlPhrases, phraseObj }) {
     (jrnlPhraseObj) => jrnlPhraseObj.phrase_id === phraseObj.phrase_id,
   );
 
-  const saveButton = isSaved ? null : (
+  const session = useSession();
+  const saveButton = isSaved || !session ? null : (
     <span
       className="m-1 cursor-pointer"
       onClick={() => {
