@@ -6,6 +6,10 @@ html {
     @apply text-color4
 }
 
+/* * { */
+/*   outline: 1px dotted #f002; */
+/*    } */
+
 /* :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
