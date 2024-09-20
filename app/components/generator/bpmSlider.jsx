@@ -20,7 +20,7 @@ export default function BpmSlider() {
 
   return (
     <div className="self-center">
-      <p className="text-center text-black">BPM</p>
+      <p className="text-center py-2">BPM</p>
       <ThemeProvider theme={theme}>
         <Slider
           sx={{

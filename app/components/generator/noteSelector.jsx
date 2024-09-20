@@ -59,7 +59,8 @@ export default function NoteSelectorSlider({
 
   return (
     <>
-      <div className="flex flex-row">
+      <p className="text-center py-2">Note Range Selector</p>
+      <div className="flex flex-row pb-9">
         <span className="mx-3">{displayLowNote}</span>
         <ThemeProvider theme={theme}>
           <Slider

@@ -99,7 +99,7 @@ export default function GenerateButton({
 
   return (
     <>
-      <div className="self-center flex flex-row gap-2">
+      <div className="self-center flex flex-row gap-5">
         <button
           onClick={handleGeneratePhrase}
           className="self-center px-4 py-2 text-color4 border-2 border-color4 shadow-lg rounded-lg bg-color5"
