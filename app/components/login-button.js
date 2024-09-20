@@ -23,10 +23,12 @@ export default function LoginButton(props) {
   if (session) {
     const avatarURL = session.user.user_metadata.avatar_url;
     return (
-      <>
-        <Image src={avatarURL} width={50} height={50} />
+      <div className="flex justify-center items-center">
+        <div className="rounded-xl overflow-hidden mx-5">
+          <Image src={avatarURL} width={50} height={50} />
+        </div>
         <LogoutButton />
-      </>
+      </div>
     );
   }
 

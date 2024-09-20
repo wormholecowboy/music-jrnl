@@ -96,7 +96,7 @@ export default function WorkingArea() {
           Play
         </button>
       </div>
-      <div className="p-3 flex flex-row self-center">
+      <div className="p-3 flex flex-row self-center drop-shadow-xl">
         <DndContext
           collisionDetection={closestCenter}
           onDragEnd={handleDragEnd}
@@ -114,56 +114,58 @@ export default function WorkingArea() {
                     color={`${phraseObj.color}`}
                   >
                     <div id="pillParent">
-                      <div className="flex flex-row m-0 p-0 items-center">
+                      <div className="flex m-0 p-0 items-center">
                         {phraseObj.name}
-                        <span
-                          className="m-1 cursor-pointer"
-                          onClick={() => handleRemoveEndNote(idx)}
-                        >
-                          <Image
-                            alt="minus"
-                            src="/minus.png"
-                            className="rounded-full m-2"
-                            width={20}
-                            height={20}
-                            style={{
-                              maxWidth: "100%",
-                              height: "auto",
-                            }}
-                          />
-                        </span>
-                        <span
-                          className="m-1 cursor-pointer"
-                          onClick={() => handleAddRest(idx, rest)}
-                        >
-                          <Image
-                            alt="rest"
-                            src="/rest.png"
-                            className="rounded-full m-2"
-                            width={20}
-                            height={20}
-                            style={{
-                              maxWidth: "100%",
-                              height: "auto",
-                            }}
-                          />
-                        </span>
-                        <span
-                          className="m-1 cursor-pointer"
-                          onClick={() => handleDelete(phraseObj.phrase_id)}
-                        >
-                          <Image
-                            alt="delete"
-                            src="/trash.png"
-                            className="rounded-full m-2"
-                            width={20}
-                            height={20}
-                            style={{
-                              maxWidth: "100%",
-                              height: "auto",
-                            }}
-                          />
-                        </span>
+                        <div id="iconsParent" className="flex ml-auto">
+                          <span
+                            className="m-1 cursor-pointer"
+                            onClick={() => handleRemoveEndNote(idx)}
+                          >
+                            <Image
+                              alt="minus"
+                              src="/minus.png"
+                              className="rounded-full m-2"
+                              width={20}
+                              height={20}
+                              style={{
+                                maxWidth: "100%",
+                                height: "auto",
+                              }}
+                            />
+                          </span>
+                          <span
+                            className="m-1 cursor-pointer"
+                            onClick={() => handleAddRest(idx, rest)}
+                          >
+                            <Image
+                              alt="rest"
+                              src="/rest.png"
+                              className="rounded-full m-2"
+                              width={20}
+                              height={20}
+                              style={{
+                                maxWidth: "100%",
+                                height: "auto",
+                              }}
+                            />
+                          </span>
+                          <span
+                            className="m-1 cursor-pointer"
+                            onClick={() => handleDelete(phraseObj.phrase_id)}
+                          >
+                            <Image
+                              alt="delete"
+                              src="/trash.png"
+                              className="rounded-full m-2"
+                              width={20}
+                              height={20}
+                              style={{
+                                maxWidth: "100%",
+                                height: "auto",
+                              }}
+                            />
+                          </span>
+                        </div>
                       </div>
                       <div className="ml-7 p-0" id="notesInPhrase">
                         {phraseToString(phraseObj.phrase)}

@@ -13,7 +13,6 @@ import {
 } from "@mui/material";
 import { useState, useEffect } from "react";
 import getPhrases from "app/actions/get-phrases";
-import deletePhrase from "app/actions/delete-phrase";
 import Image from "next/image";
 import { useGlobalContext } from "/app/play/useGlobalContext";
 import { scalesMasterList } from "utils/random";
@@ -88,7 +87,7 @@ export default function Jrnl() {
 
   return (
     <>
-      <div className="flex flex-col">
+      <div className="flex flex-col items-center">
         <div className="flex p-3 justify-around items-center">
           <TextField
             id="outlined-basic"
@@ -117,6 +116,9 @@ export default function Jrnl() {
           sx={{
             overflowY: "auto",
             maxHeight: 400,
+            display: "flex",
+            flexDirection: "column",
+            items: "center",
           }}
         >
           <List>
@@ -128,7 +130,12 @@ export default function Jrnl() {
                   .includes(searchPhrase.toLowerCase()),
               )
               .map((phraseObj) => (
-                <ListItem key={phraseObj.phrase_id}>
+                <ListItem key={phraseObj.phrase_id} sx={{
+                  border: 1,
+                  borderColor: "black",
+                  borderRadius: 25,
+                  marginY: 1,
+                }}>
                   <ListItemText>{phraseObj.name}</ListItemText>
                   <ListItemIcon>
                     <span

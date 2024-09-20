@@ -44,13 +44,14 @@ export default function Pool() {
           sx={{
             maxHeight: 450,
             overflowY: "auto",
+            paddingX: 4
           }}
         >
           {poolPhrases.map((phraseObj) => (
             <div
               title={phraseToString(phraseObj.phrase)}
               key={phraseObj.phrase_id}
-              className={`flex rounded-full m-2 px-4 py-1 w-10px items-center h-10px ${phraseObj.color} text-black`}
+              className={`flex rounded-full m-2 px-4 py-1 w-10px items-center h-10px ${phraseObj.color} text-black drop-shadow-xl`}
             >
               {phraseObj.name}
               <div className={"flex justify-around items-center ml-auto"} id="temp">
