@@ -29,8 +29,8 @@ export default function NoteSelectorSlider({
     setSliderMax(indices.length - 1);
     setFullRangeOfNotes(fullScale);
 
-    setDisplayLowNote(fullScale[6])
-    setDisplayHighNote(fullScale[13])
+    setDisplayLowNote(fullScale[6]);
+    setDisplayHighNote(fullScale[13]);
   }
 
   function handleChange(_, newVal) {
@@ -63,6 +63,9 @@ export default function NoteSelectorSlider({
         <span className="mx-3">{displayLowNote}</span>
         <ThemeProvider theme={theme}>
           <Slider
+            sx={{
+              color: "#fcffe0",
+            }}
             value={currentSliderSelection}
             min={0}
             max={sliderMax}

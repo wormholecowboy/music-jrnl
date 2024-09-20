@@ -23,6 +23,9 @@ export default function BpmSlider() {
       <p className="text-center text-black">BPM</p>
       <ThemeProvider theme={theme}>
         <Slider
+          sx={{
+            color:"#fcffe0"
+          }}
           valueLabelDisplay="auto"
           min={5}
           max={350}

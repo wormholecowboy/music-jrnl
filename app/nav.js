@@ -3,7 +3,7 @@ import LoginButton from "./components/login-button";
 
 export default function Nav() {
   return (
-    <nav className="flex justify-between items-center text-gray-700 uppercase font-bold h-14 mb-5 bg-orange-300">
+    <nav className="flex justify-between items-center text-color4 uppercase font-bold h-14 mb-5 bg-color3">
       <ul className="flex justify-between items-start list-none">
         <li className="ml-10">
           <Link href="/">Home</Link>
