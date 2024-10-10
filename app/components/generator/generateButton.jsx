@@ -5,17 +5,9 @@ import { v4 as uuidv4 } from "uuid";
 import playPhrase from "utils/playPhrase";
 import phraseAlreadyInList from "utils/phraseAlreadyInList";
 
-import {
-  randomColor,
-  randomIndex,
-  randomIndexNoRepeat,
-} from "utils/random";
+import { randomColor, randomIndex, randomIndexNoRepeat } from "utils/random";
 
-import {
-  tasteAdjectives,
-  soundAdjectives,
-  sounds,
-} from "utils/lists-of-words";
+import { tasteAdjectives, soundAdjectives, sounds } from "utils/lists-of-words";
 
 export default function GenerateButton({
   generatorLowNote,
@@ -45,24 +37,63 @@ export default function GenerateButton({
     const adjective =
       soundAdjectives[randomIndex(0, soundAdjectives.length - 1)];
     return `${taste} ${adjective} ${sound}`;
-  };
+  }
 
   function createPhrase(generatedScale, rhythmArray) {
     let phrase = [];
-    for (let i = 0; i < numOfNotes; i++) {
-      let randomNote = generatedScale[randomIndexNoRepeat(generatorLowNote, generatorHighNote + 1)];
-      let rhythm = rhythmArray[randomIndex(0, rhythmArray.length)];
-      phrase.push({ note: randomNote, time: rhythm });
-    }
-    return phrase;
-  };
+    let notesLeft = numOfNotes;
+    const notesToAdd = [];
+    const rhythmsToAdd = [];
 
+    while (notesLeft > 0) {
+      let rhythm = rhythmArray[randomIndex(0, rhythmArray.length)];
+      if (rhythm.length > 1) {
+        rhythm.forEach((el) => {
+          rhythmsToAdd.push(el);
+          notesLeft--;
+        });
+
+        continue;
+      }
+      rhythmsToAdd.push(rhythm[0]);
+      notesLeft--;
+    }
+
+    for (let i = 0; i < numOfNotes; i++) {
+      let randomNote =
+        generatedScale[
+          randomIndexNoRepeat(generatorLowNote, generatorHighNote + 1)
+        ];
+
+      notesToAdd.push(randomNote);
+    }
+
+    for (let i = 0; i < numOfNotes; i++) {
+      const randomNote = notesToAdd[i];
+      const randomRhythm = rhythmsToAdd[i];
+      phrase.push({ note: randomNote, time: randomRhythm });
+    }
+
+    return phrase;
+  }
+
+  // NOTE: Refactor
   function createPhraseObject() {
     const id = uuidv4();
     const name = createName();
     const color = randomColor();
     const generatedScale = generateScale();
-    const rhythmArray = ["8n"];
+    // const rhythmArray = [[ "8n" ]];
+    const rhythmArray = [
+      ["8n"],
+      // ["4n"],
+      ["8t", "8t", "8t"],
+      ["8t", "8t", "8t"],
+      ["8n", "8n."],
+      // ["4n", "8n."],
+      ["8n.", "4n"],
+      ["8n", "8n", "8n", "8n"],
+    ];
     const phrase = createPhrase(generatedScale, rhythmArray);
 
     const phraseObj = {
@@ -75,7 +106,7 @@ export default function GenerateButton({
 
     setCurrentPhrase(phraseObj);
     return phraseObj;
-  };
+  }
 
   function generateScale() {
     let lowerCaseTonality = scaleTonality.toLowerCase();
